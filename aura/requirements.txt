@@ -1,0 +1,8 @@
+numpy>=1.24
+# Static analysis: Tree-sitter grammars for known languages (Java, JS/TS, Go, Python).
+tree-sitter==0.20.4
+tree-sitter-languages>=1.10
+# Optional: only needed for OpenAI provider runs (a stdlib-urllib fallback is bundled).
+requests>=2.31
+# Optional: test runner.
+pytest>=7.0

@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aura-framework"
+version = "1.0.0"
+description = "AURA — Autonomous Understanding and Re-engineering Agents: a multi-agent framework for autonomous program comprehension and modernization of legacy codebases."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "AURA research implementation" }]
+dependencies = [
+    # Intentionally small. numpy is used for the LSA-based BERTScore proxy in
+    # evaluation; tree-sitter provides real grammars for known languages
+    # (COBOL and invented dialects fall back to the inferred grammar/heuristics).
+    "numpy>=1.24",
+    "tree-sitter==0.20.4",
+    "tree-sitter-languages>=1.10",
+]
+
+[project.optional-dependencies]
+openai = ["requests>=2.31"]
+dev = ["pytest>=7.0"]
+
+[project.scripts]
+aura = "aura.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["aura*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
