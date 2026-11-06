@@ -12,11 +12,17 @@ name: AURA evaluation
 on:
   push:
     branches: ["**"]
+    paths:
+      - "aura/**"
+      - ".github/workflows/aura-eval.yml"
   workflow_dispatch:
 
 jobs:
   eval:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: aura
     timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
@@ -66,8 +72,8 @@ jobs:
         with:
           name: aura-results
           path: |
-            results/summary.md
-            results/summary.json
-            results-openai/summary.md
-            results-openai/summary.json
+            aura/results/summary.md
+            aura/results/summary.json
+            aura/results-openai/summary.md
+            aura/results-openai/summary.json
           if-no-files-found: ignore

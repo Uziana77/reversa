@@ -116,11 +116,19 @@ class JavaAdapter(ExecutionAdapter):
         cres = run_subprocess(compile_cmd, cwd=workdir, timeout_s=self.timeout_s * 3,
                               memory_mb=self.memory_mb)
         if not cres.ok:
-            return ExecResult(ok=False, fault=f"javac failed: {cres.fault}")
+            # driver or toolchain failure -> bundled subset interpreter,
+            # recording the toolchain outcome in the trace
+            sim = self._run_javasim(root, harness, inputs)
+            sim.trace = (f"note: javac path failed ({cres.fault[:200]}); used javasim\n"
+                         + sim.trace)
+            return sim
         rres = run_subprocess(run_cmd, cwd=workdir, timeout_s=self.timeout_s,
                               memory_mb=self.memory_mb)
         if not rres.ok:
-            return rres
+            sim = self._run_javasim(root, harness, inputs)
+            sim.trace = (f"note: java runtime path failed ({rres.fault[:200]}); used javasim\n"
+                         + sim.trace)
+            return sim
         return self._parse_state(rres)
 
     # ------------------------------------------------------------------

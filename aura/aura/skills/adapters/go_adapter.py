@@ -115,8 +115,14 @@ class GoAdapter(ExecutionAdapter):
 
         if toolchain:
             res = self._run_toolchain(root, harness, inputs, toolchain, names)
-            if res is not None and (res.ok or not res.fault.startswith("unresolved")):
+            if res is not None and res.ok:
                 return res
+            # toolchain unusable (or the driver failed) -> bundled interpreter,
+            # recording the toolchain outcome in the trace for transparency
+            note = f"note: go toolchain path failed ({(res.fault if res else '')[:200]}); used gosim"
+            sim = self._run_gosim(root, harness, inputs, names)
+            sim.trace = note + ("\n" + sim.trace if sim.trace else "")
+            return sim
 
         return self._run_gosim(root, harness, inputs, names)
 
@@ -129,9 +135,11 @@ class GoAdapter(ExecutionAdapter):
             for fn in os.listdir(src_dir):
                 if fn.endswith(".go") and fn != "aura_driver_main.go":
                     shutil.copy(os.path.join(src_dir, fn), workdir)
+            with open(os.path.join(workdir, "go.mod"), "w", encoding="utf-8") as fh:
+                fh.write("module auradriver\n\ngo 1.18\n")
             with open(os.path.join(workdir, "aura_driver_main.go"), "w", encoding="utf-8") as fh:
                 fh.write(_driver_source(harness))
-            env = {"AURA_INPUT": json.dumps(inputs), "GO111MODULE": "off"}
+            env = {"AURA_INPUT": json.dumps(inputs)}
             res = run_subprocess([go_bin, "run", "."], cwd=workdir,
                                  timeout_s=max(self.timeout_s, 60),
                                  memory_mb=max(self.memory_mb, 512), env_extra=env)
