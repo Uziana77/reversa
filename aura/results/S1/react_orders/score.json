@@ -1,0 +1,203 @@
+{
+  "unit": "react_orders",
+  "run_dir": "results/S1/react_orders",
+  "gold_rules": 15,
+  "extracted_rules": 31,
+  "injected_rules": 10,
+  "capture_rate": 0.7333,
+  "extraction_precision": 0.5238,
+  "captured": [
+    "RSC-R01",
+    "RSC-R02",
+    "RSC-R03",
+    "RSC-R07",
+    "RSC-R08",
+    "RSC-R09",
+    "RSC-R10",
+    "RSC-R11",
+    "RSC-R12",
+    "RSC-R13",
+    "RSC-R14"
+  ],
+  "gaps": [
+    {
+      "gold": "RSC-R04",
+      "statement": "US orders ship at a flat 500."
+    },
+    {
+      "gold": "RSC-R05",
+      "statement": "Canadian orders ship at a flat 1200."
+    },
+    {
+      "gold": "RSC-R06",
+      "statement": "Any other country ships at a flat 2500."
+    },
+    {
+      "gold": "RSC-R15",
+      "statement": "An order with no lines has a zero subtotal and only shipping in its total."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "RSC-R01",
+      "captured": true,
+      "extracted_id": "BR-003",
+      "shared_identifier": "line"
+    },
+    {
+      "gold": "RSC-R02",
+      "captured": true,
+      "extracted_id": "BR-004",
+      "shared_identifier": "floor"
+    },
+    {
+      "gold": "RSC-R03",
+      "captured": true,
+      "extracted_id": "BR-015",
+      "shared_identifier": "subtotal"
+    },
+    {
+      "gold": "RSC-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R07",
+      "captured": true,
+      "extracted_id": "BR-009",
+      "shared_identifier": "floor"
+    },
+    {
+      "gold": "RSC-R08",
+      "captured": true,
+      "extracted_id": "BR-007",
+      "shared_identifier": "promo"
+    },
+    {
+      "gold": "RSC-R09",
+      "captured": true,
+      "extracted_id": "BR-010",
+      "shared_identifier": "floor"
+    },
+    {
+      "gold": "RSC-R10",
+      "captured": true,
+      "extracted_id": "BR-008",
+      "shared_identifier": "promo"
+    },
+    {
+      "gold": "RSC-R11",
+      "captured": true,
+      "extracted_id": "BR-018",
+      "shared_identifier": "discount"
+    },
+    {
+      "gold": "RSC-R12",
+      "captured": true,
+      "extracted_id": "BR-020",
+      "shared_identifier": "review"
+    },
+    {
+      "gold": "RSC-R13",
+      "captured": true,
+      "extracted_id": "BR-021",
+      "shared_identifier": "hold"
+    },
+    {
+      "gold": "RSC-R14",
+      "captured": true,
+      "extracted_id": "BR-019",
+      "shared_identifier": "open"
+    },
+    {
+      "gold": "RSC-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.6169,
+  "docs": {
+    "bleu4": 0.0204,
+    "bertscore_f1": 0.8721,
+    "glossary_recall": 1.0,
+    "unit_coverage": 1.0,
+    "chars": 9310
+  },
+  "glossary_recall": {
+    "recall": 1.0,
+    "hit": [
+      "run",
+      "linetotal",
+      "shippingfor",
+      "discountfor",
+      "lines",
+      "promo",
+      "country",
+      "subtotal",
+      "discount",
+      "shipping",
+      "total",
+      "status",
+      "quantity break",
+      "save10",
+      "save20",
+      "review",
+      "hold"
+    ],
+    "missed": [],
+    "total": 17
+  },
+  "unit_coverage": 1.0,
+  "traceability_density": 1.0,
+  "valid_span_rate": 1.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 1,
+    "0.6-0.8": 13,
+    "0.8-1.0": 17
+  },
+  "dynamic_labels": {
+    "confirmed": 2,
+    "contradicted": 29,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 10,
+    "injected_blocked": 10,
+    "injected_survived": 0,
+    "block_rate": 1.0,
+    "blocked_nodes_total": 32,
+    "blocked_node_code_leak": 0
+  },
+  "ber": 0.0,
+  "testable_share": 0.0645,
+  "retained_pass_rate": null,
+  "total_rules_ber": 31,
+  "modernization_mode": "migration",
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 22,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "S1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

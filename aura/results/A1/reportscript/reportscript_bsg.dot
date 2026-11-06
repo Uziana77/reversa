@@ -1,0 +1,19 @@
+digraph BSG {
+  rankdir=LR;
+  node [shape=box, fontname="Helvetica"];
+  "N-BR-001" [label="N-BR-001: In returns", style=filled, fillcolor="#66bb6a"];
+  "N-BR-002" [label="N-BR-002: In sales", style=filled, fillcolor="#66bb6a"];
+  "N-BR-003" [label="N-BR-003: In sales", style=filled, fillcolor="#66bb6a"];
+  "N-BR-004" [label="N-BR-004: In sales", style=filled, fillcolor="#66bb6a"];
+  "N-BR-005" [label="N-BR-005: In sales", style=filled, fillcolor="#66bb6a"];
+  "N-BR-006" [label="N-BR-006: In sales", style=filled, fillcolor="#66bb6a"];
+  "N-GAP-001" [label="N-GAP-001: uncovered code path: meta.json", style=filled, fillcolor="#9e9e9e", peripheries=2];
+  "N-GAP-002" [label="N-GAP-002: uncovered code path: work_manifest.json", style=filled, fillcolor="#9e9e9e", peripheries=2];
+  "N-BR-001" -> "N-BR-002" [label="sequence"];
+  "N-BR-002" -> "N-BR-003" [label="conditional"];
+  "N-BR-003" -> "N-BR-004" [label="conditional"];
+  "N-BR-004" -> "N-BR-005" [label="conditional"];
+  "N-BR-005" -> "N-BR-006" [label="conditional"];
+  "N-BR-006" -> "N-GAP-001" [label="sequence"];
+  "N-GAP-001" -> "N-GAP-002" [label="sequence"];
+}

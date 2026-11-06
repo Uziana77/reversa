@@ -1,0 +1,1926 @@
+{
+  "artefacts": {
+    "RepoMap": [
+      {
+        "producer": "navigator",
+        "artefact": "RepoMap",
+        "version": 1,
+        "payload": {
+          "root": "/home/user/reversa/aura/bench/dialects/interlock/work",
+          "files": [
+            {
+              "path": "meta.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 57,
+              "size_bytes": 2421,
+              "is_entry": false
+            },
+            {
+              "path": "work_manifest.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 9,
+              "size_bytes": 396,
+              "is_entry": false
+            },
+            {
+              "path": "corpus/aux.ilg",
+              "language": null,
+              "language_confidence": 0.0,
+              "language_method": "none",
+              "unknown_language": true,
+              "lines": 29,
+              "size_bytes": 704,
+              "is_entry": false
+            },
+            {
+              "path": "corpus/main.ilg",
+              "language": null,
+              "language_confidence": 0.0,
+              "language_method": "none",
+              "unknown_language": true,
+              "lines": 93,
+              "size_bytes": 2497,
+              "is_entry": true
+            }
+          ],
+          "dependency_edges": [
+            {
+              "from": "work_manifest.json",
+              "to": "meta.json",
+              "kind": "import"
+            }
+          ],
+          "unknown_language_files": [
+            "corpus/aux.ilg",
+            "corpus/main.ilg"
+          ],
+          "key_files": [
+            "corpus/main.ilg"
+          ],
+          "traversal_order": [
+            "meta.json",
+            "work_manifest.json",
+            "corpus/aux.ilg",
+            "corpus/main.ilg"
+          ],
+          "file_count": 4,
+          "total_lines": 188
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          }
+        ],
+        "confidence": 0.5,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1449828
+      }
+    ],
+    "GrammarHypothesis": [
+      {
+        "producer": "language_inference",
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "payload": {
+          "hypotheses": [
+            {
+              "language_name": "inferred-dialect(.ilg)",
+              "keywords": [
+                "SET",
+                "TO",
+                "ON",
+                "IF",
+                "THEN",
+                "END-IF",
+                "AND",
+                "OFF",
+                "ELSE",
+                "ALARM_HORN",
+                "PRESSURE",
+                "DOOR_CLOSED",
+                "START_PERM",
+                "TEMPERATURE",
+                "MOTOR_CUT",
+                "RESET_PERM",
+                "RELIEF",
+                "COOLING",
+                "VENT_PERM"
+              ],
+              "block_delimiters": [],
+              "rules": [
+                {
+                  "rule": "SET is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "TO is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ON is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "IF is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "THEN is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "END-IF is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "AND is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "OFF is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ELSE is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ALARM_HORN is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "PRESSURE is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "DOOR_CLOSED is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.6,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "START_PERM is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "TEMPERATURE is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "MOTOR_CUT is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "RESET_PERM is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "RELIEF is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "COOLING is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "VENT_PERM is a keyword",
+                  "kind": "keyword",
+                  "confidence": 0.36,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "SET is a keyword (cross-language prior)",
+                  "kind": "keyword",
+                  "confidence": 0.79,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "TO is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ON is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "IF is a keyword (cross-language prior)",
+                  "kind": "keyword",
+                  "confidence": 0.79,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "THEN is a keyword (cross-language prior)",
+                  "kind": "keyword",
+                  "confidence": 0.79,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "END-IF is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "AND is a keyword (cross-language prior)",
+                  "kind": "keyword",
+                  "confidence": 0.79,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "OFF is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ELSE is a keyword (cross-language prior)",
+                  "kind": "keyword",
+                  "confidence": 0.79,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "ALARM_HORN is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "PRESSURE is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "DOOR_CLOSED is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.69,
+                  "cross_file_support": 2,
+                  "status": "accepted"
+                },
+                {
+                  "rule": "START_PERM is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "TEMPERATURE is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "MOTOR_CUT is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "RESET_PERM is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "RELIEF is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "COOLING is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                },
+                {
+                  "rule": "VENT_PERM is a keyword (inferred from frequency/co-occurrence)",
+                  "kind": "keyword",
+                  "confidence": 0.204,
+                  "cross_file_support": 1,
+                  "status": "flagged"
+                }
+              ],
+              "parse_success_rate": 1.0,
+              "accepted_for_downstream": true,
+              "files_covered": [
+                "corpus/aux.ilg",
+                "corpus/main.ilg"
+              ]
+            }
+          ],
+          "files_without_grammar": [],
+          "threshold": 0.9
+        },
+        "provenance": [
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1550848
+      }
+    ],
+    "ASTMap": [
+      {
+        "producer": "ast_analyzer",
+        "artefact": "ASTMap",
+        "version": 1,
+        "payload": {
+          "units": [
+            {
+              "file": "meta.json",
+              "symbol": "meta.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 56,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "work_manifest.json",
+              "symbol": "work_manifest.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 9,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "corpus/aux.ilg",
+              "symbol": "aux.ilg",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 28,
+              "signature": "interlock module",
+              "conditions": [
+                {
+                  "text": "ALARM_HORN = ON AND HORN_SILENCE = 1",
+                  "line": 5,
+                  "effect": "SET ALARM_HORN TO OFF."
+                },
+                {
+                  "text": "PRESSURE > 220",
+                  "line": 11,
+                  "effect": "TRIP FURNACE REASON 'pressure critical'."
+                },
+                {
+                  "text": "ESCALATION = 1 AND SHIFT_NIGHT = 1",
+                  "line": 15,
+                  "effect": "SET CALL_SUPERVISOR TO ON."
+                },
+                {
+                  "text": "RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100",
+                  "line": 21,
+                  "effect": "SET RESET_PERM TO ON."
+                }
+              ],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "corpus/main.ilg",
+              "symbol": "main.ilg",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 92,
+              "signature": "interlock module",
+              "conditions": [
+                {
+                  "text": "MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1",
+                  "line": 17,
+                  "effect": "SET START_PERM TO ON."
+                },
+                {
+                  "text": "PRESSURE > 180",
+                  "line": 24,
+                  "effect": "SET RELIEF TO ON."
+                },
+                {
+                  "text": "TEMPERATURE > 90",
+                  "line": 31,
+                  "effect": "SET COOLING TO ON."
+                },
+                {
+                  "text": "TEMPERATURE < 60",
+                  "line": 34,
+                  "effect": "SET COOLING TO OFF."
+                },
+                {
+                  "text": "PRESSURE > 200 OR TEMPERATURE > 100",
+                  "line": 40,
+                  "effect": "TRIP COMPRESSOR REASON 'critical'."
+                },
+                {
+                  "text": "MOTOR_SPEED > 3000 AND GUARD_SENSOR = 0",
+                  "line": 45,
+                  "effect": "SET MOTOR_CUT TO ON."
+                },
+                {
+                  "text": "MOTOR_SPEED > 3800",
+                  "line": 52,
+                  "effect": "SET MOTOR_CUT TO ON."
+                },
+                {
+                  "text": "SHIFT_NIGHT = 1 AND RELIEF = ON",
+                  "line": 63,
+                  "effect": "SET ALARM_HORN TO ON."
+                },
+                {
+                  "text": "VENT_OPEN = 1 AND PRESSURE > 150",
+                  "line": 70,
+                  "effect": "SET VENT_PERM TO ON."
+                },
+                {
+                  "text": "START_PERM = ON AND MOTOR_CUT = ON",
+                  "line": 77,
+                  "effect": "SET START_PERM TO OFF."
+                },
+                {
+                  "text": "MODE_KNOB = 2 AND TEMPERATURE > 85",
+                  "line": 82,
+                  "effect": "SET COOLING TO ON."
+                },
+                {
+                  "text": "ALARM_HORN = ON OR VENT_PERM = ON",
+                  "line": 87,
+                  "effect": "SET ANNUNCIATE TO ON."
+                }
+              ],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            }
+          ],
+          "file_reports": [
+            {
+              "file": "meta.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "work_manifest.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "corpus/aux.ilg",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "corpus/main.ilg",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            }
+          ],
+          "parse_methods": {
+            "meta.json": "heuristic",
+            "work_manifest.json": "heuristic",
+            "corpus/aux.ilg": "heuristic",
+            "corpus/main.ilg": "heuristic"
+          },
+          "call_graph": {
+            "nodes": [
+              {
+                "id": "meta.json",
+                "file": "meta.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  56
+                ]
+              },
+              {
+                "id": "work_manifest.json",
+                "file": "work_manifest.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  9
+                ]
+              },
+              {
+                "id": "aux.ilg",
+                "file": "corpus/aux.ilg",
+                "kind": "module",
+                "lines": [
+                  1,
+                  28
+                ]
+              },
+              {
+                "id": "main.ilg",
+                "file": "corpus/main.ilg",
+                "kind": "module",
+                "lines": [
+                  1,
+                  92
+                ]
+              }
+            ],
+            "edges": []
+          },
+          "crud_table": [],
+          "unit_count": 4
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1569805
+      }
+    ],
+    "RuleInventory": [
+      {
+        "producer": "legacy_analyzer",
+        "artefact": "RuleInventory",
+        "version": 1,
+        "payload": {
+          "rules": [],
+          "rule_count": 0,
+          "context_mode": "raw"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1586506
+      }
+    ],
+    "EvidenceReport": [
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 1,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.1602452
+      },
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 2,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.160434
+      },
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 3,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.160583
+      }
+    ],
+    "BSG": [
+      {
+        "producer": "bsg_generator",
+        "artefact": "BSG",
+        "version": 1,
+        "payload": {
+          "nodes": [
+            {
+              "id": "N-GAP-001",
+              "operation": "uncovered code path: meta.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 56
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-002",
+              "operation": "uncovered code path: work_manifest.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 9
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-003",
+              "operation": "uncovered code path: aux.ilg",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "corpus/aux.ilg",
+                "line_start": 1,
+                "line_end": 28
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-004",
+              "operation": "uncovered code path: main.ilg",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 1,
+                "line_end": 92
+              },
+              "provenance": []
+            }
+          ],
+          "edges": [
+            {
+              "from": "N-GAP-003",
+              "to": "N-GAP-004",
+              "label": "sequence"
+            },
+            {
+              "from": "N-GAP-004",
+              "to": "N-GAP-001",
+              "label": "sequence"
+            },
+            {
+              "from": "N-GAP-001",
+              "to": "N-GAP-002",
+              "label": "sequence"
+            }
+          ],
+          "confidence_distribution": {
+            "gap": 4
+          },
+          "blocked_nodes": [],
+          "gap_nodes": [
+            "N-GAP-001",
+            "N-GAP-002",
+            "N-GAP-003",
+            "N-GAP-004"
+          ],
+          "rule_nodes": 0
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          }
+        ],
+        "confidence": 0.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1623094
+      }
+    ],
+    "ModernizedCode": [
+      {
+        "producer": "transformer",
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "payload": {
+          "mode": "migration",
+          "target": "python",
+          "files": [
+            {
+              "path": "interlock_modernized.py",
+              "abs_path": "/home/user/reversa/aura/results/A2/interlock/interlock_modernized.py",
+              "lines": 55
+            }
+          ],
+          "markers": [],
+          "node_spans": [],
+          "skipped_blocked_nodes": [
+            "N-GAP-001",
+            "N-GAP-002",
+            "N-GAP-003",
+            "N-GAP-004"
+          ],
+          "gate_enabled": true,
+          "output_dir": "/home/user/reversa/aura/results/A2/interlock"
+        },
+        "provenance": [
+          {
+            "file": "interlock_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          }
+        ],
+        "confidence": 0.9,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.16438
+      }
+    ],
+    "EquivalenceReport": [
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.1661909
+      },
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 2,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.166343
+      },
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 3,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.1664708
+      }
+    ],
+    "Documentation": [
+      {
+        "producer": "documentation_generator",
+        "artefact": "Documentation",
+        "version": 1,
+        "payload": {
+          "markdown_path": "/home/user/reversa/aura/results/A2/interlock/interlock_documentation.md",
+          "json_path": "/home/user/reversa/aura/results/A2/interlock/interlock_documentation.json",
+          "bsg_dot_path": "/home/user/reversa/aura/results/A2/interlock/interlock_bsg.dot",
+          "sections": [
+            "System Overview",
+            "Business Rules",
+            "Architecture and Data Access",
+            "Units",
+            "Modernization"
+          ],
+          "unit_summaries": 4,
+          "audit": {
+            "references": [
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "corpus/aux.ilg",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "corpus/main.ilg",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "corpus/aux.ilg",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "GrammarHypothesis"
+              },
+              {
+                "file": "corpus/main.ilg",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "GrammarHypothesis"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 56,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 9,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "corpus/aux.ilg",
+                "line_start": 1,
+                "line_end": 28,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "corpus/main.ilg",
+                "line_start": 1,
+                "line_end": 92,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 56,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 9,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "corpus/aux.ilg",
+                "line_start": 1,
+                "line_end": 28,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "corpus/main.ilg",
+                "line_start": 1,
+                "line_end": 92,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "interlock_modernized.py",
+                "line_start": 1,
+                "line_end": 55,
+                "valid": false,
+                "artefact": "ModernizedCode"
+              }
+            ],
+            "total_references": 15,
+            "valid_references": 14,
+            "valid_span_rate": 0.9333333333333333
+          },
+          "data_dictionary": [],
+          "documentation": {
+            "title": "AURA Documentation \u2014 interlock",
+            "provider": "offline",
+            "rule_count": 0,
+            "confidence_distribution": {
+              "gap": 4
+            },
+            "sections": [
+              {
+                "depth": 0,
+                "title": "System Overview",
+                "summary": "Legacy system with 4 source files in json, unknown. 0 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 0. Behavioural equivalence rate: n/a (testable share n/a)."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Business Rules",
+                "blocks": [
+                  {
+                    "kind": "rules",
+                    "items": []
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Architecture and Data Access",
+                "blocks": [
+                  {
+                    "kind": "table",
+                    "rows": [
+                      [
+                        "Store",
+                        "Operations",
+                        "Units"
+                      ]
+                    ]
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Units",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "- **meta.json** (meta.json:1-56): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json).\n- **aux.ilg** (corpus/aux.ilg:1-28): aux.ilg (corpus/aux.ilg). applies conditions: ALARM_HORN = ON AND HORN_SILENCE = 1; PRESSURE > 220; ESCALATION = 1 AND SHIFT_NIGHT = 1; RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100. computes: SET ALARM_HORN TO OFF.; TRIP FURNACE REASON 'pressure critical'.; SET CALL_SUPERVISOR TO ON.; SET RESET_PERM TO ON..\n- **main.ilg** (corpus/main.ilg:1-92): main.ilg (corpus/main.ilg). applies conditions: MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1; PRESSURE > 180; TEMPERATURE > 90; TEMPERATURE < 60. computes: SET START_PERM TO ON.; SET RELIEF TO ON.; SET COOLING TO ON.; SET COOLING TO OFF.."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Modernization",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Mode: migration. Files generated: 1. Markers: []"
+                  }
+                ]
+              }
+            ],
+            "audit": {
+              "references": [
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "corpus/aux.ilg",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "corpus/main.ilg",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "corpus/aux.ilg",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "GrammarHypothesis"
+                },
+                {
+                  "file": "corpus/main.ilg",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "GrammarHypothesis"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 56,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 9,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "corpus/aux.ilg",
+                  "line_start": 1,
+                  "line_end": 28,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "corpus/main.ilg",
+                  "line_start": 1,
+                  "line_end": 92,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 56,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 9,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "corpus/aux.ilg",
+                  "line_start": 1,
+                  "line_end": 28,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "corpus/main.ilg",
+                  "line_start": 1,
+                  "line_end": 92,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "interlock_modernized.py",
+                  "line_start": 1,
+                  "line_end": 55,
+                  "valid": false,
+                  "artefact": "ModernizedCode"
+                }
+              ],
+              "total_references": 15,
+              "valid_references": 14,
+              "valid_span_rate": 0.9333333333333333
+            }
+          }
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          },
+          {
+            "file": "interlock_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 56
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 9
+          },
+          {
+            "file": "corpus/aux.ilg",
+            "line_start": 1,
+            "line_end": 28
+          },
+          {
+            "file": "corpus/main.ilg",
+            "line_start": 1,
+            "line_end": 92
+          },
+          {
+            "file": "interlock_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.1694343
+      }
+    ]
+  },
+  "session_log": [
+    {
+      "ts": 1793958022.1439579,
+      "agent": "navigator",
+      "event": "start",
+      "detail": {
+        "goal": "Map the repository: enumerate files, detect each file's language, flag files whose language cannot be identified, and record dependency edges between modules."
+      }
+    },
+    {
+      "ts": 1793958022.1449838,
+      "agent": "navigator",
+      "event": "write",
+      "detail": {
+        "artefact": "RepoMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1449862,
+      "agent": "navigator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.14527,
+      "agent": "language_inference",
+      "event": "start",
+      "detail": {
+        "goal": "For every file whose language could not be identified, infer a working grammar in three passes: statistical (no model), LLM hypothesis, cross-file consistency. Accept the grammar only above the parse-success threshold; otherwise mark unparseable."
+      }
+    },
+    {
+      "ts": 1793958022.1550863,
+      "agent": "language_inference",
+      "event": "write",
+      "detail": {
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1550894,
+      "agent": "language_inference",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.01
+      }
+    },
+    {
+      "ts": 1793958022.1558952,
+      "agent": "ast_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Parse every file \u2014 Tree-sitter where the language is known and the inferred grammar otherwise \u2014 and produce the AST map, call graph and CRUD table. Never guess a parse: unparseable files are recorded as such."
+      }
+    },
+    {
+      "ts": 1793958022.1569815,
+      "agent": "ast_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "ASTMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1569846,
+      "agent": "ast_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1581717,
+      "agent": "legacy_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Extract candidate business rules \u2014 explicit, implicit and constraints \u2014 from the structural analysis, each with pre/post conditions, a source span and a confidence score. Nothing is invented: every rule must point at a real code region."
+      }
+    },
+    {
+      "ts": 1793958022.1586518,
+      "agent": "legacy_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "RuleInventory",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.158654,
+      "agent": "legacy_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.159778,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.1602466,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 1,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1602507,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.160254,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 1,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.1602554,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.160435,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 2,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1604366,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1604383,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 2,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.1604393,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.1605837,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 3,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1605854,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1605868,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 3,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.1605935,
+      "agent": "dynamic_evidence",
+      "event": "escalate",
+      "detail": {
+        "item": "agent:dynamic_evidence",
+        "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+        "producer": "dynamic_evidence",
+        "ts": 1793958022.1605902
+      }
+    },
+    {
+      "ts": 1793958022.1619484,
+      "agent": "bsg_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Fuse static claims and dynamic outcomes into a Behavioural Specification Graph \u2014 the trust boundary of the system. Every rule node carries one of six confidence states; contradicted rules block generation for their node and escalate as blocked_on_human while unaffected nodes continue."
+      }
+    },
+    {
+      "ts": 1793958022.1623104,
+      "agent": "bsg_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "BSG",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1623125,
+      "agent": "bsg_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1638033,
+      "agent": "transformer",
+      "event": "start",
+      "detail": {
+        "goal": "Produce modernized code from the BSG \u2014 in-place upgrade or migration to the chosen target language \u2014 rendering every interlock as an explicit guard clause and marking unmappable constructs REVIEW/TODO instead of dropping them."
+      }
+    },
+    {
+      "ts": 1793958022.1643813,
+      "agent": "transformer",
+      "event": "write",
+      "detail": {
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1643836,
+      "agent": "transformer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.165887,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.166192,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1661952,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1661973,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 1,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.166198,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.1663437,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 2,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1663458,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1663473,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 2,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.1663482,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.1664715,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 3,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.1664732,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.1664746,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 3,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.1664784,
+      "agent": "equivalence_validator",
+      "event": "escalate",
+      "detail": {
+        "item": "agent:equivalence_validator",
+        "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+        "producer": "equivalence_validator",
+        "ts": 1793958022.166477
+      }
+    },
+    {
+      "ts": 1793958022.168242,
+      "agent": "documentation_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Emit hierarchical documentation at function, class, module and system level, the data dictionary and graph renderings, plus the audit trail linking every claim to its source lines."
+      }
+    },
+    {
+      "ts": 1793958022.169436,
+      "agent": "documentation_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "Documentation",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.1694396,
+      "agent": "documentation_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    }
+  ],
+  "escalations": [
+    {
+      "item": "agent:dynamic_evidence",
+      "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+      "producer": "dynamic_evidence",
+      "ts": 1793958022.1605902
+    },
+    {
+      "item": "agent:equivalence_validator",
+      "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+      "producer": "equivalence_validator",
+      "ts": 1793958022.166477
+    }
+  ]
+}

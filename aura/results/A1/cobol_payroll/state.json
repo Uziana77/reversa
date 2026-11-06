@@ -1,0 +1,4277 @@
+{
+  "artefacts": {
+    "RepoMap": [
+      {
+        "producer": "navigator",
+        "artefact": "RepoMap",
+        "version": 1,
+        "payload": {
+          "root": "/home/user/reversa/aura/bench/projects/cobol_payroll/work",
+          "files": [
+            {
+              "path": "meta.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 94,
+              "size_bytes": 2174,
+              "is_entry": false
+            },
+            {
+              "path": "work_manifest.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 8,
+              "size_bytes": 312,
+              "is_entry": false
+            },
+            {
+              "path": "src/PAYROLL.cbl",
+              "language": "cobol",
+              "language_confidence": 0.9,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 79,
+              "size_bytes": 2811,
+              "is_entry": true
+            },
+            {
+              "path": "src/PAYRPT.cbl",
+              "language": "cobol",
+              "language_confidence": 0.9,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 28,
+              "size_bytes": 900,
+              "is_entry": true
+            }
+          ],
+          "dependency_edges": [
+            {
+              "from": "work_manifest.json",
+              "to": "meta.json",
+              "kind": "import"
+            }
+          ],
+          "unknown_language_files": [],
+          "key_files": [
+            "src/PAYROLL.cbl",
+            "src/PAYRPT.cbl"
+          ],
+          "traversal_order": [
+            "meta.json",
+            "work_manifest.json",
+            "src/PAYROLL.cbl",
+            "src/PAYRPT.cbl"
+          ],
+          "file_count": 4,
+          "total_lines": 209
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 1
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6032562
+      }
+    ],
+    "GrammarHypothesis": [
+      {
+        "producer": "language_inference",
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "payload": {
+          "hypotheses": [],
+          "files_without_grammar": [],
+          "threshold": 0.9
+        },
+        "provenance": [],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6036592
+      }
+    ],
+    "ASTMap": [
+      {
+        "producer": "ast_analyzer",
+        "artefact": "ASTMap",
+        "version": 1,
+        "payload": {
+          "units": [
+            {
+              "file": "meta.json",
+              "symbol": "meta.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 94,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "work_manifest.json",
+              "symbol": "work_manifest.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 8,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "src/PAYROLL.cbl",
+              "symbol": "PAYROLL.cbl",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 78,
+              "signature": "cobol module",
+              "conditions": [
+                {
+                  "text": "HOURS-WORKED > 40",
+                  "line": 24,
+                  "effect": "COMPUTE BASE-PAY = 40 * PAY-RATE"
+                },
+                {
+                  "text": "SHIFT-CODE = 2",
+                  "line": 32,
+                  "effect": "COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10"
+                },
+                {
+                  "text": "YEARS-OF-SERVICE >= 10",
+                  "line": 38,
+                  "effect": "COMPUTE BONUS-AMT = BASE-PAY * 0.05"
+                },
+                {
+                  "text": "ABSENT-DAYS > 0",
+                  "line": 66,
+                  "effect": "COMPUTE PENALTY = ABSENT-DAYS * 20"
+                },
+                {
+                  "text": "NET-PAY > 0",
+                  "line": 74,
+                  "effect": "MOVE 'P' TO PAY-STATUS"
+                }
+              ],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "src/PAYRPT.cbl",
+              "symbol": "PAYRPT.cbl",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 27,
+              "signature": "cobol module",
+              "conditions": [
+                {
+                  "text": "GROSS-PAY > 0",
+                  "line": 13,
+                  "effect": "DISPLAY 'SLIP GROSS=' GROSS-PAY"
+                },
+                {
+                  "text": "TAX-AMT > 0",
+                  "line": 21,
+                  "effect": "DISPLAY 'TAX=' TAX-AMT"
+                },
+                {
+                  "text": "NET-PAY > 0",
+                  "line": 25,
+                  "effect": "DISPLAY 'NET=' NET-PAY"
+                }
+              ],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            }
+          ],
+          "file_reports": [
+            {
+              "file": "meta.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "work_manifest.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "src/PAYROLL.cbl",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "src/PAYRPT.cbl",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            }
+          ],
+          "parse_methods": {
+            "meta.json": "heuristic",
+            "work_manifest.json": "heuristic",
+            "src/PAYROLL.cbl": "heuristic",
+            "src/PAYRPT.cbl": "heuristic"
+          },
+          "call_graph": {
+            "nodes": [
+              {
+                "id": "meta.json",
+                "file": "meta.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  94
+                ]
+              },
+              {
+                "id": "work_manifest.json",
+                "file": "work_manifest.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  8
+                ]
+              },
+              {
+                "id": "PAYROLL.cbl",
+                "file": "src/PAYROLL.cbl",
+                "kind": "module",
+                "lines": [
+                  1,
+                  78
+                ]
+              },
+              {
+                "id": "PAYRPT.cbl",
+                "file": "src/PAYRPT.cbl",
+                "kind": "module",
+                "lines": [
+                  1,
+                  27
+                ]
+              }
+            ],
+            "edges": []
+          },
+          "crud_table": [],
+          "unit_count": 4
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 78
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 27
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6051023
+      }
+    ],
+    "RuleInventory": [
+      {
+        "producer": "legacy_analyzer",
+        "artefact": "RuleInventory",
+        "version": 1,
+        "payload": {
+          "rules": [
+            {
+              "id": "BR-001",
+              "statement": "In PAYROLL.cbl, if HOURS-WORKED > 40 then COMPUTE BASE-PAY = 40 * PAY-RATE.",
+              "kind": "explicit",
+              "preconditions": [
+                "HOURS-WORKED > 40"
+              ],
+              "postconditions": [
+                "COMPUTE BASE-PAY = 40 * PAY-RATE"
+              ],
+              "inputs": [
+                "HOURS-WORKED"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "BASE-PAY",
+                "PAY-RATE"
+              ],
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "HOURS-WORKED": 40
+                },
+                "expect": {
+                  "COMPUTE": "changed",
+                  "BASE-PAY": "changed",
+                  "PAY-RATE": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-002",
+              "statement": "In PAYROLL.cbl, if SHIFT-CODE = 2 then COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10.",
+              "kind": "explicit",
+              "preconditions": [
+                "SHIFT-CODE = 2"
+              ],
+              "postconditions": [
+                "COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10"
+              ],
+              "inputs": [
+                "SHIFT-CODE"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "SHIFT-PREMIUM",
+                "BASE-PAY"
+              ],
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "SHIFT-CODE": 2
+                },
+                "expect": {
+                  "COMPUTE": "changed",
+                  "SHIFT-PREMIUM": "changed",
+                  "BASE-PAY": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-003",
+              "statement": "In PAYROLL.cbl, if YEARS-OF-SERVICE >= 10 then COMPUTE BONUS-AMT = BASE-PAY * 0.05.",
+              "kind": "explicit",
+              "preconditions": [
+                "YEARS-OF-SERVICE >= 10"
+              ],
+              "postconditions": [
+                "COMPUTE BONUS-AMT = BASE-PAY * 0.05"
+              ],
+              "inputs": [
+                "YEARS-OF-SERVICE"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "BONUS-AMT",
+                "BASE-PAY"
+              ],
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "YEARS-OF-SERVICE": 10
+                },
+                "expect": {
+                  "COMPUTE": "changed",
+                  "BONUS-AMT": "changed",
+                  "BASE-PAY": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-004",
+              "statement": "In PAYROLL.cbl, if ABSENT-DAYS > 0 then COMPUTE PENALTY = ABSENT-DAYS * 20.",
+              "kind": "explicit",
+              "preconditions": [
+                "ABSENT-DAYS > 0"
+              ],
+              "postconditions": [
+                "COMPUTE PENALTY = ABSENT-DAYS * 20"
+              ],
+              "inputs": [
+                "ABSENT-DAYS"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "PENALTY",
+                "ABSENT-DAYS"
+              ],
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "ABSENT-DAYS": 0
+                },
+                "expect": {
+                  "COMPUTE": "changed",
+                  "PENALTY": "changed",
+                  "ABSENT-DAYS": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-005",
+              "statement": "In PAYROLL.cbl, if NET-PAY > 0 then MOVE 'P' TO PAY-STATUS.",
+              "kind": "explicit",
+              "preconditions": [
+                "NET-PAY > 0"
+              ],
+              "postconditions": [
+                "MOVE 'P' TO PAY-STATUS"
+              ],
+              "inputs": [
+                "NET-PAY"
+              ],
+              "outputs": [
+                "MOVE",
+                "PAY-STATUS"
+              ],
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "NET-PAY": 0
+                },
+                "expect": {
+                  "MOVE": "changed",
+                  "PAY-STATUS": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-006",
+              "statement": "In PAYRPT.cbl, if GROSS-PAY > 0 then DISPLAY 'SLIP GROSS=' GROSS-PAY.",
+              "kind": "explicit",
+              "preconditions": [
+                "GROSS-PAY > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'SLIP GROSS=' GROSS-PAY"
+              ],
+              "inputs": [
+                "GROSS-PAY"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "SLIP",
+                "GROSS",
+                "GROSS-PAY"
+              ],
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "GROSS-PAY": 0
+                },
+                "expect": {
+                  "DISPLAY": "changed",
+                  "SLIP": "changed",
+                  "GROSS": "changed",
+                  "GROSS-PAY": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-007",
+              "statement": "In PAYRPT.cbl, if TAX-AMT > 0 then DISPLAY 'TAX=' TAX-AMT.",
+              "kind": "explicit",
+              "preconditions": [
+                "TAX-AMT > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'TAX=' TAX-AMT"
+              ],
+              "inputs": [
+                "TAX-AMT"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "TAX",
+                "TAX-AMT"
+              ],
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "TAX-AMT": 0
+                },
+                "expect": {
+                  "DISPLAY": "changed",
+                  "TAX": "changed",
+                  "TAX-AMT": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            },
+            {
+              "id": "BR-008",
+              "statement": "In PAYRPT.cbl, if NET-PAY > 0 then DISPLAY 'NET=' NET-PAY.",
+              "kind": "explicit",
+              "preconditions": [
+                "NET-PAY > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'NET=' NET-PAY"
+              ],
+              "inputs": [
+                "NET-PAY"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "NET",
+                "NET-PAY"
+              ],
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25
+              },
+              "static_confidence": 0.85,
+              "extraction_method": "heuristic",
+              "contract": {
+                "given": {
+                  "NET-PAY": 0
+                },
+                "expect": {
+                  "DISPLAY": "changed",
+                  "NET": "changed",
+                  "NET-PAY": "changed"
+                }
+              },
+              "dynamic_label": null,
+              "dynamic_reason": "",
+              "dynamic_trace": "",
+              "false_injection": false
+            }
+          ],
+          "rule_count": 8,
+          "context_mode": "ast"
+        },
+        "provenance": [
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          }
+        ],
+        "confidence": 0.8499999999999999,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6064613
+      }
+    ],
+    "EvidenceReport": [],
+    "BSG": [
+      {
+        "producer": "bsg_generator",
+        "artefact": "BSG",
+        "version": 1,
+        "payload": {
+          "nodes": [
+            {
+              "id": "N-BR-001",
+              "operation": "In PAYROLL",
+              "rule_ids": [
+                "BR-001"
+              ],
+              "preconditions": [
+                "HOURS-WORKED > 40"
+              ],
+              "postconditions": [
+                "COMPUTE BASE-PAY = 40 * PAY-RATE"
+              ],
+              "invariants": [],
+              "inputs": [
+                "HOURS-WORKED"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "BASE-PAY",
+                "PAY-RATE"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 24,
+                  "line_end": 24
+                }
+              ]
+            },
+            {
+              "id": "N-BR-002",
+              "operation": "In PAYROLL",
+              "rule_ids": [
+                "BR-002"
+              ],
+              "preconditions": [
+                "SHIFT-CODE = 2"
+              ],
+              "postconditions": [
+                "COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10"
+              ],
+              "invariants": [],
+              "inputs": [
+                "SHIFT-CODE"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "SHIFT-PREMIUM",
+                "BASE-PAY"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 32,
+                  "line_end": 32
+                }
+              ]
+            },
+            {
+              "id": "N-BR-003",
+              "operation": "In PAYROLL",
+              "rule_ids": [
+                "BR-003"
+              ],
+              "preconditions": [
+                "YEARS-OF-SERVICE >= 10"
+              ],
+              "postconditions": [
+                "COMPUTE BONUS-AMT = BASE-PAY * 0.05"
+              ],
+              "invariants": [],
+              "inputs": [
+                "YEARS-OF-SERVICE"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "BONUS-AMT",
+                "BASE-PAY"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 38,
+                  "line_end": 38
+                }
+              ]
+            },
+            {
+              "id": "N-BR-004",
+              "operation": "In PAYROLL",
+              "rule_ids": [
+                "BR-004"
+              ],
+              "preconditions": [
+                "ABSENT-DAYS > 0"
+              ],
+              "postconditions": [
+                "COMPUTE PENALTY = ABSENT-DAYS * 20"
+              ],
+              "invariants": [],
+              "inputs": [
+                "ABSENT-DAYS"
+              ],
+              "outputs": [
+                "COMPUTE",
+                "PENALTY",
+                "ABSENT-DAYS"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 66,
+                  "line_end": 66
+                }
+              ]
+            },
+            {
+              "id": "N-BR-005",
+              "operation": "In PAYROLL",
+              "rule_ids": [
+                "BR-005"
+              ],
+              "preconditions": [
+                "NET-PAY > 0"
+              ],
+              "postconditions": [
+                "MOVE 'P' TO PAY-STATUS"
+              ],
+              "invariants": [],
+              "inputs": [
+                "NET-PAY"
+              ],
+              "outputs": [
+                "MOVE",
+                "PAY-STATUS"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 74,
+                  "line_end": 74
+                }
+              ]
+            },
+            {
+              "id": "N-BR-006",
+              "operation": "In PAYRPT",
+              "rule_ids": [
+                "BR-006"
+              ],
+              "preconditions": [
+                "GROSS-PAY > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'SLIP GROSS=' GROSS-PAY"
+              ],
+              "invariants": [],
+              "inputs": [
+                "GROSS-PAY"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "SLIP",
+                "GROSS",
+                "GROSS-PAY"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 13,
+                  "line_end": 13
+                }
+              ]
+            },
+            {
+              "id": "N-BR-007",
+              "operation": "In PAYRPT",
+              "rule_ids": [
+                "BR-007"
+              ],
+              "preconditions": [
+                "TAX-AMT > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'TAX=' TAX-AMT"
+              ],
+              "invariants": [],
+              "inputs": [
+                "TAX-AMT"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "TAX",
+                "TAX-AMT"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 21,
+                  "line_end": 21
+                }
+              ]
+            },
+            {
+              "id": "N-BR-008",
+              "operation": "In PAYRPT",
+              "rule_ids": [
+                "BR-008"
+              ],
+              "preconditions": [
+                "NET-PAY > 0"
+              ],
+              "postconditions": [
+                "DISPLAY 'NET=' NET-PAY"
+              ],
+              "invariants": [],
+              "inputs": [
+                "NET-PAY"
+              ],
+              "outputs": [
+                "DISPLAY",
+                "NET",
+                "NET-PAY"
+              ],
+              "error_behavior": "",
+              "confidence_state": "confirmed_static",
+              "confidence": 0.85,
+              "blocked": false,
+              "block_reason": "",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25
+              },
+              "provenance": [
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 25,
+                  "line_end": 25
+                }
+              ]
+            },
+            {
+              "id": "N-GAP-001",
+              "operation": "uncovered code path: meta.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 94
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-002",
+              "operation": "uncovered code path: work_manifest.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8
+              },
+              "provenance": []
+            }
+          ],
+          "edges": [
+            {
+              "from": "N-GAP-001",
+              "to": "N-BR-001",
+              "label": "sequence"
+            },
+            {
+              "from": "N-BR-001",
+              "to": "N-BR-002",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-002",
+              "to": "N-BR-003",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-003",
+              "to": "N-BR-004",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-004",
+              "to": "N-BR-005",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-005",
+              "to": "N-BR-006",
+              "label": "sequence"
+            },
+            {
+              "from": "N-BR-006",
+              "to": "N-BR-007",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-007",
+              "to": "N-BR-008",
+              "label": "conditional"
+            },
+            {
+              "from": "N-BR-008",
+              "to": "N-GAP-002",
+              "label": "sequence"
+            }
+          ],
+          "confidence_distribution": {
+            "confirmed_static": 8,
+            "gap": 2
+          },
+          "blocked_nodes": [],
+          "gap_nodes": [
+            "N-GAP-001",
+            "N-GAP-002"
+          ],
+          "rule_nodes": 8
+        },
+        "provenance": [
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          }
+        ],
+        "confidence": 0.8,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6083176
+      }
+    ],
+    "ModernizedCode": [
+      {
+        "producer": "transformer",
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "payload": {
+          "mode": "migration",
+          "target": "python",
+          "files": [
+            {
+              "path": "cobol_payroll_modernized.py",
+              "abs_path": "/home/user/reversa/aura/results/A1/cobol_payroll/cobol_payroll_modernized.py",
+              "lines": 239
+            }
+          ],
+          "markers": [
+            {
+              "kind": "REVIEW",
+              "line": 32,
+              "reason": "postcondition not machine-renderable: COMPUTE BASE-PAY = 40 * PAY-RATE",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 33,
+              "reason": "no machine-renderable effect for node N-BR-001",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 50,
+              "reason": "postcondition not machine-renderable: COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 51,
+              "reason": "no machine-renderable effect for node N-BR-002",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 68,
+              "reason": "postcondition not machine-renderable: COMPUTE BONUS-AMT = BASE-PAY * 0.05",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 69,
+              "reason": "no machine-renderable effect for node N-BR-003",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 86,
+              "reason": "postcondition not machine-renderable: COMPUTE PENALTY = ABSENT-DAYS * 20",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 87,
+              "reason": "no machine-renderable effect for node N-BR-004",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 104,
+              "reason": "postcondition not machine-renderable: MOVE 'P' TO PAY-STATUS",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 105,
+              "reason": "no machine-renderable effect for node N-BR-005",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 122,
+              "reason": "postcondition not machine-renderable: DISPLAY 'SLIP GROSS=' GROSS-PAY",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 123,
+              "reason": "no machine-renderable effect for node N-BR-006",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 140,
+              "reason": "postcondition not machine-renderable: DISPLAY 'TAX=' TAX-AMT",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 141,
+              "reason": "no machine-renderable effect for node N-BR-007",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "REVIEW",
+              "line": 158,
+              "reason": "postcondition not machine-renderable: DISPLAY 'NET=' NET-PAY",
+              "path": "cobol_payroll_modernized.py"
+            },
+            {
+              "kind": "TODO",
+              "line": 159,
+              "reason": "no machine-renderable effect for node N-BR-008",
+              "path": "cobol_payroll_modernized.py"
+            }
+          ],
+          "node_spans": [
+            {
+              "node_id": "N-BR-001",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 19,
+              "line_end": 36
+            },
+            {
+              "node_id": "N-BR-002",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 37,
+              "line_end": 54
+            },
+            {
+              "node_id": "N-BR-003",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 55,
+              "line_end": 72
+            },
+            {
+              "node_id": "N-BR-004",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 73,
+              "line_end": 90
+            },
+            {
+              "node_id": "N-BR-005",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 91,
+              "line_end": 108
+            },
+            {
+              "node_id": "N-BR-006",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 109,
+              "line_end": 126
+            },
+            {
+              "node_id": "N-BR-007",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 127,
+              "line_end": 144
+            },
+            {
+              "node_id": "N-BR-008",
+              "path": "cobol_payroll_modernized.py",
+              "line_start": 145,
+              "line_end": 162
+            }
+          ],
+          "skipped_blocked_nodes": [
+            "N-GAP-001",
+            "N-GAP-002"
+          ],
+          "gate_enabled": true,
+          "output_dir": "/home/user/reversa/aura/results/A1/cobol_payroll"
+        },
+        "provenance": [
+          {
+            "file": "cobol_payroll_modernized.py",
+            "line_start": 1,
+            "line_end": 239
+          }
+        ],
+        "confidence": 0.9,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.610883
+      }
+    ],
+    "EquivalenceReport": [
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "payload": {
+          "per_rule": [
+            {
+              "rule_id": "BR-001",
+              "status": "fail",
+              "tests": 9,
+              "passed": 0,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "HOURS-WORKED": 40,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 40.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 40,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 1,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 1.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 1,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": -1,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": -0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": -1.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": -1,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-002",
+              "status": "fail",
+              "tests": 7,
+              "passed": 0,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 2,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 2.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 2,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 1,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 1.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 1,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": -1,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": -1.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": -1,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-003",
+              "status": "fail",
+              "tests": 9,
+              "passed": 0,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 10,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 10.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 10,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 1,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 1.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 1,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": -1,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": -1.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": -1,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-004",
+              "status": "fail",
+              "tests": 4,
+              "passed": 0,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 1
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 20.0,
+                      "NET-PAY": 28.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 1.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 1
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": -1
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": -1.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": -1
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 9999
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 199980.0,
+                      "NET-PAY": -199932.0,
+                      "PAY-STATUS": "Z",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 9999.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": null,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 9999
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-005",
+              "status": "fail",
+              "tests": 4,
+              "passed": 0,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0,
+                    "NET-PAY": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": 0,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0,
+                    "NET-PAY": 1
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": 1,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0,
+                    "NET-PAY": -1
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": -1,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "HOURS-WORKED": 0,
+                    "PAY-RATE": 0,
+                    "SHIFT-CODE": 0,
+                    "GRADE": 0,
+                    "YEARS-OF-SERVICE": 0,
+                    "ABSENT-DAYS": 0,
+                    "NET-PAY": 9999
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "BASE-PAY": 0.0,
+                      "OT-PAY": 0.0,
+                      "SHIFT-PREMIUM": 0.0,
+                      "BONUS-AMT": 50.0,
+                      "GROSS-PAY": 50.0,
+                      "TAX-AMT": 2.0,
+                      "PENALTY": 0.0,
+                      "NET-PAY": 48.0,
+                      "PAY-STATUS": "P",
+                      "HOURS-WORKED": 0.0,
+                      "PAY-RATE": 0.0,
+                      "SHIFT-CODE": 0.0,
+                      "GRADE": 0.0,
+                      "YEARS-OF-SERVICE": 0.0,
+                      "ABSENT-DAYS": 0.0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "BASE-PAY": null,
+                      "OT-PAY": null,
+                      "SHIFT-PREMIUM": null,
+                      "BONUS-AMT": null,
+                      "GROSS-PAY": null,
+                      "TAX-AMT": null,
+                      "PENALTY": null,
+                      "NET-PAY": 9999,
+                      "PAY-STATUS": null,
+                      "HOURS-WORKED": 0,
+                      "PAY-RATE": 0,
+                      "SHIFT-CODE": 0,
+                      "GRADE": 0,
+                      "YEARS-OF-SERVICE": 0,
+                      "ABSENT-DAYS": 0
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-006",
+              "status": "fail",
+              "tests": 4,
+              "passed": 2,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "GROSS-PAY": 0,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 1,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "GROSS-PAY": 1.0,
+                      "TAX-AMT": 0.0,
+                      "NET-PAY": 0.0,
+                      "SLIP-COUNT": 1.0,
+                      "REPORT-TOTAL": 1.0
+                    },
+                    "outputs": [
+                      "SLIP GROSS= 1"
+                    ],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "GROSS-PAY": 1,
+                      "TAX-AMT": 0.0,
+                      "NET-PAY": 0.0,
+                      "SLIP-COUNT": null,
+                      "REPORT-TOTAL": null
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": -1,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 9999,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "mismatch",
+                  "original": {
+                    "state": {
+                      "GROSS-PAY": 9999.0,
+                      "TAX-AMT": 0.0,
+                      "NET-PAY": 0.0,
+                      "SLIP-COUNT": 1.0,
+                      "REPORT-TOTAL": 9999.0
+                    },
+                    "outputs": [
+                      "SLIP GROSS= 9999"
+                    ],
+                    "fault": ""
+                  },
+                  "modernized": {
+                    "state": {
+                      "GROSS-PAY": 9999,
+                      "TAX-AMT": 0.0,
+                      "NET-PAY": 0.0,
+                      "SLIP-COUNT": null,
+                      "REPORT-TOTAL": null
+                    },
+                    "outputs": [],
+                    "fault": ""
+                  }
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-007",
+              "status": "pass",
+              "tests": 4,
+              "passed": 4,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 0,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 1,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": -1,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 9999,
+                    "NET-PAY": 0.0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                }
+              ]
+            },
+            {
+              "rule_id": "BR-008",
+              "status": "pass",
+              "tests": 4,
+              "passed": 4,
+              "reason": "contract pair + differential trace comparison over synthesised and boundary inputs",
+              "detail": [
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 0
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 1
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": -1
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                },
+                {
+                  "input": {
+                    "GROSS-PAY": 0.0,
+                    "TAX-AMT": 0.0,
+                    "NET-PAY": 9999
+                  },
+                  "contract": "n/a",
+                  "differential": "match"
+                }
+              ]
+            }
+          ],
+          "ber": 0.25,
+          "testable_rules": 8,
+          "passing_rules": 2,
+          "total_rules": 8,
+          "testable_share": 1.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          }
+        ],
+        "confidence": 0.25,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6511283
+      }
+    ],
+    "Documentation": [
+      {
+        "producer": "documentation_generator",
+        "artefact": "Documentation",
+        "version": 1,
+        "payload": {
+          "markdown_path": "/home/user/reversa/aura/results/A1/cobol_payroll/cobol_payroll_documentation.md",
+          "json_path": "/home/user/reversa/aura/results/A1/cobol_payroll/cobol_payroll_documentation.json",
+          "bsg_dot_path": "/home/user/reversa/aura/results/A1/cobol_payroll/cobol_payroll_bsg.dot",
+          "sections": [
+            "System Overview",
+            "Business Rules",
+            "Architecture and Data Access",
+            "Units",
+            "Modernization"
+          ],
+          "unit_summaries": 4,
+          "audit": {
+            "references": [
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 94,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 1,
+                "line_end": 78,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 1,
+                "line_end": 27,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25,
+                "valid": true,
+                "artefact": "RuleInventory"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 94,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "cobol_payroll_modernized.py",
+                "line_start": 1,
+                "line_end": 239,
+                "valid": false,
+                "artefact": "ModernizedCode"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              },
+              {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25,
+                "valid": true,
+                "artefact": "EquivalenceReport"
+              }
+            ],
+            "total_references": 43,
+            "valid_references": 42,
+            "valid_span_rate": 0.9767441860465116
+          },
+          "data_dictionary": [],
+          "documentation": {
+            "title": "AURA Documentation \u2014 cobol_payroll",
+            "provider": "offline",
+            "rule_count": 8,
+            "confidence_distribution": {
+              "confirmed_static": 8,
+              "gap": 2
+            },
+            "sections": [
+              {
+                "depth": 0,
+                "title": "System Overview",
+                "summary": "Legacy system with 4 source files in cobol, json. 8 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 8. Behavioural equivalence rate: 0.25 (testable share 1.0)."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Business Rules",
+                "blocks": [
+                  {
+                    "kind": "rules",
+                    "items": [
+                      {
+                        "id": "BR-001",
+                        "statement": "In PAYROLL.cbl, if HOURS-WORKED > 40 then COMPUTE BASE-PAY = 40 * PAY-RATE.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYROLL.cbl",
+                          "line_start": 24,
+                          "line_end": 24
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-002",
+                        "statement": "In PAYROLL.cbl, if SHIFT-CODE = 2 then COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYROLL.cbl",
+                          "line_start": 32,
+                          "line_end": 32
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-003",
+                        "statement": "In PAYROLL.cbl, if YEARS-OF-SERVICE >= 10 then COMPUTE BONUS-AMT = BASE-PAY * 0.05.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYROLL.cbl",
+                          "line_start": 38,
+                          "line_end": 38
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-004",
+                        "statement": "In PAYROLL.cbl, if ABSENT-DAYS > 0 then COMPUTE PENALTY = ABSENT-DAYS * 20.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYROLL.cbl",
+                          "line_start": 66,
+                          "line_end": 66
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-005",
+                        "statement": "In PAYROLL.cbl, if NET-PAY > 0 then MOVE 'P' TO PAY-STATUS.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYROLL.cbl",
+                          "line_start": 74,
+                          "line_end": 74
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-006",
+                        "statement": "In PAYRPT.cbl, if GROSS-PAY > 0 then DISPLAY 'SLIP GROSS=' GROSS-PAY.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYRPT.cbl",
+                          "line_start": 13,
+                          "line_end": 13
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-007",
+                        "statement": "In PAYRPT.cbl, if TAX-AMT > 0 then DISPLAY 'TAX=' TAX-AMT.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYRPT.cbl",
+                          "line_start": 21,
+                          "line_end": 21
+                        },
+                        "dynamic_label": null
+                      },
+                      {
+                        "id": "BR-008",
+                        "statement": "In PAYRPT.cbl, if NET-PAY > 0 then DISPLAY 'NET=' NET-PAY.",
+                        "confidence_state": "confirmed_static",
+                        "source": {
+                          "file": "src/PAYRPT.cbl",
+                          "line_start": 25,
+                          "line_end": 25
+                        },
+                        "dynamic_label": null
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Architecture and Data Access",
+                "blocks": [
+                  {
+                    "kind": "table",
+                    "rows": [
+                      [
+                        "Store",
+                        "Operations",
+                        "Units"
+                      ]
+                    ]
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Units",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "- **meta.json** (meta.json:1-94): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-8): work_manifest.json (work_manifest.json).\n- **PAYROLL.cbl** (src/PAYROLL.cbl:1-78): PAYROLL.cbl (src/PAYROLL.cbl). applies conditions: HOURS-WORKED > 40; SHIFT-CODE = 2; YEARS-OF-SERVICE >= 10; ABSENT-DAYS > 0. computes: COMPUTE BASE-PAY = 40 * PAY-RATE; COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10; COMPUTE BONUS-AMT = BASE-PAY * 0.05; COMPUTE PENALTY = ABSENT-DAYS * 20.\n- **PAYRPT.cbl** (src/PAYRPT.cbl:1-27): PAYRPT.cbl (src/PAYRPT.cbl). applies conditions: GROSS-PAY > 0; TAX-AMT > 0; NET-PAY > 0. computes: DISPLAY 'SLIP GROSS=' GROSS-PAY; DISPLAY 'TAX=' TAX-AMT; DISPLAY 'NET=' NET-PAY."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Modernization",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 32, \"reason\": \"postcondition not machine-renderable: COMPUTE BASE-PAY = 40 * PAY-RATE\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 33, \"reason\": \"no machine-renderable effect for node N-BR-001\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 50, \"reason\": \"postcondition not machine-renderable: COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 51, \"reason\": \"no machine-renderable effect for node N-BR-002\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 68, \"reason\": \"postcondition not machine-renderable: COMPUTE BONUS-AMT = BASE-PAY * 0.05\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 69, \"reason\": \"no machine-renderable effect for node N-BR-003\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 86, \"reason\": \"postcondition not machine-renderable: COMPUTE PENALTY = ABSENT-DAYS * 20\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 87, \"reason\": \"no machine-renderable effect for node N-BR-004\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 104, \"reason\": \"postcondition not machine-renderable: MOVE 'P' TO PAY-STATUS\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 105, \"reason\": \"no machine-renderable effect for node N-BR-005\", \"path\": \"cobol_payroll_modernized.py\"}]"
+                  }
+                ]
+              }
+            ],
+            "audit": {
+              "references": [
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 94,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 8,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 1,
+                  "line_end": 78,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 1,
+                  "line_end": 27,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 24,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 32,
+                  "line_end": 32,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 38,
+                  "line_end": 38,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 66,
+                  "line_end": 66,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 74,
+                  "line_end": 74,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 13,
+                  "line_end": 13,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 21,
+                  "line_end": 21,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 25,
+                  "line_end": 25,
+                  "valid": true,
+                  "artefact": "RuleInventory"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 24,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 24,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 32,
+                  "line_end": 32,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 32,
+                  "line_end": 32,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 38,
+                  "line_end": 38,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 38,
+                  "line_end": 38,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 66,
+                  "line_end": 66,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 66,
+                  "line_end": 66,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 74,
+                  "line_end": 74,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 74,
+                  "line_end": 74,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 13,
+                  "line_end": 13,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 13,
+                  "line_end": 13,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 21,
+                  "line_end": 21,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 21,
+                  "line_end": 21,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 25,
+                  "line_end": 25,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 25,
+                  "line_end": 25,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 94,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 8,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "cobol_payroll_modernized.py",
+                  "line_start": 1,
+                  "line_end": 239,
+                  "valid": false,
+                  "artefact": "ModernizedCode"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 24,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 32,
+                  "line_end": 32,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 38,
+                  "line_end": 38,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 66,
+                  "line_end": 66,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYROLL.cbl",
+                  "line_start": 74,
+                  "line_end": 74,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 13,
+                  "line_end": 13,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 21,
+                  "line_end": 21,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                },
+                {
+                  "file": "src/PAYRPT.cbl",
+                  "line_start": 25,
+                  "line_end": 25,
+                  "valid": true,
+                  "artefact": "EquivalenceReport"
+                }
+              ],
+              "total_references": 43,
+              "valid_references": 42,
+              "valid_span_rate": 0.9767441860465116
+            }
+          }
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 78
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 27
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "cobol_payroll_modernized.py",
+            "line_start": 1,
+            "line_end": 239
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 1,
+            "line_end": 78
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 1,
+            "line_end": 27
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 94
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "cobol_payroll_modernized.py",
+            "line_start": 1,
+            "line_end": 239
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 24,
+            "line_end": 24
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 32,
+            "line_end": 32
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 38,
+            "line_end": 38
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 66,
+            "line_end": 66
+          },
+          {
+            "file": "src/PAYROLL.cbl",
+            "line_start": 74,
+            "line_end": 74
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 13,
+            "line_end": 13
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 21,
+            "line_end": 21
+          },
+          {
+            "file": "src/PAYRPT.cbl",
+            "line_start": 25,
+            "line_end": 25
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793957994.6573243
+      }
+    ]
+  },
+  "session_log": [
+    {
+      "ts": 1793957994.6027472,
+      "agent": "navigator",
+      "event": "start",
+      "detail": {
+        "goal": "Map the repository: enumerate files, detect each file's language, flag files whose language cannot be identified, and record dependency edges between modules."
+      }
+    },
+    {
+      "ts": 1793957994.6032574,
+      "agent": "navigator",
+      "event": "write",
+      "detail": {
+        "artefact": "RepoMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6032598,
+      "agent": "navigator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.6035202,
+      "agent": "language_inference",
+      "event": "start",
+      "detail": {
+        "goal": "For every file whose language could not be identified, infer a working grammar in three passes: statistical (no model), LLM hypothesis, cross-file consistency. Accept the grammar only above the parse-success threshold; otherwise mark unparseable."
+      }
+    },
+    {
+      "ts": 1793957994.60366,
+      "agent": "language_inference",
+      "event": "write",
+      "detail": {
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6036623,
+      "agent": "language_inference",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.6040332,
+      "agent": "ast_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Parse every file \u2014 Tree-sitter where the language is known and the inferred grammar otherwise \u2014 and produce the AST map, call graph and CRUD table. Never guess a parse: unparseable files are recorded as such."
+      }
+    },
+    {
+      "ts": 1793957994.605104,
+      "agent": "ast_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "ASTMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6051095,
+      "agent": "ast_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.6057973,
+      "agent": "legacy_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Extract candidate business rules \u2014 explicit, implicit and constraints \u2014 from the structural analysis, each with pre/post conditions, a source span and a confidence score. Nothing is invented: every rule must point at a real code region."
+      }
+    },
+    {
+      "ts": 1793957994.6064622,
+      "agent": "legacy_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "RuleInventory",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6064646,
+      "agent": "legacy_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.607604,
+      "agent": "orchestrator",
+      "event": "skip",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "reason": "ablation A1: dynamic evidence disabled"
+      }
+    },
+    {
+      "ts": 1793957994.6076128,
+      "agent": "bsg_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Fuse static claims and dynamic outcomes into a Behavioural Specification Graph \u2014 the trust boundary of the system. Every rule node carries one of six confidence states; contradicted rules block generation for their node and escalate as blocked_on_human while unaffected nodes continue."
+      }
+    },
+    {
+      "ts": 1793957994.6083188,
+      "agent": "bsg_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "BSG",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.608322,
+      "agent": "bsg_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.609917,
+      "agent": "transformer",
+      "event": "start",
+      "detail": {
+        "goal": "Produce modernized code from the BSG \u2014 in-place upgrade or migration to the chosen target language \u2014 rendering every interlock as an explicit guard clause and marking unmappable constructs REVIEW/TODO instead of dropping them."
+      }
+    },
+    {
+      "ts": 1793957994.6108842,
+      "agent": "transformer",
+      "event": "write",
+      "detail": {
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6108863,
+      "agent": "transformer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793957994.6127858,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793957994.6511302,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6511326,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.04
+      }
+    },
+    {
+      "ts": 1793957994.6555173,
+      "agent": "documentation_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Emit hierarchical documentation at function, class, module and system level, the data dictionary and graph renderings, plus the audit trail linking every claim to its source lines."
+      }
+    },
+    {
+      "ts": 1793957994.6573253,
+      "agent": "documentation_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "Documentation",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793957994.6573288,
+      "agent": "documentation_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    }
+  ],
+  "escalations": []
+}

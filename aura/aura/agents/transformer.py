@@ -54,16 +54,21 @@ class ModernizationTransformerAgent(Agent):
             gen_rules = [r for r in rules
                          if not any(n["blocked"] and r["id"] in n.get("rule_ids", [])
                                     for n in bsg.get("nodes", []))]
+            gen_nodes = [n for n in bsg.get("nodes", []) if not n.get("blocked")]
         else:
-            # A3: no gate — every extracted rule is consumed whatever its label
+            # A3: no gate — every extracted rule is consumed whatever its
+            # label, including contradicted/blocked nodes (marked so the
+            # blocked-node-code-leak invariant can measure the damage)
             gen_rules = rules
+            gen_nodes = [{**n, "blocked": False,
+                          "originally_blocked": bool(n.get("blocked"))}
+                         for n in bsg.get("nodes", [])]
 
         ctx = {
             "unit_id": unit.get("id", "unit"),
             "mode": mode,
             "target": target,
-            "bsg": {"nodes": [n for n in bsg.get("nodes", [])
-                              if not gate or not n.get("blocked")],
+            "bsg": {"nodes": gen_nodes,
                     "edges": bsg.get("edges", [])},
             "rules": gen_rules,
             "blocked_rules": [r for r in rules if r not in gen_rules],

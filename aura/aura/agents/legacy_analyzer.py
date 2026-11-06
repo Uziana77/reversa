@@ -83,6 +83,7 @@ class LegacyAnalyzerAgent(Agent):
                 "false_injection": bool(r.get("false_injection", False)),
             }
             rules.append(rule)
+        rules.extend(self._injected_rules(run))
         payload = {"rules": rules, "rule_count": len(rules),
                    "context_mode": "ast" if use_static else "raw"}
         conf = sum(r["static_confidence"] for r in rules) / max(1, len(rules))
@@ -106,6 +107,68 @@ class LegacyAnalyzerAgent(Agent):
         if rules and n == 0:
             return False, "rules without any source span"
         return True, ""
+
+    # ------------------------------------------------------------------
+    def _injected_rules(self, run: dict) -> List[dict]:
+        """Merge adversarially injected rules from ``config.extra``.
+
+        Experiment B3 injects plausible-but-wrong rules into the inventory
+        to test the dynamic-evidence safety gate.  Each entry in
+        ``config.extra["injected_rules"]`` is a rule dict (attack-file
+        schema); anchors are resolved to real source spans against the
+        working copy, and every injected rule is marked
+        ``false_injection: True`` so ground-truth-scoring can separate the
+        attack material from genuine extraction errors.
+        """
+        cfg = run.get("config")
+        raw = (getattr(cfg, "extra", None) or {}).get("injected_rules") or []
+        out: List[dict] = []
+        root = run.get("root") or ""
+        for i, r in enumerate(raw, 1):
+            source = r.get("source")
+            if not source and r.get("anchor"):
+                source = self._resolve_anchor(root, r["anchor"])
+            out.append({
+                "id": f"INJ-{i:03d}",
+                "statement": r.get("statement", ""),
+                "kind": r.get("kind", "explicit"),
+                "preconditions": r.get("preconditions", []),
+                "postconditions": r.get("postconditions", []),
+                "inputs": r.get("inputs", []),
+                "outputs": r.get("outputs", []),
+                "source": source,
+                "static_confidence": float(r.get("static_confidence", 0.95)),
+                "extraction_method": "injected",
+                "contract": r.get("contract"),
+                "dynamic_label": None,
+                "dynamic_reason": "",
+                "dynamic_trace": "",
+                "false_injection": True,
+            })
+        return out
+
+    @staticmethod
+    def _resolve_anchor(root: str, anchor: str) -> Optional[dict]:
+        anchor = (anchor or "").strip()
+        if not anchor or not root:
+            return None
+        data_exts = (".json", ".md", ".txt", ".ebnf", ".csv", ".yaml", ".yml")
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames
+                           if d not in ("reference", "attacks", "tests", "work", "work_injected")]
+            for fn in sorted(filenames):
+                if fn.endswith(data_exts):
+                    continue  # anchors resolve to code, never to metadata
+                path = os.path.join(dirpath, fn)
+                try:
+                    with open(path, encoding="utf-8", errors="ignore") as fh:
+                        for i, line in enumerate(fh, 1):
+                            if anchor in line:
+                                return {"file": os.path.relpath(path, root),
+                                        "line_start": i, "line_end": i}
+                except OSError:
+                    continue
+        return None
 
     # ------------------------------------------------------------------
     def _raw_files(self, root: str, payloads: dict) -> dict:

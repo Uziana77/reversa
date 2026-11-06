@@ -1,0 +1,351 @@
+{
+  "unit": "interlock",
+  "run_dir": "results/A1/interlock",
+  "gold_rules": 32,
+  "extracted_rules": 16,
+  "injected_rules": 0,
+  "capture_rate": 0.7188,
+  "extraction_precision": 0.875,
+  "captured": [
+    "ILG-R01",
+    "ILG-R03",
+    "ILG-R04",
+    "ILG-R05",
+    "ILG-R06",
+    "ILG-R07",
+    "ILG-R08",
+    "ILG-R12",
+    "ILG-R13",
+    "ILG-R14",
+    "ILG-R18",
+    "ILG-R19",
+    "ILG-R20",
+    "ILG-R21",
+    "ILG-R22",
+    "ILG-R23",
+    "ILG-R24",
+    "ILG-R25",
+    "ILG-R26",
+    "ILG-R27",
+    "ILG-R29",
+    "ILG-R30",
+    "ILG-R31"
+  ],
+  "gaps": [
+    {
+      "gold": "ILG-R02",
+      "statement": "In GUARD-MAIN, the start permissive is withheld in manual mode regardless of guard state."
+    },
+    {
+      "gold": "ILG-R09",
+      "statement": "The compressor trips when furnace pressure exceeds the critical 200 kPa limit."
+    },
+    {
+      "gold": "ILG-R10",
+      "statement": "The compressor also trips when flue gas temperature exceeds 100 Celsius."
+    },
+    {
+      "gold": "ILG-R11",
+      "statement": "No trip is signalled while both pressure and temperature stay inside their limits."
+    },
+    {
+      "gold": "ILG-R15",
+      "statement": "The rotor interlock blocks rotation while the access door is open."
+    },
+    {
+      "gold": "ILG-R16",
+      "statement": "The door assert raises the door-open alarm while the access door is open."
+    },
+    {
+      "gold": "ILG-R17",
+      "statement": "The door assert stays silent while the access door is closed."
+    },
+    {
+      "gold": "ILG-R28",
+      "statement": "The handler trips the furnace when pressure exceeds the 220 kPa escalation limit."
+    },
+    {
+      "gold": "ILG-R32",
+      "statement": "With the door open a reset request is inhibited and the reset-inhibited alarm sounds."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "ILG-R01",
+      "captured": true,
+      "extracted_id": "BR-005",
+      "shared_identifier": "main"
+    },
+    {
+      "gold": "ILG-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R03",
+      "captured": true,
+      "extracted_id": "BR-005",
+      "shared_identifier": "main"
+    },
+    {
+      "gold": "ILG-R04",
+      "captured": true,
+      "extracted_id": "BR-006",
+      "shared_identifier": "pressure"
+    },
+    {
+      "gold": "ILG-R05",
+      "captured": true,
+      "extracted_id": "BR-006",
+      "shared_identifier": "relief"
+    },
+    {
+      "gold": "ILG-R06",
+      "captured": true,
+      "extracted_id": "BR-007",
+      "shared_identifier": "cooling"
+    },
+    {
+      "gold": "ILG-R07",
+      "captured": true,
+      "extracted_id": "BR-008",
+      "shared_identifier": "cooling"
+    },
+    {
+      "gold": "ILG-R08",
+      "captured": true,
+      "extracted_id": "BR-008",
+      "shared_identifier": "cooling"
+    },
+    {
+      "gold": "ILG-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R12",
+      "captured": true,
+      "extracted_id": "BR-010",
+      "shared_identifier": "motor_cut"
+    },
+    {
+      "gold": "ILG-R13",
+      "captured": true,
+      "extracted_id": "BR-010",
+      "shared_identifier": "motor_cut"
+    },
+    {
+      "gold": "ILG-R14",
+      "captured": true,
+      "extracted_id": "BR-011",
+      "shared_identifier": "motor_cut"
+    },
+    {
+      "gold": "ILG-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R18",
+      "captured": true,
+      "extracted_id": "BR-012",
+      "shared_identifier": "alarm_horn"
+    },
+    {
+      "gold": "ILG-R19",
+      "captured": true,
+      "extracted_id": "BR-012",
+      "shared_identifier": "alarm_horn"
+    },
+    {
+      "gold": "ILG-R20",
+      "captured": true,
+      "extracted_id": "BR-013",
+      "shared_identifier": "pressure"
+    },
+    {
+      "gold": "ILG-R21",
+      "captured": true,
+      "extracted_id": "BR-013",
+      "shared_identifier": "vent_perm"
+    },
+    {
+      "gold": "ILG-R22",
+      "captured": true,
+      "extracted_id": "BR-014",
+      "shared_identifier": "off"
+    },
+    {
+      "gold": "ILG-R23",
+      "captured": true,
+      "extracted_id": "BR-015",
+      "shared_identifier": "cooling"
+    },
+    {
+      "gold": "ILG-R24",
+      "captured": true,
+      "extracted_id": "BR-016",
+      "shared_identifier": "annunciate"
+    },
+    {
+      "gold": "ILG-R25",
+      "captured": true,
+      "extracted_id": "BR-016",
+      "shared_identifier": "annunciate"
+    },
+    {
+      "gold": "ILG-R26",
+      "captured": true,
+      "extracted_id": "BR-001",
+      "shared_identifier": "alarm_horn"
+    },
+    {
+      "gold": "ILG-R27",
+      "captured": true,
+      "extracted_id": "BR-001",
+      "shared_identifier": "alarm_horn"
+    },
+    {
+      "gold": "ILG-R28",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R29",
+      "captured": true,
+      "extracted_id": "BR-003",
+      "shared_identifier": "call_supervisor"
+    },
+    {
+      "gold": "ILG-R30",
+      "captured": true,
+      "extracted_id": "BR-003",
+      "shared_identifier": "call_supervisor"
+    },
+    {
+      "gold": "ILG-R31",
+      "captured": true,
+      "extracted_id": "BR-004",
+      "shared_identifier": "pressure"
+    },
+    {
+      "gold": "ILG-R32",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.4168,
+  "docs": {
+    "bleu4": 0.0108,
+    "bertscore_f1": 0.8148,
+    "glossary_recall": 0.8,
+    "unit_coverage": 1.0,
+    "chars": 6257
+  },
+  "glossary_recall": {
+    "recall": 0.7667,
+    "hit": [
+      "pressure",
+      "temperature",
+      "door_closed",
+      "guard_sensor",
+      "motor_speed",
+      "vent_open",
+      "shift_night",
+      "mode_knob",
+      "start_perm",
+      "relief",
+      "cooling",
+      "motor_cut",
+      "alarm_horn",
+      "vent_perm",
+      "annunciate",
+      "call_supervisor",
+      "reset_perm",
+      "horn_silence",
+      "escalation",
+      "reset_request",
+      "compressor",
+      "furnace",
+      "trip"
+    ],
+    "missed": [
+      "guard-main",
+      "alarm-handler",
+      "rotor",
+      "hysteresis",
+      "interlock",
+      "permissive",
+      "annunciator"
+    ],
+    "total": 30
+  },
+  "unit_coverage": 1.0,
+  "traceability_density": 1.0,
+  "valid_span_rate": 1.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 16
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 16
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 2,
+    "blocked_node_code_leak": 0
+  },
+  "ber": 0.4375,
+  "testable_share": 1.0,
+  "retained_pass_rate": null,
+  "total_rules_ber": 16,
+  "modernization_mode": "migration",
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 17,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "A1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

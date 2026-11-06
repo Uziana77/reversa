@@ -1,0 +1,261 @@
+{
+  "unit": "reportscript",
+  "run_dir": "results/A3/reportscript",
+  "gold_rules": 17,
+  "extracted_rules": 6,
+  "injected_rules": 0,
+  "capture_rate": 0.1176,
+  "extraction_precision": 0.3333,
+  "captured": [
+    "RPT-R02",
+    "RPT-R05"
+  ],
+  "gaps": [
+    {
+      "gold": "RPT-R01",
+      "statement": "In SALES-RPT, TOTAL-AMT accumulates the sum of all record amounts."
+    },
+    {
+      "gold": "RPT-R03",
+      "statement": "Amounts of NORTH-region records accumulate into REGION-NORTH."
+    },
+    {
+      "gold": "RPT-R04",
+      "statement": "Amounts of every non-NORTH record fall into the REGION-SOUTH bucket (else branch)."
+    },
+    {
+      "gold": "RPT-R06",
+      "statement": "Records with quantity above 10 receive a 10 percent discount before netting."
+    },
+    {
+      "gold": "RPT-R07",
+      "statement": "Records with quantity of 10 or less are netted at full amount."
+    },
+    {
+      "gold": "RPT-R08",
+      "statement": "Rep ANA earns a 5 percent commission on the discounted amount."
+    },
+    {
+      "gold": "RPT-R09",
+      "statement": "Every other rep earns a 3 percent commission on the discounted amount."
+    },
+    {
+      "gold": "RPT-R10",
+      "statement": "A HIGH detail line is printed for each record above 100."
+    },
+    {
+      "gold": "RPT-R11",
+      "statement": "No HIGH detail line is printed for records at or below 100."
+    },
+    {
+      "gold": "RPT-R12",
+      "statement": "An empty record collection produces zero totals and zero counts."
+    },
+    {
+      "gold": "RPT-R13",
+      "statement": "The report ends with a TOTAL summary line carrying the gross amount."
+    },
+    {
+      "gold": "RPT-R14",
+      "statement": "In RETURNS-RPT, RETURN-TOTAL accumulates all return amounts and RETURN-COUNT counts the records."
+    },
+    {
+      "gold": "RPT-R15",
+      "statement": "A refund above the gross amount is clamped to the gross and flagged."
+    },
+    {
+      "gold": "RPT-R16",
+      "statement": "A refund at or below the gross amount is paid in full and not flagged."
+    },
+    {
+      "gold": "RPT-R17",
+      "statement": "Empty returns produce zero reconciliation totals."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "RPT-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R02",
+      "captured": true,
+      "extracted_id": "BR-003",
+      "shared_identifier": "count"
+    },
+    {
+      "gold": "RPT-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R05",
+      "captured": true,
+      "extracted_id": "BR-006",
+      "shared_identifier": "amt"
+    },
+    {
+      "gold": "RPT-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RPT-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.6732,
+  "docs": {
+    "bleu4": 0.0119,
+    "bertscore_f1": 0.7412,
+    "glossary_recall": 0.5556,
+    "unit_coverage": 1.0,
+    "chars": 5438
+  },
+  "glossary_recall": {
+    "recall": 0.5556,
+    "hit": [
+      "sales-rpt",
+      "returns-rpt",
+      "returns",
+      "gross",
+      "high-count",
+      "region-north",
+      "top-amt",
+      "discount",
+      "comm",
+      "rec_amount",
+      "rec_qty",
+      "rec_rep",
+      "rec_region",
+      "ret_amount",
+      "discount"
+    ],
+    "missed": [
+      "records",
+      "total-amt",
+      "net-total",
+      "comm-total",
+      "region-south",
+      "return-total",
+      "return-count",
+      "refund-total",
+      "flag-count",
+      "accumulator",
+      "commission",
+      "clamp"
+    ],
+    "total": 27
+  },
+  "unit_coverage": 0.5,
+  "traceability_density": 1.0,
+  "valid_span_rate": 1.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 6
+  },
+  "dynamic_labels": {
+    "confirmed": 3,
+    "contradicted": 3,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 5,
+    "blocked_node_code_leak": 5
+  },
+  "ber": 0.6667,
+  "testable_share": 0.5,
+  "retained_pass_rate": null,
+  "total_rules_ber": 6,
+  "modernization_mode": "migration",
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 18,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "A3",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

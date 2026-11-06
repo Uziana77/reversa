@@ -1,0 +1,1169 @@
+{
+  "title": "AURA Documentation \u2014 react_orders",
+  "provider": "offline",
+  "rule_count": 21,
+  "confidence_distribution": {
+    "contradicted": 19,
+    "confirmed_both": 2,
+    "gap": 3
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 5 source files in javascript, javascript-react, json. 21 candidate business rules were extracted across 9 analysis units. The call graph has 4 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 5. Analysis units: 9. Candidate business rules: 21. Behavioural equivalence rate: 0.0 (testable share 0.0952)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": [
+            {
+              "id": "BR-001",
+              "statement": "In OrderTable.anon@18, lines is computed as this.props.lines || [];.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "OrderTable.jsx",
+                "line_start": 19,
+                "line_end": 19
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-002",
+              "statement": "In lineTotal, if (line.qty > 10) then amount = amount - Math.floor(amount / 10);.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 7,
+                "line_end": 7
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-003",
+              "statement": "In lineTotal, amount is computed as line.price * line.qty;.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 6,
+                "line_end": 6
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-004",
+              "statement": "In lineTotal, amount is computed as amount - Math.floor(amount / 10).",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 8,
+                "line_end": 8
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-005",
+              "statement": "In shippingFor, if (country === \"US\") then return 500;.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 14,
+                "line_end": 14
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-006",
+              "statement": "In shippingFor, if (country === \"CA\") then return 1200;.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 17,
+                "line_end": 17
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-007",
+              "statement": "In discountFor, if (promo === \"SAVE10\" && subtotal >= 5000) then d = Math.floor(subtotal * 10 / 100);.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 25,
+                "line_end": 25
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-008",
+              "statement": "In discountFor, if (promo === \"SAVE20\" && subtotal >= 15000) then d = Math.floor(subtotal * 20 / 100);.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 28,
+                "line_end": 28
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-009",
+              "statement": "In discountFor, value is computed as Math.floor(subtotal * 10 / 100).",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 26,
+                "line_end": 26
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-010",
+              "statement": "In discountFor, value is computed as Math.floor(subtotal * 20 / 100).",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 29,
+                "line_end": 29
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-011",
+              "statement": "In run, if (total >= 20000) then status = \"REVIEW\";.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 45,
+                "line_end": 45
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-012",
+              "statement": "In run, if (inputs.country !== \"US\" && inputs.country !== \"CA\" && subtotal >= 30000) then status = \"HOLD\";.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 48,
+                "line_end": 48
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-013",
+              "statement": "In run, lines is computed as inputs.lines;.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 36,
+                "line_end": 36
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-014",
+              "statement": "In run, subtotal is computed as 0;.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 37,
+                "line_end": 37
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-015",
+              "statement": "In run, subtotal is computed as subtotal + lineTotal(lines[i]).",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 39,
+                "line_end": 39
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-016",
+              "statement": "In run, discount is computed as discountFor(subtotal, inputs.promo);.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 41,
+                "line_end": 41
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-017",
+              "statement": "In run, shipping is computed as shippingFor(subtotal, inputs.country);.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 42,
+                "line_end": 42
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-018",
+              "statement": "In run, total is computed as subtotal - discount + shipping;.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 43,
+                "line_end": 43
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-019",
+              "statement": "In run, status is computed as \"OPEN\";.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 44,
+                "line_end": 44
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-020",
+              "statement": "In run, status is computed as \"REVIEW\".",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 46,
+                "line_end": 46
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-021",
+              "statement": "In run, status is computed as \"HOLD\".",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "orderMath.js",
+                "line_start": 49,
+                "line_end": 49
+              },
+              "dynamic_label": "contradicted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **OrderTable.anon@8** (OrderTable.jsx:8-16): OrderTable.anon@8 (OrderTable.jsx). calls: lineTotal.\n- **OrderTable.anon@18** (OrderTable.jsx:18-28): OrderTable.anon@18 (OrderTable.jsx). maintains state: var lines = this.props.lines || [];. calls: map.\n- **meta.json** (meta.json:1-55): meta.json (meta.json).\n- **lineTotal** (orderMath.js:5-11): lineTotal (orderMath.js). applies conditions: (line.qty > 10). computes: amount = amount - Math.floor(amount / 10);. maintains state: var amount = line.price * line.qty;; amount = amount - Math.floor(amount / 10). calls: floor.\n- **shippingFor** (orderMath.js:13-21): shippingFor (orderMath.js). applies conditions: (country === \"US\"); (country === \"CA\"). computes: return 500;; return 1200;.\n- **discountFor** (orderMath.js:23-33): discountFor (orderMath.js). applies conditions: (promo === \"SAVE10\" && subtotal >= 5000); (promo === \"SAVE20\" && subtotal >= 15000). computes: d = Math.floor(subtotal * 10 / 100);; d = Math.floor(subtotal * 20 / 100);. maintains state: var d = 0;; d = Math.floor(subtotal * 10 / 100); d = Math.floor(subtotal * 20 / 100). calls: floor, floor.\n- **run** (orderMath.js:35-58): run (orderMath.js). applies conditions: (total >= 20000); (inputs.country !== \"US\" && inputs.country !== \"CA\" && subtotal >= 30000). computes: status = \"REVIEW\";; status = \"HOLD\";. maintains state: var lines = inputs.lines;; var subtotal = 0;; var i = 0;. calls: lineTotal, discountFor, shippingFor.\n- **package.json** (package.json:1-7): package.json (package.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 30, \"reason\": \"precondition not machine-renderable: (country === \\\"US\\\")\", \"path\": \"react_orders_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 31, \"reason\": \"postcondition not machine-renderable: return 500;\", \"path\": \"react_orders_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 32, \"reason\": \"no machine-renderable effect for node N-BR-005\", \"path\": \"react_orders_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 47, \"reason\": \"precondition not machine-renderable: (country === \\\"CA\\\")\", \"path\": \"react_orders_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 48, \"reason\": \"postcondition not machine-renderable: return 1200;\", \"path\": \"react_orders_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 49, \"reason\": \"no machine-renderable effect for node N-BR-006\", \"path\": \"react_orders_modernized.py\"}]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "package.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 8,
+        "line_end": 16,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 18,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 55,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 5,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 13,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 23,
+        "line_end": 33,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 35,
+        "line_end": 58,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "package.json",
+        "line_start": 1,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 7,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 6,
+        "line_end": 6,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 8,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 14,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 29,
+        "line_end": 29,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 48,
+        "line_end": 48,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 41,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 43,
+        "line_end": 43,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 44,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 46,
+        "line_end": 46,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 49,
+        "line_end": 49,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 7,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 6,
+        "line_end": 6,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 8,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 14,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 29,
+        "line_end": 29,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 48,
+        "line_end": 48,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 41,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 43,
+        "line_end": 43,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 44,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 46,
+        "line_end": 46,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 49,
+        "line_end": 49,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 7,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 7,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 6,
+        "line_end": 6,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 6,
+        "line_end": 6,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 8,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 8,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 14,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 14,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 29,
+        "line_end": 29,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 29,
+        "line_end": 29,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 48,
+        "line_end": 48,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 48,
+        "line_end": 48,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 41,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 41,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 43,
+        "line_end": 43,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 43,
+        "line_end": 43,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 44,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 44,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 46,
+        "line_end": 46,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 46,
+        "line_end": 46,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 49,
+        "line_end": 49,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 49,
+        "line_end": 49,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 55,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "package.json",
+        "line_start": 1,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "react_orders_modernized.py",
+        "line_start": 1,
+        "line_end": 99,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      },
+      {
+        "file": "OrderTable.jsx",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 7,
+        "line_end": 7,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 6,
+        "line_end": 6,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 8,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 14,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 29,
+        "line_end": 29,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 48,
+        "line_end": 48,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 41,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 43,
+        "line_end": 43,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 44,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 46,
+        "line_end": 46,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "orderMath.js",
+        "line_start": 49,
+        "line_end": 49,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      }
+    ],
+    "total_references": 123,
+    "valid_references": 122,
+    "valid_span_rate": 0.991869918699187
+  }
+}

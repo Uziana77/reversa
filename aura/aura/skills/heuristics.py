@@ -251,7 +251,7 @@ def summarize_system(context: dict) -> dict:
     rules_count = context.get("rules_count", 0)
     crud = context.get("crud", [])
     call_edges = context.get("call_edges", [])
-    langs = sorted({f.get("language", "unknown") for f in files})
+    langs = sorted({f.get("language") or "unknown" for f in files})
     overview = (
         f"Legacy system with {len(files)} source files in {', '.join(langs)}. "
         f"{rules_count} candidate business rules were extracted across "

@@ -1,0 +1,240 @@
+{
+  "title": "AURA Documentation \u2014 go_inventory",
+  "provider": "offline",
+  "rule_count": 0,
+  "confidence_distribution": {
+    "gap": 9
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in go, json. 0 candidate business rules were extracted across 9 analysis units. The call graph has 5 edges and the data-access table lists 1 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 9. Candidate business rules: 0. Behavioural equivalence rate: n/a (testable share n/a)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": []
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ],
+            [
+              "computeReorder",
+              "update",
+              "runBatch"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **applyDemand** (inventory.go:9-14): applyDemand (inventory.go).\n- **computeReorder** (inventory.go:19-30): computeReorder (inventory.go). maintains state: need := reorderLevel - stock; leadNeed := leadDays * dailyDemand.\n- **classify** (inventory.go:34-42): classify (inventory.go).\n- **runBatch** (inventory.go:45-50): runBatch (inventory.go). maintains state: need, leadNeed := computeReorder(stock, reorderLevel, leadDays, dailyDemand); status := classify(stock, reorderLevel). calls: applyDemand, computeReorder, classify. data access: update computeReorder.\n- **meta.json** (meta.json:1-75): meta.json (meta.json).\n- **priceOrder** (pricing.go:9-21): priceOrder (pricing.go). maintains state: total := units * unitPrice; discount := 0; net := total - discount.\n- **shippingFee** (pricing.go:25-33): shippingFee (pricing.go).\n- **runPricing** (pricing.go:36-40): runPricing (pricing.go). maintains state: total, net := priceOrder(units, unitPrice, member); fee := shippingFee(weight, zone). calls: priceOrder, shippingFee.\n- **work_manifest.json** (work_manifest.json:1-8): work_manifest.json (work_manifest.json)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: []"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "inventory.go",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 9,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 19,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 34,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 45,
+        "line_end": 50,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 75,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 9,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 25,
+        "line_end": 33,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 36,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 9,
+        "line_end": 14,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 19,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 34,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "inventory.go",
+        "line_start": 45,
+        "line_end": 50,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 75,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 9,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 25,
+        "line_end": 33,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "pricing.go",
+        "line_start": 36,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "go_inventory_modernized.py",
+        "line_start": 1,
+        "line_end": 55,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      }
+    ],
+    "total_references": 23,
+    "valid_references": 22,
+    "valid_span_rate": 0.9565217391304348
+  }
+}

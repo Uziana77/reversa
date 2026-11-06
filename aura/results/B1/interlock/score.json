@@ -1,0 +1,418 @@
+{
+  "unit": "interlock",
+  "run_dir": "results/B1/interlock",
+  "gold_rules": 32,
+  "extracted_rules": 0,
+  "injected_rules": 0,
+  "capture_rate": 0.0,
+  "extraction_precision": 0.0,
+  "captured": [],
+  "gaps": [
+    {
+      "gold": "ILG-R01",
+      "statement": "In GUARD-MAIN, the start permissive is granted only in AUTO mode with the access door closed and the light curtain clear."
+    },
+    {
+      "gold": "ILG-R02",
+      "statement": "In GUARD-MAIN, the start permissive is withheld in manual mode regardless of guard state."
+    },
+    {
+      "gold": "ILG-R03",
+      "statement": "In GUARD-MAIN, an open access door denies the start permissive even in AUTO mode."
+    },
+    {
+      "gold": "ILG-R04",
+      "statement": "The overpressure relief valve opens when furnace pressure exceeds 180 kPa."
+    },
+    {
+      "gold": "ILG-R05",
+      "statement": "The relief valve closes again at or below 180 kPa."
+    },
+    {
+      "gold": "ILG-R06",
+      "statement": "Flue cooling switches on when the flue gas temperature exceeds 90 Celsius."
+    },
+    {
+      "gold": "ILG-R07",
+      "statement": "Flue cooling switches off when the flue gas temperature falls below 60 Celsius."
+    },
+    {
+      "gold": "ILG-R08",
+      "statement": "Inside the 60-90 Celsius band the flue loop leaves the cooling state unchanged (hysteresis)."
+    },
+    {
+      "gold": "ILG-R09",
+      "statement": "The compressor trips when furnace pressure exceeds the critical 200 kPa limit."
+    },
+    {
+      "gold": "ILG-R10",
+      "statement": "The compressor also trips when flue gas temperature exceeds 100 Celsius."
+    },
+    {
+      "gold": "ILG-R11",
+      "statement": "No trip is signalled while both pressure and temperature stay inside their limits."
+    },
+    {
+      "gold": "ILG-R12",
+      "statement": "The fan drive is cut when the light curtain is broken while the motor runs above 3000 rpm."
+    },
+    {
+      "gold": "ILG-R13",
+      "statement": "The fan drive is not cut while the light curtain stays clear, even above 3000 rpm."
+    },
+    {
+      "gold": "ILG-R14",
+      "statement": "Hard overspeed above 3800 rpm cuts the fan drive regardless of the curtain."
+    },
+    {
+      "gold": "ILG-R15",
+      "statement": "The rotor interlock blocks rotation while the access door is open."
+    },
+    {
+      "gold": "ILG-R16",
+      "statement": "The door assert raises the door-open alarm while the access door is open."
+    },
+    {
+      "gold": "ILG-R17",
+      "statement": "The door assert stays silent while the access door is closed."
+    },
+    {
+      "gold": "ILG-R18",
+      "statement": "On night shift the horn annunciates whenever the relief valve opens."
+    },
+    {
+      "gold": "ILG-R19",
+      "statement": "On day shift the relief valve opens without sounding the horn."
+    },
+    {
+      "gold": "ILG-R20",
+      "statement": "The vent permissive opens when the manual vent is open and pressure is above 150 kPa."
+    },
+    {
+      "gold": "ILG-R21",
+      "statement": "The vent permissive stays closed while the manual vent handle is shut."
+    },
+    {
+      "gold": "ILG-R22",
+      "statement": "A fan cut revokes an already-granted start permissive (the cut-start interlock)."
+    },
+    {
+      "gold": "ILG-R23",
+      "statement": "In AUTO mode cooling is forced on once the flue gas exceeds 85 Celsius."
+    },
+    {
+      "gold": "ILG-R24",
+      "statement": "The annunciator lights whenever the horn or the vent permissive is active."
+    },
+    {
+      "gold": "ILG-R25",
+      "statement": "The annunciator stays dark while both the horn and the vent permissive are inactive."
+    },
+    {
+      "gold": "ILG-R26",
+      "statement": "In ALARM-HANDLER, pressing horn silence cancels an active horn."
+    },
+    {
+      "gold": "ILG-R27",
+      "statement": "Without a silence request the handler re-asserts the horn."
+    },
+    {
+      "gold": "ILG-R28",
+      "statement": "The handler trips the furnace when pressure exceeds the 220 kPa escalation limit."
+    },
+    {
+      "gold": "ILG-R29",
+      "statement": "On night shift an escalation request calls the supervisor."
+    },
+    {
+      "gold": "ILG-R30",
+      "statement": "Without an escalation request the supervisor is not called."
+    },
+    {
+      "gold": "ILG-R31",
+      "statement": "A reset request is permitted only with the door closed and pressure below 100 kPa."
+    },
+    {
+      "gold": "ILG-R32",
+      "statement": "With the door open a reset request is inhibited and the reset-inhibited alarm sounds."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "ILG-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R18",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R19",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R20",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R21",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R22",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R23",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R24",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R25",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R26",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R27",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R28",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R29",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R30",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R31",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "ILG-R32",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.0,
+  "docs": {
+    "bleu4": 0.0,
+    "bertscore_f1": 0.4795,
+    "glossary_recall": 0.0,
+    "unit_coverage": 1.0,
+    "chars": 387
+  },
+  "glossary_recall": {
+    "recall": 0.0,
+    "hit": [],
+    "missed": [
+      "guard-main",
+      "alarm-handler",
+      "pressure",
+      "temperature",
+      "door_closed",
+      "guard_sensor",
+      "motor_speed",
+      "vent_open",
+      "shift_night",
+      "mode_knob",
+      "start_perm",
+      "relief",
+      "cooling",
+      "motor_cut",
+      "alarm_horn",
+      "vent_perm",
+      "annunciate",
+      "call_supervisor",
+      "reset_perm",
+      "horn_silence",
+      "escalation",
+      "reset_request",
+      "compressor",
+      "furnace",
+      "rotor",
+      "hysteresis",
+      "interlock",
+      "permissive",
+      "trip",
+      "annunciator"
+    ],
+    "total": 30
+  },
+  "unit_coverage": 0.0,
+  "traceability_density": 0.0,
+  "valid_span_rate": 0.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 0
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 0,
+    "blocked_node_code_leak": 0
+  },
+  "ber": null,
+  "testable_share": null,
+  "retained_pass_rate": null,
+  "total_rules_ber": null,
+  "modernization_mode": null,
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 2,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "B1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

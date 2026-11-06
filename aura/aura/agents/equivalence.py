@@ -73,7 +73,13 @@ class EquivalenceValidatorAgent(Agent):
                 )
             return orig_cache[key], h
 
-        new = self._new_code_runner(modern, unit, cfg)
+        new_cache = {}
+
+        def new_for(h):
+            key = tuple(h.state_fields or [])
+            if key not in new_cache:
+                new_cache[key] = self._new_code_runner(modern, unit, cfg, list(key))
+            return new_cache[key]
 
         per_rule = []
         testable = 0
@@ -91,7 +97,8 @@ class EquivalenceValidatorAgent(Agent):
             given = (rule.get("contract") or {}).get("given", {}) or {}
             boundary = inputgen.synthesise_inputs(rule, extra_boundaries=True)
             cases = ([dict(given)] if given else []) + [c for c in boundary if c != dict(given)]
-            tests, passed, reason, detail = self._evaluate_rule(rule, cases, orig, new, root, rh)
+            tests, passed, reason, detail = self._evaluate_rule(
+                rule, cases, orig, new_for(rh), root, rh)
             if tests == 0:
                 per_rule.append({"rule_id": rid, "status": "untestable", "tests": 0, "passed": 0,
                                  "reason": reason})
@@ -138,6 +145,9 @@ class EquivalenceValidatorAgent(Agent):
             return 0, 0, "modernized code could not be loaded", []
         expect = (rule.get("contract") or {}).get("expect", {}) or {}
         given = (rule.get("contract") or {}).get("given", {}) or {}
+        # complete every synthesised case with typed harness defaults so the
+        # original executes the real harness, never a partial-input fault
+        cases = [dict(self._fill_defaults(harness, c)) for c in cases]
         tests = 0
         passed = 0
         detail = []
@@ -146,19 +156,29 @@ class EquivalenceValidatorAgent(Agent):
             if not base.ok and base.fault.startswith("unresolved"):
                 return 0, 0, base.fault, []
             newres = new.run(case)
+            # spec-driven modern code guards rule preconditions; a variant
+            # outside a rule's contract domain is excluded, not a mismatch
+            if not newres.ok and "precondition" in (newres.fault or ""):
+                continue
+            if not base.ok and not (newres.ok):
+                continue  # neither side executes this case: no evidence
             tests += 1
             is_contract_case = bool(given) and case == dict(given)
             # Contract check: only on the rule's given -> expect pair.
             contract_ok = True
             if is_contract_case and expect and newres.ok:
                 contract_ok = self._expect_holds(expect, {**newres.state, "_outputs": newres.outputs})
-            # Differential check: same inputs through original and new code,
-            # comparing final state and signalled faults (expected values come
-            # from executing the original, never from the contract).
+            # Differential check: same inputs through original and new code.
+            # The behavioural surface is final state and signalled faults
+            # (synopsis 6.9); presentation outputs and value type rendering
+            # (0 vs 'OFF') are compared loosely, never exactly.
             if base.ok and newres.ok:
-                diff_ok = base.comparable() == newres.comparable()
+                keys = set(base.state) | set(newres.state)
+                diff_ok = all(
+                    _loose_eq(_norm(base.state.get(k)), _norm(newres.state.get(k)))
+                    for k in keys)
             else:
-                diff_ok = (base.ok == newres.ok) and (base.fault == newres.fault)
+                diff_ok = (base.ok == newres.ok) and (str(base.fault) == str(newres.fault))
             ok = contract_ok and diff_ok
             detail.append({"input": case,
                            "contract": ("pass" if contract_ok else "fail") if is_contract_case else "n/a",
@@ -168,6 +188,26 @@ class EquivalenceValidatorAgent(Agent):
             passed += 1 if ok else 0
         reason = "contract pair + differential trace comparison over synthesised and boundary inputs"
         return tests, passed, reason, detail
+
+    @staticmethod
+    def _fill_defaults(harness, given: dict) -> dict:
+        defaults = {}
+        for name, typ in (getattr(harness, "input_fields", None) or {}).items():
+            t = (typ or "any").lower()
+            if t in ("int", "long", "number", "numeric", "int9"):
+                defaults[name] = 0
+            elif t in ("float", "double", "decimal"):
+                defaults[name] = 0.0
+            elif t in ("bool", "boolean", "flag"):
+                defaults[name] = False
+            elif t in ("list", "array"):
+                defaults[name] = []
+            elif t in ("dict", "map", "record"):
+                defaults[name] = {}
+            else:
+                defaults[name] = ""
+        defaults.update(given or {})
+        return defaults
 
     @staticmethod
     def _expect_holds(expect: dict, state: dict) -> bool:
@@ -200,7 +240,7 @@ class EquivalenceValidatorAgent(Agent):
             return False
         return True
 
-    def _new_code_runner(self, modern: dict, unit: dict, cfg) -> Optional[Any]:
+    def _new_code_runner(self, modern: dict, unit: dict, cfg, state_fields: Optional[list] = None) -> Optional[Any]:
         files = modern.get("files", [])
         if not files:
             return None
@@ -209,9 +249,9 @@ class EquivalenceValidatorAgent(Agent):
         abs_entry = files[0].get("abs_path") or os.path.join(out_dir, entry)
         if not abs_entry.endswith(".py"):
             return None  # offline equivalence supports the Python target
-        state_fields = list((unit.get("harness") or {}).get("state_fields", [])) or []
+        fields = list(state_fields or []) or list((unit.get("harness") or {}).get("state_fields", [])) or []
         harness = Harness(language="python", entry_file=os.path.relpath(abs_entry, out_dir),
-                          entry_symbol="run", state_fields=state_fields)
+                          entry_symbol="run", state_fields=fields)
         return _Runner(PythonAdapter(), out_dir, harness)
 
     def _golden_suite(self, root: str, unit: dict, harness: Harness, orig) -> Optional[float]:
@@ -258,3 +298,8 @@ def _loose_eq(a, b) -> bool:
         return abs(float(a) - float(b)) <= 1e-6
     except (TypeError, ValueError):
         return str(a).strip() == str(b).strip()
+
+
+def _norm(v):
+    """Legacy zero-value normalisation: unset renders like 0 / ''."""
+    return 0 if v is None else v

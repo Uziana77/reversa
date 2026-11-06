@@ -1,0 +1,521 @@
+{
+  "title": "AURA Documentation \u2014 cobol_payroll",
+  "provider": "offline",
+  "rule_count": 8,
+  "confidence_distribution": {
+    "confirmed_both": 8,
+    "gap": 2
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in cobol, json. 8 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 8. Behavioural equivalence rate: 0.25 (testable share 1.0)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": [
+            {
+              "id": "BR-001",
+              "statement": "In PAYROLL.cbl, if HOURS-WORKED > 40 then COMPUTE BASE-PAY = 40 * PAY-RATE.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-002",
+              "statement": "In PAYROLL.cbl, if SHIFT-CODE = 2 then COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 32,
+                "line_end": 32
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-003",
+              "statement": "In PAYROLL.cbl, if YEARS-OF-SERVICE >= 10 then COMPUTE BONUS-AMT = BASE-PAY * 0.05.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 38,
+                "line_end": 38
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-004",
+              "statement": "In PAYROLL.cbl, if ABSENT-DAYS > 0 then COMPUTE PENALTY = ABSENT-DAYS * 20.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 66,
+                "line_end": 66
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-005",
+              "statement": "In PAYROLL.cbl, if NET-PAY > 0 then MOVE 'P' TO PAY-STATUS.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYROLL.cbl",
+                "line_start": 74,
+                "line_end": 74
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-006",
+              "statement": "In PAYRPT.cbl, if GROSS-PAY > 0 then DISPLAY 'SLIP GROSS=' GROSS-PAY.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 13,
+                "line_end": 13
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-007",
+              "statement": "In PAYRPT.cbl, if TAX-AMT > 0 then DISPLAY 'TAX=' TAX-AMT.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-008",
+              "statement": "In PAYRPT.cbl, if NET-PAY > 0 then DISPLAY 'NET=' NET-PAY.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/PAYRPT.cbl",
+                "line_start": 25,
+                "line_end": 25
+              },
+              "dynamic_label": "confirmed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-94): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-8): work_manifest.json (work_manifest.json).\n- **PAYROLL.cbl** (src/PAYROLL.cbl:1-78): PAYROLL.cbl (src/PAYROLL.cbl). applies conditions: HOURS-WORKED > 40; SHIFT-CODE = 2; YEARS-OF-SERVICE >= 10; ABSENT-DAYS > 0. computes: COMPUTE BASE-PAY = 40 * PAY-RATE; COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10; COMPUTE BONUS-AMT = BASE-PAY * 0.05; COMPUTE PENALTY = ABSENT-DAYS * 20.\n- **PAYRPT.cbl** (src/PAYRPT.cbl:1-27): PAYRPT.cbl (src/PAYRPT.cbl). applies conditions: GROSS-PAY > 0; TAX-AMT > 0; NET-PAY > 0. computes: DISPLAY 'SLIP GROSS=' GROSS-PAY; DISPLAY 'TAX=' TAX-AMT; DISPLAY 'NET=' NET-PAY."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 32, \"reason\": \"postcondition not machine-renderable: COMPUTE BASE-PAY = 40 * PAY-RATE\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 33, \"reason\": \"no machine-renderable effect for node N-BR-001\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 50, \"reason\": \"postcondition not machine-renderable: COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 51, \"reason\": \"no machine-renderable effect for node N-BR-002\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 68, \"reason\": \"postcondition not machine-renderable: COMPUTE BONUS-AMT = BASE-PAY * 0.05\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 69, \"reason\": \"no machine-renderable effect for node N-BR-003\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 86, \"reason\": \"postcondition not machine-renderable: COMPUTE PENALTY = ABSENT-DAYS * 20\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 87, \"reason\": \"no machine-renderable effect for node N-BR-004\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 104, \"reason\": \"postcondition not machine-renderable: MOVE 'P' TO PAY-STATUS\", \"path\": \"cobol_payroll_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 105, \"reason\": \"no machine-renderable effect for node N-BR-005\", \"path\": \"cobol_payroll_modernized.py\"}]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 94,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 1,
+        "line_end": 78,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 1,
+        "line_end": 27,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 66,
+        "line_end": 66,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 74,
+        "line_end": 74,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 13,
+        "line_end": 13,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 66,
+        "line_end": 66,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 74,
+        "line_end": 74,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 13,
+        "line_end": 13,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 66,
+        "line_end": 66,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 66,
+        "line_end": 66,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 74,
+        "line_end": 74,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 74,
+        "line_end": 74,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 13,
+        "line_end": 13,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 13,
+        "line_end": 13,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 94,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "cobol_payroll_modernized.py",
+        "line_start": 1,
+        "line_end": 239,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 66,
+        "line_end": 66,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 74,
+        "line_end": 74,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 13,
+        "line_end": 13,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      }
+    ],
+    "total_references": 51,
+    "valid_references": 50,
+    "valid_span_rate": 0.9803921568627451
+  }
+}

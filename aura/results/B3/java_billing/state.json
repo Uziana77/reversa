@@ -1,0 +1,21 @@
+{
+  "artefacts": {
+    "Documentation": [
+      {
+        "producer": "baseline",
+        "artefact": "Documentation",
+        "version": 1,
+        "payload": {
+          "markdown_path": "results/B3/java_billing/java_billing_documentation.md",
+          "unit_summaries": 999
+        },
+        "provenance": [],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": ""
+      }
+    ]
+  },
+  "session_log": [],
+  "escalations": []
+}

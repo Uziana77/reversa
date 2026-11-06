@@ -1,0 +1,213 @@
+{
+  "unit": "java_billing",
+  "run_dir": "results/S1/java_billing",
+  "gold_rules": 17,
+  "extracted_rules": 27,
+  "injected_rules": 10,
+  "capture_rate": 1.0,
+  "extraction_precision": 1.0,
+  "captured": [
+    "JAV-R01",
+    "JAV-R02",
+    "JAV-R03",
+    "JAV-R04",
+    "JAV-R05",
+    "JAV-R06",
+    "JAV-R07",
+    "JAV-R08",
+    "JAV-R09",
+    "JAV-R10",
+    "JAV-R11",
+    "JAV-R12",
+    "JAV-R13",
+    "JAV-R14",
+    "JAV-R15",
+    "JAV-R16",
+    "JAV-R17"
+  ],
+  "gaps": [],
+  "capture_rows": [
+    {
+      "gold": "JAV-R01",
+      "captured": true,
+      "extracted_id": "BR-001",
+      "shared_identifier": "baseamount"
+    },
+    {
+      "gold": "JAV-R02",
+      "captured": true,
+      "extracted_id": "BR-002",
+      "shared_identifier": "months"
+    },
+    {
+      "gold": "JAV-R03",
+      "captured": true,
+      "extracted_id": "BR-003",
+      "shared_identifier": "baseamount"
+    },
+    {
+      "gold": "JAV-R04",
+      "captured": true,
+      "extracted_id": "BR-005",
+      "shared_identifier": "discount"
+    },
+    {
+      "gold": "JAV-R05",
+      "captured": true,
+      "extracted_id": "BR-006",
+      "shared_identifier": "discount"
+    },
+    {
+      "gold": "JAV-R06",
+      "captured": true,
+      "extracted_id": "BR-004",
+      "shared_identifier": "discount"
+    },
+    {
+      "gold": "JAV-R07",
+      "captured": true,
+      "extracted_id": "BR-008",
+      "shared_identifier": "latedays"
+    },
+    {
+      "gold": "JAV-R08",
+      "captured": true,
+      "extracted_id": "BR-007",
+      "shared_identifier": "latefee"
+    },
+    {
+      "gold": "JAV-R09",
+      "captured": true,
+      "extracted_id": "BR-009",
+      "shared_identifier": "credit"
+    },
+    {
+      "gold": "JAV-R10",
+      "captured": true,
+      "extracted_id": "BR-011",
+      "shared_identifier": "late"
+    },
+    {
+      "gold": "JAV-R11",
+      "captured": true,
+      "extracted_id": "BR-012",
+      "shared_identifier": "status"
+    },
+    {
+      "gold": "JAV-R12",
+      "captured": true,
+      "extracted_id": "BR-010",
+      "shared_identifier": "clear"
+    },
+    {
+      "gold": "JAV-R13",
+      "captured": true,
+      "extracted_id": "BR-014",
+      "shared_identifier": "invoice"
+    },
+    {
+      "gold": "JAV-R14",
+      "captured": true,
+      "extracted_id": "BR-013",
+      "shared_identifier": "taxamount"
+    },
+    {
+      "gold": "JAV-R15",
+      "captured": true,
+      "extracted_id": "BR-015",
+      "shared_identifier": "shipping"
+    },
+    {
+      "gold": "JAV-R16",
+      "captured": true,
+      "extracted_id": "BR-016",
+      "shared_identifier": "shipping"
+    },
+    {
+      "gold": "JAV-R17",
+      "captured": true,
+      "extracted_id": "BR-017",
+      "shared_identifier": "lineamount"
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.5775,
+  "docs": {
+    "bleu4": 0.0202,
+    "bertscore_f1": 0.8377,
+    "glossary_recall": 0.92,
+    "unit_coverage": 1.0,
+    "chars": 8253
+  },
+  "glossary_recall": {
+    "recall": 0.92,
+    "hit": [
+      "compute",
+      "months",
+      "monthlyrate",
+      "seats",
+      "seatprice",
+      "coupon",
+      "latedays",
+      "credit",
+      "baseamount",
+      "seatamount",
+      "grossamount",
+      "discount",
+      "latefee",
+      "totaldue",
+      "status",
+      "lineamount",
+      "taxrate",
+      "exempt",
+      "rush",
+      "taxamount",
+      "shipping",
+      "linetotal",
+      "void"
+    ],
+    "missed": [
+      "spring10",
+      "summer15"
+    ],
+    "total": 25
+  },
+  "unit_coverage": 1.0,
+  "traceability_density": 1.0,
+  "valid_span_rate": 1.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 5,
+    "0.6-0.8": 12,
+    "0.8-1.0": 10
+  },
+  "dynamic_labels": {
+    "confirmed": 8,
+    "contradicted": 19,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 10,
+    "injected_blocked": 10,
+    "injected_survived": 0,
+    "block_rate": 1.0,
+    "blocked_nodes_total": 21,
+    "blocked_node_code_leak": 0
+  },
+  "ber": 0.0,
+  "testable_share": 0.2963,
+  "retained_pass_rate": null,
+  "total_rules_ber": 27,
+  "modernization_mode": "migration",
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 17,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "S1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

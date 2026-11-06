@@ -1,0 +1,235 @@
+{
+  "unit": "react_orders",
+  "run_dir": "results/B2/react_orders",
+  "gold_rules": 15,
+  "extracted_rules": 0,
+  "injected_rules": 0,
+  "capture_rate": 0.0,
+  "extraction_precision": 0.0,
+  "captured": [],
+  "gaps": [
+    {
+      "gold": "RSC-R01",
+      "statement": "A line's total is its price times quantity."
+    },
+    {
+      "gold": "RSC-R02",
+      "statement": "A line with more than 10 units takes a 10 percent quantity break, rounded down."
+    },
+    {
+      "gold": "RSC-R03",
+      "statement": "The order subtotal is the sum of all line totals."
+    },
+    {
+      "gold": "RSC-R04",
+      "statement": "US orders ship at a flat 500."
+    },
+    {
+      "gold": "RSC-R05",
+      "statement": "Canadian orders ship at a flat 1200."
+    },
+    {
+      "gold": "RSC-R06",
+      "statement": "Any other country ships at a flat 2500."
+    },
+    {
+      "gold": "RSC-R07",
+      "statement": "Promo SAVE10 on a subtotal of 5000 or more takes 10 percent off, rounded down."
+    },
+    {
+      "gold": "RSC-R08",
+      "statement": "Promo SAVE10 below a 5000 subtotal gives no discount."
+    },
+    {
+      "gold": "RSC-R09",
+      "statement": "Promo SAVE20 on a subtotal of 15000 or more takes 20 percent off, rounded down."
+    },
+    {
+      "gold": "RSC-R10",
+      "statement": "Promo SAVE20 below a 15000 subtotal gives no discount."
+    },
+    {
+      "gold": "RSC-R11",
+      "statement": "The order total is subtotal minus discount plus shipping."
+    },
+    {
+      "gold": "RSC-R12",
+      "statement": "An order totaling 20000 or more is flagged REVIEW."
+    },
+    {
+      "gold": "RSC-R13",
+      "statement": "An international order with a subtotal of 30000 or more is flagged HOLD."
+    },
+    {
+      "gold": "RSC-R14",
+      "statement": "A smaller regular order stays OPEN."
+    },
+    {
+      "gold": "RSC-R15",
+      "statement": "An order with no lines has a zero subtotal and only shipping in its total."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "RSC-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "RSC-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.0,
+  "docs": {
+    "bleu4": 0.0,
+    "bertscore_f1": 0.2257,
+    "glossary_recall": 0.0,
+    "unit_coverage": 1.0,
+    "chars": 254
+  },
+  "glossary_recall": {
+    "recall": 0.0,
+    "hit": [],
+    "missed": [
+      "run",
+      "linetotal",
+      "shippingfor",
+      "discountfor",
+      "lines",
+      "promo",
+      "country",
+      "subtotal",
+      "discount",
+      "shipping",
+      "total",
+      "status",
+      "quantity break",
+      "save10",
+      "save20",
+      "review",
+      "hold"
+    ],
+    "total": 17
+  },
+  "unit_coverage": 0.0,
+  "traceability_density": 0.0,
+  "valid_span_rate": 0.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 0
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 0,
+    "blocked_node_code_leak": 0
+  },
+  "ber": null,
+  "testable_share": null,
+  "retained_pass_rate": null,
+  "total_rules_ber": null,
+  "modernization_mode": null,
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 6,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "B2",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

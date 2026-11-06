@@ -1,0 +1,263 @@
+{
+  "unit": "java_billing",
+  "run_dir": "results/B3/java_billing",
+  "gold_rules": 17,
+  "extracted_rules": 0,
+  "injected_rules": 0,
+  "capture_rate": 0.0,
+  "extraction_precision": 0.0,
+  "captured": [],
+  "gaps": [
+    {
+      "gold": "JAV-R01",
+      "statement": "Base amount equals subscription months times the monthly rate."
+    },
+    {
+      "gold": "JAV-R02",
+      "statement": "Seat amount equals months times seats times the per-seat price."
+    },
+    {
+      "gold": "JAV-R03",
+      "statement": "Gross amount is base amount plus seat amount, before discounts."
+    },
+    {
+      "gold": "JAV-R04",
+      "statement": "Coupon 1 (SPRING10) takes a 10 percent discount off the gross amount."
+    },
+    {
+      "gold": "JAV-R05",
+      "statement": "Coupon 2 (SUMMER15) takes a 15 percent discount off the gross amount."
+    },
+    {
+      "gold": "JAV-R06",
+      "statement": "Without a recognised coupon the discount is zero."
+    },
+    {
+      "gold": "JAV-R07",
+      "statement": "A late invoice incurs a flat 500 fee plus 100 per late day."
+    },
+    {
+      "gold": "JAV-R08",
+      "statement": "An invoice paid on time incurs no late fee."
+    },
+    {
+      "gold": "JAV-R09",
+      "statement": "Total due is gross minus discount plus late fee minus account credit."
+    },
+    {
+      "gold": "JAV-R10",
+      "statement": "An invoice more than 30 days late is flagged LATE."
+    },
+    {
+      "gold": "JAV-R11",
+      "statement": "When the total due drops to zero or below the invoice is flagged VOID."
+    },
+    {
+      "gold": "JAV-R12",
+      "statement": "A normal invoice with a positive total is flagged CLEAR."
+    },
+    {
+      "gold": "JAV-R13",
+      "statement": "A taxable invoice line charges tax at line amount times tax rate over 100."
+    },
+    {
+      "gold": "JAV-R14",
+      "statement": "A tax-exempt line carries no tax."
+    },
+    {
+      "gold": "JAV-R15",
+      "statement": "Standard handling ships at a flat 900 cents."
+    },
+    {
+      "gold": "JAV-R16",
+      "statement": "Rush handling ships at a flat 1800 cents."
+    },
+    {
+      "gold": "JAV-R17",
+      "statement": "The line total is line amount plus tax plus shipping."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "JAV-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "JAV-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.0,
+  "docs": {
+    "bleu4": 1.0,
+    "bertscore_f1": 1.0,
+    "glossary_recall": 1.0,
+    "unit_coverage": 1.0,
+    "chars": 2253
+  },
+  "glossary_recall": {
+    "recall": 0.0,
+    "hit": [],
+    "missed": [
+      "compute",
+      "months",
+      "monthlyrate",
+      "seats",
+      "seatprice",
+      "coupon",
+      "latedays",
+      "credit",
+      "baseamount",
+      "seatamount",
+      "grossamount",
+      "discount",
+      "latefee",
+      "totaldue",
+      "status",
+      "lineamount",
+      "taxrate",
+      "exempt",
+      "rush",
+      "taxamount",
+      "shipping",
+      "linetotal",
+      "spring10",
+      "summer15",
+      "void"
+    ],
+    "total": 25
+  },
+  "unit_coverage": 0.0,
+  "traceability_density": 0.0,
+  "valid_span_rate": 0.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 0
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 0,
+    "blocked_node_code_leak": 0
+  },
+  "ber": null,
+  "testable_share": null,
+  "retained_pass_rate": null,
+  "total_rules_ber": null,
+  "modernization_mode": null,
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 0,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "B3",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

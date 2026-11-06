@@ -28,6 +28,16 @@ EXTENSION_MAP = {
     ".sh": ("shell", 0.8),
     ".ilg": (None, 0.0),     # AURA benchmark interlock dialect — no public grammar
     ".rpt": (None, 0.0),     # AURA benchmark report dialect — no public grammar
+    # data/document formats are recognised so they never pollute the
+    # unknown-language (dialect inference) corpus
+    ".json": ("json", 0.95),
+    ".md": ("markdown", 0.95),
+    ".txt": ("text", 0.9),
+    ".csv": ("csv", 0.9),
+    ".yaml": ("yaml", 0.9),
+    ".yml": ("yaml", 0.9),
+    ".xml": ("xml", 0.9),
+    ".ebnf": ("ebnf", 0.9),
 }
 
 # Keyword fingerprints used when the extension is uninformative.

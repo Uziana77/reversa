@@ -1,0 +1,734 @@
+{
+  "experiments": {
+    "A0": {
+      "capture_rate": 0.4653,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.5,
+      "unit_coverage": 0.75,
+      "traceability_density": 1.0,
+      "valid_span_rate": 1.0,
+      "docs_bleu4": 0.0107,
+      "docs_bertscore_f1": 0.8028,
+      "docs_glossary_recall": 0.7245,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.2242,
+      "testable_share": 0.5272,
+      "llm_calls": 19.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "A1": {
+      "capture_rate": 0.4653,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.5,
+      "unit_coverage": 0.75,
+      "traceability_density": 1.0,
+      "valid_span_rate": 1.0,
+      "docs_bleu4": 0.0105,
+      "docs_bertscore_f1": 0.795,
+      "docs_glossary_recall": 0.7245,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.2535,
+      "testable_share": 1.0,
+      "llm_calls": 18.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "A2": {
+      "capture_rate": 0.0,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.0,
+      "unit_coverage": 0.0,
+      "traceability_density": 0.0,
+      "valid_span_rate": 0.0,
+      "docs_bleu4": 0.0111,
+      "docs_bertscore_f1": 0.7433,
+      "docs_glossary_recall": 0.6169,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.0,
+      "testable_share": 0.0,
+      "llm_calls": 23.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "A3": {
+      "capture_rate": 0.4653,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.5,
+      "unit_coverage": 0.75,
+      "traceability_density": 1.0,
+      "valid_span_rate": 1.0,
+      "docs_bleu4": 0.0104,
+      "docs_bertscore_f1": 0.8058,
+      "docs_glossary_recall": 0.7245,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.2242,
+      "testable_share": 0.5272,
+      "llm_calls": 19.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "B1": {
+      "capture_rate": 0.0,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.0,
+      "unit_coverage": 0.0,
+      "traceability_density": 0.0,
+      "valid_span_rate": 0.0,
+      "docs_bleu4": 0.0,
+      "docs_bertscore_f1": 0.4321,
+      "docs_glossary_recall": 0.006,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.0,
+      "testable_share": 0.0,
+      "llm_calls": 1.8333,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "B2": {
+      "capture_rate": 0.0,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.0,
+      "unit_coverage": 0.0,
+      "traceability_density": 0.0,
+      "valid_span_rate": 0.0,
+      "docs_bleu4": 0.0,
+      "docs_bertscore_f1": 0.2475,
+      "docs_glossary_recall": 0.0105,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.0,
+      "testable_share": 0.0,
+      "llm_calls": 4.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "B3": {
+      "capture_rate": 0.0,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.0,
+      "unit_coverage": 0.0,
+      "traceability_density": 0.0,
+      "valid_span_rate": 0.0,
+      "docs_bleu4": 1.0,
+      "docs_bertscore_f1": 1.0,
+      "docs_glossary_recall": 0.9425,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.0,
+      "testable_share": 0.0,
+      "llm_calls": 0.0,
+      "gate_block_rate": 0.0,
+      "gate_injected": 0.0,
+      "gate_blocked": 0.0,
+      "gate_survived": 0.0
+    },
+    "S1": {
+      "capture_rate": 0.4653,
+      "statement_bleu4": 0.0,
+      "statement_bertscore_f1": 0.5,
+      "unit_coverage": 0.75,
+      "traceability_density": 1.0,
+      "valid_span_rate": 1.0,
+      "docs_bleu4": 0.0263,
+      "docs_bertscore_f1": 0.8641,
+      "docs_glossary_recall": 0.8639,
+      "docs_unit_coverage": 1.0,
+      "ber": 0.2242,
+      "testable_share": 0.2727,
+      "llm_calls": 19.0,
+      "gate_block_rate": 1.0,
+      "gate_injected": 10.0,
+      "gate_blocked": 10.0,
+      "gate_survived": 0.0
+    }
+  },
+  "comparisons": {
+    "A0_vs_A1": {
+      "docs_bleu4": {
+        "W": 1.5,
+        "p": 0.2012,
+        "rank_biserial": 0.7,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0,
+        "p": 0.1797,
+        "rank_biserial": -1.0,
+        "n": 6
+      }
+    },
+    "A0_vs_A2": {
+      "docs_bleu4": {
+        "W": 4.0,
+        "p": 0.715,
+        "rank_biserial": -0.2,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0,
+        "p": 0.0431,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0,
+        "p": 0.1088,
+        "rank_biserial": 1.0,
+        "n": 6
+      }
+    },
+    "A0_vs_A3": {
+      "docs_bleu4": {
+        "W": 1.0,
+        "p": 0.285,
+        "rank_biserial": 0.667,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      }
+    },
+    "A0_vs_B1": {
+      "docs_bleu4": {
+        "W": 0,
+        "p": 0.0679,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0,
+        "p": 0.0431,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      }
+    },
+    "A0_vs_B2": {
+      "docs_bleu4": {
+        "W": 0,
+        "p": 0.0679,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0,
+        "p": 0.0431,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      }
+    },
+    "A0_vs_B3": {
+      "docs_bleu4": {
+        "W": 0,
+        "p": 0.0277,
+        "rank_biserial": -1.0,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0,
+        "p": 0.0431,
+        "rank_biserial": 1.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      }
+    },
+    "A0_vs_S1": {
+      "docs_bleu4": {
+        "W": 0,
+        "p": 0.0277,
+        "rank_biserial": -1.0,
+        "n": 6
+      },
+      "docs_bertscore_f1": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "docs_glossary_recall": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "capture_rate": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      },
+      "ber": {
+        "W": 0.0,
+        "p": 1.0,
+        "rank_biserial": 0.0,
+        "n": 6
+      }
+    }
+  },
+  "units": {
+    "per_unit": {
+      "cobol_payroll": {
+        "A0": {
+          "capture_rate": 0.0,
+          "ber": 0.25,
+          "docs_bleu4": 0.0239,
+          "docs_bertscore_f1": 0.8234,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 0.0,
+          "ber": 0.25,
+          "docs_bleu4": 0.0238,
+          "docs_bertscore_f1": 0.8203,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0273,
+          "docs_bertscore_f1": 0.7888,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 0.0,
+          "ber": 0.25,
+          "docs_bleu4": 0.0239,
+          "docs_bertscore_f1": 0.8234,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.3011,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.2443,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 0.0,
+          "ber": 0.25,
+          "docs_bleu4": 0.0403,
+          "docs_bertscore_f1": 0.8956,
+          "gate_block_rate": 1.0
+        }
+      },
+      "go_inventory": {
+        "A0": {
+          "capture_rate": 0.2222,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8143,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 0.2222,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8089,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.7967,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 0.2222,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8185,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.5473,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.2593,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 0.2222,
+          "ber": 0.0,
+          "docs_bleu4": 0.0214,
+          "docs_bertscore_f1": 0.8633,
+          "gate_block_rate": 1.0
+        }
+      },
+      "interlock": {
+        "A0": {
+          "capture_rate": 0.7188,
+          "ber": 0.4286,
+          "docs_bleu4": 0.0116,
+          "docs_bertscore_f1": 0.8201,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 0.7188,
+          "ber": 0.4375,
+          "docs_bleu4": 0.0108,
+          "docs_bertscore_f1": 0.8148,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0001,
+          "docs_bertscore_f1": 0.7611,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 0.7188,
+          "ber": 0.4286,
+          "docs_bleu4": 0.0106,
+          "docs_bertscore_f1": 0.8273,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.4795,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.2049,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 0.7188,
+          "ber": 0.4286,
+          "docs_bleu4": 0.0338,
+          "docs_bertscore_f1": 0.8751,
+          "gate_block_rate": 1.0
+        }
+      },
+      "java_billing": {
+        "A0": {
+          "capture_rate": 1.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0159,
+          "docs_bertscore_f1": 0.7992,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 1.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.016,
+          "docs_bertscore_f1": 0.7858,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0237,
+          "docs_bertscore_f1": 0.6376,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 1.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0162,
+          "docs_bertscore_f1": 0.8041,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.3455,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.3748,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 1.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0202,
+          "docs_bertscore_f1": 0.8377,
+          "gate_block_rate": 1.0
+        }
+      },
+      "react_orders": {
+        "A0": {
+          "capture_rate": 0.7333,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8198,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 0.7333,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8039,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.7688,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 0.7333,
+          "ber": 0.0,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.8204,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.497,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.2257,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 0.7333,
+          "ber": 0.0,
+          "docs_bleu4": 0.0204,
+          "docs_bertscore_f1": 0.8721,
+          "gate_block_rate": 1.0
+        }
+      },
+      "reportscript": {
+        "A0": {
+          "capture_rate": 0.1176,
+          "ber": 0.6667,
+          "docs_bleu4": 0.0127,
+          "docs_bertscore_f1": 0.7403,
+          "gate_block_rate": 0.0
+        },
+        "A1": {
+          "capture_rate": 0.1176,
+          "ber": 0.8333,
+          "docs_bleu4": 0.0121,
+          "docs_bertscore_f1": 0.7364,
+          "gate_block_rate": 0.0
+        },
+        "A2": {
+          "capture_rate": 0.0,
+          "ber": 0.0,
+          "docs_bleu4": 0.0154,
+          "docs_bertscore_f1": 0.7066,
+          "gate_block_rate": 0.0
+        },
+        "A3": {
+          "capture_rate": 0.1176,
+          "ber": 0.6667,
+          "docs_bleu4": 0.0119,
+          "docs_bertscore_f1": 0.7412,
+          "gate_block_rate": 0.0
+        },
+        "B1": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.422,
+          "gate_block_rate": 0.0
+        },
+        "B2": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 0.0,
+          "docs_bertscore_f1": 0.1759,
+          "gate_block_rate": 0.0
+        },
+        "B3": {
+          "capture_rate": 0.0,
+          "ber": null,
+          "docs_bleu4": 1.0,
+          "docs_bertscore_f1": 1.0,
+          "gate_block_rate": 0.0
+        },
+        "S1": {
+          "capture_rate": 0.1176,
+          "ber": 0.6667,
+          "docs_bleu4": 0.0215,
+          "docs_bertscore_f1": 0.8411,
+          "gate_block_rate": 1.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,165 @@
+{
+  "title": "AURA Documentation \u2014 cobol_payroll",
+  "provider": "offline",
+  "rule_count": 0,
+  "confidence_distribution": {
+    "gap": 4
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in cobol, json. 0 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 0. Behavioural equivalence rate: n/a (testable share n/a)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": []
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-94): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-8): work_manifest.json (work_manifest.json).\n- **PAYROLL.cbl** (src/PAYROLL.cbl:1-78): PAYROLL.cbl (src/PAYROLL.cbl). applies conditions: HOURS-WORKED > 40; SHIFT-CODE = 2; YEARS-OF-SERVICE >= 10; ABSENT-DAYS > 0. computes: COMPUTE BASE-PAY = 40 * PAY-RATE; COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10; COMPUTE BONUS-AMT = BASE-PAY * 0.05; COMPUTE PENALTY = ABSENT-DAYS * 20.\n- **PAYRPT.cbl** (src/PAYRPT.cbl:1-27): PAYRPT.cbl (src/PAYRPT.cbl). applies conditions: GROSS-PAY > 0; TAX-AMT > 0; NET-PAY > 0. computes: DISPLAY 'SLIP GROSS=' GROSS-PAY; DISPLAY 'TAX=' TAX-AMT; DISPLAY 'NET=' NET-PAY."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: []"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 94,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 1,
+        "line_end": 78,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 1,
+        "line_end": 27,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 94,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 8,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYROLL.cbl",
+        "line_start": 1,
+        "line_end": 78,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/PAYRPT.cbl",
+        "line_start": 1,
+        "line_end": 27,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "cobol_payroll_modernized.py",
+        "line_start": 1,
+        "line_end": 55,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      }
+    ],
+    "total_references": 13,
+    "valid_references": 12,
+    "valid_span_rate": 0.9230769230769231
+  }
+}

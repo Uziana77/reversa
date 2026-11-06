@@ -1,0 +1,904 @@
+{
+  "title": "AURA Documentation \u2014 interlock",
+  "provider": "offline",
+  "rule_count": 16,
+  "confidence_distribution": {
+    "confirmed_both": 14,
+    "contradicted": 2,
+    "gap": 2
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in json, unknown. 16 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 16. Behavioural equivalence rate: 0.4286 (testable share 0.875)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": [
+            {
+              "id": "BR-001",
+              "statement": "In aux.ilg, if ALARM_HORN = ON AND HORN_SILENCE = 1 then SET ALARM_HORN TO OFF..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/aux.ilg",
+                "line_start": 5,
+                "line_end": 5
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-002",
+              "statement": "In aux.ilg, if PRESSURE > 220 then TRIP FURNACE REASON 'pressure critical'..",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "corpus/aux.ilg",
+                "line_start": 11,
+                "line_end": 11
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-003",
+              "statement": "In aux.ilg, if ESCALATION = 1 AND SHIFT_NIGHT = 1 then SET CALL_SUPERVISOR TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/aux.ilg",
+                "line_start": 15,
+                "line_end": 15
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-004",
+              "statement": "In aux.ilg, if RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100 then SET RESET_PERM TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/aux.ilg",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-005",
+              "statement": "In main.ilg, if MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1 then SET START_PERM TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 17,
+                "line_end": 17
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-006",
+              "statement": "In main.ilg, if PRESSURE > 180 then SET RELIEF TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-007",
+              "statement": "In main.ilg, if TEMPERATURE > 90 then SET COOLING TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 31,
+                "line_end": 31
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-008",
+              "statement": "In main.ilg, if TEMPERATURE < 60 then SET COOLING TO OFF..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 34,
+                "line_end": 34
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-009",
+              "statement": "In main.ilg, if PRESSURE > 200 OR TEMPERATURE > 100 then TRIP COMPRESSOR REASON 'critical'..",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 40,
+                "line_end": 40
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-010",
+              "statement": "In main.ilg, if MOTOR_SPEED > 3000 AND GUARD_SENSOR = 0 then SET MOTOR_CUT TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 45,
+                "line_end": 45
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-011",
+              "statement": "In main.ilg, if MOTOR_SPEED > 3800 then SET MOTOR_CUT TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 52,
+                "line_end": 52
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-012",
+              "statement": "In main.ilg, if SHIFT_NIGHT = 1 AND RELIEF = ON then SET ALARM_HORN TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 63,
+                "line_end": 63
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-013",
+              "statement": "In main.ilg, if VENT_OPEN = 1 AND PRESSURE > 150 then SET VENT_PERM TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 70,
+                "line_end": 70
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-014",
+              "statement": "In main.ilg, if START_PERM = ON AND MOTOR_CUT = ON then SET START_PERM TO OFF..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 77,
+                "line_end": 77
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-015",
+              "statement": "In main.ilg, if MODE_KNOB = 2 AND TEMPERATURE > 85 then SET COOLING TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 82,
+                "line_end": 82
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-016",
+              "statement": "In main.ilg, if ALARM_HORN = ON OR VENT_PERM = ON then SET ANNUNCIATE TO ON..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/main.ilg",
+                "line_start": 87,
+                "line_end": 87
+              },
+              "dynamic_label": "confirmed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-56): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json).\n- **aux.ilg** (corpus/aux.ilg:1-28): aux.ilg (corpus/aux.ilg). applies conditions: ALARM_HORN = ON AND HORN_SILENCE = 1; PRESSURE > 220; ESCALATION = 1 AND SHIFT_NIGHT = 1; RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100. computes: SET ALARM_HORN TO OFF.; TRIP FURNACE REASON 'pressure critical'.; SET CALL_SUPERVISOR TO ON.; SET RESET_PERM TO ON..\n- **main.ilg** (corpus/main.ilg:1-92): main.ilg (corpus/main.ilg). applies conditions: MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1; PRESSURE > 180; TEMPERATURE > 90; TEMPERATURE < 60. computes: SET START_PERM TO ON.; SET RELIEF TO ON.; SET COOLING TO ON.; SET COOLING TO OFF.."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 49, \"reason\": \"postcondition not machine-renderable: TRIP FURNACE REASON 'pressure critical'.\", \"path\": \"interlock_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 50, \"reason\": \"no machine-renderable effect for node N-BR-002\", \"path\": \"interlock_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 169, \"reason\": \"postcondition not machine-renderable: TRIP COMPRESSOR REASON 'critical'.\", \"path\": \"interlock_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 170, \"reason\": \"no machine-renderable effect for node N-BR-009\", \"path\": \"interlock_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 298, \"reason\": \"no machine-renderable effect for node N-GAP-001\", \"path\": \"interlock_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 307, \"reason\": \"no machine-renderable effect for node N-GAP-002\", \"path\": \"interlock_modernized.py\"}]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 56,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 92,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 5,
+        "line_end": 5,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 11,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 31,
+        "line_end": 31,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 40,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 52,
+        "line_end": 52,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 63,
+        "line_end": 63,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 70,
+        "line_end": 70,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 77,
+        "line_end": 77,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 82,
+        "line_end": 82,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 87,
+        "line_end": 87,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 5,
+        "line_end": 5,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 11,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 31,
+        "line_end": 31,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 40,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 52,
+        "line_end": 52,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 63,
+        "line_end": 63,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 70,
+        "line_end": 70,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 77,
+        "line_end": 77,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 82,
+        "line_end": 82,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 87,
+        "line_end": 87,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 5,
+        "line_end": 5,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 5,
+        "line_end": 5,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 11,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 11,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 31,
+        "line_end": 31,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 31,
+        "line_end": 31,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 40,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 40,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 52,
+        "line_end": 52,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 52,
+        "line_end": 52,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 63,
+        "line_end": 63,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 63,
+        "line_end": 63,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 70,
+        "line_end": 70,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 70,
+        "line_end": 70,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 77,
+        "line_end": 77,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 77,
+        "line_end": 77,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 82,
+        "line_end": 82,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 82,
+        "line_end": 82,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 87,
+        "line_end": 87,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 87,
+        "line_end": 87,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 56,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "interlock_modernized.py",
+        "line_start": 1,
+        "line_end": 437,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 5,
+        "line_end": 5,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 11,
+        "line_end": 11,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 31,
+        "line_end": 31,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 40,
+        "line_end": 40,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 45,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 52,
+        "line_end": 52,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 63,
+        "line_end": 63,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 70,
+        "line_end": 70,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 77,
+        "line_end": 77,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 82,
+        "line_end": 82,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 87,
+        "line_end": 87,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      }
+    ],
+    "total_references": 93,
+    "valid_references": 92,
+    "valid_span_rate": 0.989247311827957
+  }
+}

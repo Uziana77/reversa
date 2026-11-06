@@ -1,0 +1,179 @@
+{
+  "title": "AURA Documentation \u2014 interlock",
+  "provider": "offline",
+  "rule_count": 0,
+  "confidence_distribution": {
+    "gap": 4
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in json, unknown. 0 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 0. Behavioural equivalence rate: n/a (testable share n/a)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": []
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-56): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json).\n- **aux.ilg** (corpus/aux.ilg:1-28): aux.ilg (corpus/aux.ilg). applies conditions: ALARM_HORN = ON AND HORN_SILENCE = 1; PRESSURE > 220; ESCALATION = 1 AND SHIFT_NIGHT = 1; RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100. computes: SET ALARM_HORN TO OFF.; TRIP FURNACE REASON 'pressure critical'.; SET CALL_SUPERVISOR TO ON.; SET RESET_PERM TO ON..\n- **main.ilg** (corpus/main.ilg:1-92): main.ilg (corpus/main.ilg). applies conditions: MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1; PRESSURE > 180; TEMPERATURE > 90; TEMPERATURE < 60. computes: SET START_PERM TO ON.; SET RELIEF TO ON.; SET COOLING TO ON.; SET COOLING TO OFF.."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: []"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 56,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 92,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 56,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/aux.ilg",
+        "line_start": 1,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/main.ilg",
+        "line_start": 1,
+        "line_end": 92,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "interlock_modernized.py",
+        "line_start": 1,
+        "line_end": 55,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      }
+    ],
+    "total_references": 15,
+    "valid_references": 14,
+    "valid_span_rate": 0.9333333333333333
+  }
+}

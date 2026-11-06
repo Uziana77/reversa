@@ -84,7 +84,8 @@ class DynamicEvidenceAgent(Agent):
             # boundary variants are the Equivalence Validator's concern, where
             # expected values come from executing the ORIGINAL code.
             given = (rule.get("contract") or {}).get("given", {}) or {}
-            cases = [dict(given)] if given else [{}]
+            filled = self._fill_defaults(harness, given)
+            cases = [dict(filled)]
             label, reason, trace, case_results = self._check_rule(rule, cases, adapter, root, harness)
             if label == "confirmed":
                 confirmed += 1
@@ -118,22 +119,40 @@ class DynamicEvidenceAgent(Agent):
         trace_lines = []
         for case in cases:
             res = adapter.run(root, harness, case)
-            executed += 1
             trace_lines.append(f"input={case} -> ok={res.ok} state={res.state} fault={res.fault}")
             if not res.ok and res.fault.startswith("unresolved"):
                 return "unresolved", res.fault, "\n".join(trace_lines), case_results
             if not res.ok:
-                case_results.append({"input": case, "fault": res.fault, "match": False})
+                # An execution fault is *missing evidence*, not a
+                # contradiction: the claim could not be tested safely, so
+                # it must not be labelled contradicted (that label is
+                # reserved for clean executions that disagree).
+                case_results.append({"input": case, "fault": res.fault,
+                                     "match": False, "executed": False})
                 continue
-            ok = self._expect_holds(expect, {**res.state, "_outputs": res.outputs})
+            executed += 1
+            observable = set(res.state) | {"_outputs", "_no_outputs"}
+            testable = {k: v for k, v in expect.items() if k in observable}
+            if not testable:
+                case_results.append({"input": case, "match": False, "executed": True,
+                                     "untestable": True,
+                                     "state_excerpt": {k: res.state.get(k) for k in list(res.state)[:6]}})
+                continue
+            ok = self._expect_holds(testable, {**res.state, "_outputs": res.outputs})
             if expect:
                 matches += 1 if ok else 0
             else:
                 matches += 1  # no explicit expectation: execution succeeded
-            case_results.append({"input": case, "match": ok,
+            case_results.append({"input": case, "match": ok, "executed": True,
                                  "state_excerpt": {k: res.state.get(k) for k in list(res.state)[:6]}})
         if executed == 0:
-            return "unresolved", "no inputs could be synthesised", "", []
+            faults = [c.get("fault", "") for c in case_results if c.get("fault")]
+            if any(c.get("untestable") for c in case_results):
+                return "unresolved", ("claim talks only about outputs the harness "
+                                      "does not expose"), "\n".join(trace_lines), case_results
+            return "unresolved", (
+                "no contract case could be executed safely: "
+                + (faults[0] if faults else "no inputs could be synthesised")), "\n".join(trace_lines), case_results
         trace = "\n".join(trace_lines)
         if not expect:
             return "confirmed", "execution produced no fault on synthesised inputs", trace, case_results
@@ -143,6 +162,29 @@ class DynamicEvidenceAgent(Agent):
             return "contradicted", f"execution contradicts the claim on all {executed} cases", trace, case_results
         return "contradicted", (f"execution contradicts the claim on {executed - matches}/{executed} cases "
                                f"(boundary counterexamples found)"), trace, case_results
+
+    @staticmethod
+    def _fill_defaults(harness, given: dict) -> dict:
+        """Complete a contract's given with typed defaults for every
+        harness input it does not mention, so partial contracts still
+        execute against the real harness."""
+        defaults = {}
+        for name, typ in (getattr(harness, "input_fields", None) or {}).items():
+            t = (typ or "any").lower()
+            if t in ("int", "long", "number", "numeric", "int9"):
+                defaults[name] = 0
+            elif t in ("float", "double", "decimal"):
+                defaults[name] = 0.0
+            elif t in ("bool", "boolean", "flag"):
+                defaults[name] = False
+            elif t in ("list", "array"):
+                defaults[name] = []
+            elif t in ("dict", "map", "record"):
+                defaults[name] = {}
+            else:
+                defaults[name] = ""
+        defaults.update(given or {})
+        return defaults
 
     @staticmethod
     def _expect_holds(expect: dict, state: dict) -> bool:

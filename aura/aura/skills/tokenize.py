@@ -18,6 +18,20 @@ TOKEN_RE = re.compile(
 
 LINE_COMMENT_RE = re.compile(r"(?m)(\*|//|#|--) .*$")
 
+# Prior knowledge offered to the LLM when hypothesising an unknown legacy
+# dialect: keywords shared by many business-legacy languages.
+COMMON_PRIOR = (
+    "IF", "ELSE", "THEN", "END", "WHILE", "FOR", "DO", "PERFORM",
+    "MOVE", "COMPUTE", "ADD", "SUBTRACT", "MULTIPLY", "DIVIDE",
+    "CALL", "RETURN", "EXIT", "STOP", "GO", "GOTO", "SET",
+    "DISPLAY", "PRINT", "WRITE", "READ", "OPEN", "CLOSE",
+    "VALUE", "PIC", "OCCURS", "REDEFINES", "WORKING-STORAGE",
+    "SELECT", "FROM", "WHERE", "ORDER", "BY", "GROUP",
+    "AND", "OR", "NOT", "EQUAL", "GREATER", "LESS", "THAN",
+    "PROCEDURE", "DATA", "IDENTIFICATION", "ENVIRONMENT", "DIVISION",
+    "SELECT", "ASSIGN", "FILE", "RECORD", "FIELD", "CLASS",
+)
+
 
 def strip_comments(text: str, language: str = "") -> str:
     if language.startswith("cobol") or text.lstrip().upper().startswith("IDENTIFICATION"):

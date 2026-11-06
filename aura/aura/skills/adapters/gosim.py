@@ -152,23 +152,32 @@ class _Parser:
         return Func(name=name, params=params, ret_count=ret_count, body=body)
 
     def skip_type(self) -> None:
-        """Consume a type expression (int, string, map[string]X, ...)."""
-        depth = 0
-        prev = ""
-        while self.i < len(self.toks):
-            t = self.peek()
-            if t.value == "{" and depth == 0 and prev != "interface":
-                return
-            if t.value in ("[", "{", "("):
-                depth += 1
-            elif t.value in ("]", "}", ")"):
-                if depth == 0:
-                    return
-                depth -= 1
-            elif t.value == "," and depth == 0:
-                return
-            prev = t.value
+        """Consume exactly one type expression (int, string, map[string]X, ...)."""
+        t = self.peek()
+        if t is None:
+            return
+        if t.kind == "ident":
             self.next()
+        while self.at("."):
+            self.next()
+            if self.i < len(self.toks):
+                self.next()
+        while self.at("["):
+            depth = 0
+            while self.i < len(self.toks):
+                t2 = self.next()
+                if t2.value == "[":
+                    depth += 1
+                elif t2.value == "]":
+                    depth -= 1
+                    if depth == 0:
+                        break
+        if self.at("interface"):
+            self.next()
+            if self.at("{"):
+                self.next()
+                if self.at("}"):
+                    self.next()
 
     # -- statements --------------------------------------------------------
     def parse_block(self) -> List[Any]:

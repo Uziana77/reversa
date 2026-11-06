@@ -1,0 +1,25 @@
+digraph BSG {
+  rankdir=LR;
+  node [shape=box, fontname="Helvetica"];
+  "N-BR-001" [label="N-BR-001: In computeReorder, need is computed as r", style=filled, fillcolor="#ffca28"];
+  "N-BR-002" [label="N-BR-002: In computeReorder, leadNeed is computed ", style=filled, fillcolor="#ffca28"];
+  "N-BR-003" [label="N-BR-003: In runBatch, need is computed as compute", style=filled, fillcolor="#66bb6a"];
+  "N-BR-004" [label="N-BR-004: In runBatch, status is computed as class", style=filled, fillcolor="#66bb6a"];
+  "N-BR-005" [label="N-BR-005: In priceOrder, total is computed as unit", style=filled, fillcolor="#ffca28"];
+  "N-BR-006" [label="N-BR-006: In priceOrder, discount is computed as 0", style=filled, fillcolor="#ffca28"];
+  "N-BR-007" [label="N-BR-007: In priceOrder, net is computed as total ", style=filled, fillcolor="#ffca28"];
+  "N-BR-008" [label="N-BR-008: In runPricing, total is computed as pric", style=filled, fillcolor="#66bb6a"];
+  "N-BR-009" [label="N-BR-009: In runPricing, fee is computed as shippi", style=filled, fillcolor="#66bb6a"];
+  "N-GAP-001" [label="N-GAP-001: uncovered code path: meta.json", style=filled, fillcolor="#9e9e9e", peripheries=2];
+  "N-GAP-002" [label="N-GAP-002: uncovered code path: work_manifest.json", style=filled, fillcolor="#9e9e9e", peripheries=2];
+  "N-BR-001" -> "N-BR-002" [label="conditional"];
+  "N-BR-002" -> "N-BR-003" [label="conditional"];
+  "N-BR-003" -> "N-BR-004" [label="conditional"];
+  "N-BR-004" -> "N-GAP-001" [label="sequence"];
+  "N-GAP-001" -> "N-BR-005" [label="sequence"];
+  "N-BR-005" -> "N-BR-006" [label="conditional"];
+  "N-BR-006" -> "N-BR-007" [label="conditional"];
+  "N-BR-007" -> "N-BR-008" [label="conditional"];
+  "N-BR-008" -> "N-BR-009" [label="conditional"];
+  "N-BR-009" -> "N-GAP-002" [label="sequence"];
+}

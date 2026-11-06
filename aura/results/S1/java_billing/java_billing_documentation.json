@@ -1,0 +1,1397 @@
+{
+  "title": "AURA Documentation \u2014 java_billing",
+  "provider": "offline",
+  "rule_count": 27,
+  "confidence_distribution": {
+    "confirmed_dynamic": 7,
+    "confirmed_both": 1,
+    "contradicted": 19,
+    "gap": 2
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in java, json. 27 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 27. Behavioural equivalence rate: 0.0 (testable share 0.2963)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": [
+            {
+              "id": "BR-001",
+              "statement": "In Billing.compute, baseAmount is computed as months * monthlyRate.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 23,
+                "line_end": 23
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-002",
+              "statement": "In Billing.compute, seatAmount is computed as months * seats * seatPrice.",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-003",
+              "statement": "In Billing.compute, grossAmount is computed as baseAmount + seatAmount.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 25,
+                "line_end": 25
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-004",
+              "statement": "In Billing.compute, discount is computed as 0.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 26,
+                "line_end": 26
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-005",
+              "statement": "In Billing.compute, discount is computed as grossAmount * 10 / 100.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 28,
+                "line_end": 28
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-006",
+              "statement": "In Billing.compute, discount is computed as grossAmount * 15 / 100.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 30,
+                "line_end": 30
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-007",
+              "statement": "In Billing.compute, lateFee is computed as 0.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 32,
+                "line_end": 32
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-008",
+              "statement": "In Billing.compute, lateFee is computed as 500 + lateDays * 100.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 34,
+                "line_end": 34
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-009",
+              "statement": "In Billing.compute, totalDue is computed as grossAmount - discount + lateFee - credit.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 36,
+                "line_end": 36
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-010",
+              "statement": "In Billing.compute, status is computed as \"CLEAR\".",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 37,
+                "line_end": 37
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-011",
+              "statement": "In Billing.compute, status is computed as \"LATE\".",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 39,
+                "line_end": 39
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-012",
+              "statement": "In Billing.compute, status is computed as \"VOID\".",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 42,
+                "line_end": 42
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-013",
+              "statement": "In Invoice.compute, taxAmount is computed as 0.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 15,
+                "line_end": 15
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-014",
+              "statement": "In Invoice.compute, taxAmount is computed as lineAmount * taxRate / 100.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 17,
+                "line_end": 17
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-015",
+              "statement": "In Invoice.compute, shipping is computed as 900.",
+              "confidence_state": "confirmed_dynamic",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 19,
+                "line_end": 19
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-016",
+              "statement": "In Invoice.compute, shipping is computed as 1800.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-017",
+              "statement": "In Invoice.compute, lineTotal is computed as lineAmount + taxAmount + shipping.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 23,
+                "line_end": 23
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-001",
+              "statement": "Seat price is charged per month only, ignoring the seat count.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-002",
+              "statement": "Coupon 1 takes a 15 percent discount.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 28,
+                "line_end": 28
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-003",
+              "statement": "Coupon 2 takes a 10 percent discount.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 30,
+                "line_end": 30
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-004",
+              "statement": "The late fee is 250 flat plus 50 per late day.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 34,
+                "line_end": 34
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-005",
+              "statement": "Invoices 15 or more days late are flagged LATE.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 38,
+                "line_end": 38
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-006",
+              "statement": "Account credit is not subtracted from the total due.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 36,
+                "line_end": 36
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-007",
+              "statement": "Exempt lines still pay half tax.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 15,
+                "line_end": 15
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-008",
+              "statement": "Standard handling ships at 500 cents.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 19,
+                "line_end": 19
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-009",
+              "statement": "Rush handling triples the shipping charge to 2700.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 21,
+                "line_end": 21
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "INJ-010",
+              "statement": "The line total excludes shipping.",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 23,
+                "line_end": 23
+              },
+              "dynamic_label": "contradicted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-83): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json).\n- **Billing.compute** (src/Billing.java:22-44): Billing.compute (src/Billing.java). maintains state: baseAmount = months * monthlyRate; seatAmount = months * seats * seatPrice; grossAmount = baseAmount + seatAmount.\n- **Invoice.compute** (src/Invoice.java:14-24): Invoice.compute (src/Invoice.java). maintains state: taxAmount = 0; taxAmount = lineAmount * taxRate / 100; shipping = 900."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 30, \"reason\": \"precondition not machine-renderable: inputs available: months, monthlyRate\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 49, \"reason\": \"precondition not machine-renderable: inputs available: months, seats, seatPrice\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 68, \"reason\": \"precondition not machine-renderable: inputs available: constant\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 87, \"reason\": \"precondition not machine-renderable: inputs available: constant\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 106, \"reason\": \"precondition not machine-renderable: inputs available: lateDays\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 125, \"reason\": \"precondition not machine-renderable: inputs available: constant\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 144, \"reason\": \"precondition not machine-renderable: inputs available: lineAmount, taxRate\", \"path\": \"java_billing_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 163, \"reason\": \"precondition not machine-renderable: inputs available: constant\", \"path\": \"java_billing_modernized.py\"}]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 83,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 22,
+        "line_end": 44,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 14,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 83,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "java_billing_modernized.py",
+        "line_start": 1,
+        "line_end": 247,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 25,
+        "line_end": 25,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 26,
+        "line_end": 26,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 32,
+        "line_end": 32,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 37,
+        "line_end": 37,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 39,
+        "line_end": 39,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 42,
+        "line_end": 42,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 17,
+        "line_end": 17,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 28,
+        "line_end": 28,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 34,
+        "line_end": 34,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 38,
+        "line_end": 38,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Billing.java",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 19,
+        "line_end": 19,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 21,
+        "line_end": 21,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "src/Invoice.java",
+        "line_start": 23,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      }
+    ],
+    "total_references": 146,
+    "valid_references": 145,
+    "valid_span_rate": 0.9931506849315068
+  }
+}

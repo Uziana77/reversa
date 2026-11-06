@@ -1,0 +1,444 @@
+{
+  "title": "AURA Documentation \u2014 reportscript",
+  "provider": "offline",
+  "rule_count": 6,
+  "confidence_distribution": {
+    "contradicted": 3,
+    "confirmed_both": 3,
+    "gap": 2
+  },
+  "sections": [
+    {
+      "depth": 0,
+      "title": "System Overview",
+      "summary": "Legacy system with 4 source files in json, unknown. 6 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 6. Behavioural equivalence rate: 0.6667 (testable share 0.5)."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Business Rules",
+      "blocks": [
+        {
+          "kind": "rules",
+          "items": [
+            {
+              "id": "BR-001",
+              "statement": "In returns.rpt, if RET_AMOUNT > GROSS then LET REFUND = GROSS..",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "corpus/returns.rpt",
+                "line_start": 12,
+                "line_end": 12
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-002",
+              "statement": "In sales.rpt, if REC_REGION = 'NORTH' then ACCUMULATE REC_AMOUNT INTO REGION-NORTH..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/sales.rpt",
+                "line_start": 15,
+                "line_end": 15
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-003",
+              "statement": "In sales.rpt, if REC_AMOUNT > 100 then LET HIGH-COUNT = HIGH-COUNT + 1..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/sales.rpt",
+                "line_start": 20,
+                "line_end": 20
+              },
+              "dynamic_label": "confirmed"
+            },
+            {
+              "id": "BR-004",
+              "statement": "In sales.rpt, if REC_QTY > 10 then LET DISCOUNT = REC_AMOUNT * 0.9..",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "corpus/sales.rpt",
+                "line_start": 24,
+                "line_end": 24
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-005",
+              "statement": "In sales.rpt, if REC_REP = 'ANA' then LET COMM = DISCOUNT * 0.05..",
+              "confidence_state": "contradicted",
+              "source": {
+                "file": "corpus/sales.rpt",
+                "line_start": 30,
+                "line_end": 30
+              },
+              "dynamic_label": "contradicted"
+            },
+            {
+              "id": "BR-006",
+              "statement": "In sales.rpt, if REC_AMOUNT > TOP-AMT then LET TOP-AMT = REC_AMOUNT..",
+              "confidence_state": "confirmed_both",
+              "source": {
+                "file": "corpus/sales.rpt",
+                "line_start": 36,
+                "line_end": 36
+              },
+              "dynamic_label": "confirmed"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Architecture and Data Access",
+      "blocks": [
+        {
+          "kind": "table",
+          "rows": [
+            [
+              "Store",
+              "Operations",
+              "Units"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Units",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "- **meta.json** (meta.json:1-41): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-9): work_manifest.json (work_manifest.json).\n- **returns.rpt** (corpus/returns.rpt:1-23): returns.rpt (corpus/returns.rpt). applies conditions: RET_AMOUNT > GROSS. computes: LET REFUND = GROSS..\n- **sales.rpt** (corpus/sales.rpt:1-45): sales.rpt (corpus/sales.rpt). applies conditions: REC_REGION = 'NORTH'; REC_AMOUNT > 100; REC_QTY > 10; REC_REP = 'ANA'. computes: ACCUMULATE REC_AMOUNT INTO REGION-NORTH.; LET HIGH-COUNT = HIGH-COUNT + 1.; LET DISCOUNT = REC_AMOUNT * 0.9.; LET COMM = DISCOUNT * 0.05.."
+        }
+      ]
+    },
+    {
+      "depth": 0,
+      "title": "Modernization",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Mode: migration. Files generated: 1. Markers: [{\"kind\": \"REVIEW\", \"line\": 30, \"reason\": \"precondition not machine-renderable: RET_AMOUNT > GROSS\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 31, \"reason\": \"postcondition not machine-renderable: LET REFUND = GROSS.\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 32, \"reason\": \"no machine-renderable effect for node N-BR-001\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 49, \"reason\": \"postcondition not machine-renderable: ACCUMULATE REC_AMOUNT INTO REGION-NORTH.\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 50, \"reason\": \"no machine-renderable effect for node N-BR-002\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 67, \"reason\": \"postcondition not machine-renderable: LET HIGH-COUNT = HIGH-COUNT + 1.\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 68, \"reason\": \"no machine-renderable effect for node N-BR-003\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 85, \"reason\": \"postcondition not machine-renderable: LET DISCOUNT = REC_AMOUNT * 0.9.\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"TODO\", \"line\": 86, \"reason\": \"no machine-renderable effect for node N-BR-004\", \"path\": \"reportscript_modernized.py\"}, {\"kind\": \"REVIEW\", \"line\": 103, \"reason\": \"postcondition not machine-renderable: LET COMM = DISCOUNT * 0.05.\", \"path\": \"reportscript_modernized.py\"}]"
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "references": [
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "RepoMap"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 1,
+        "line_end": 1,
+        "valid": true,
+        "artefact": "GrammarHypothesis"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 1,
+        "line_end": 23,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 1,
+        "line_end": 45,
+        "valid": true,
+        "artefact": "ASTMap"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 12,
+        "line_end": 12,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 20,
+        "line_end": 20,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "RuleInventory"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 12,
+        "line_end": 12,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 20,
+        "line_end": 20,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EvidenceReport"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 12,
+        "line_end": 12,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 12,
+        "line_end": 12,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 20,
+        "line_end": 20,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 20,
+        "line_end": 20,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "meta.json",
+        "line_start": 1,
+        "line_end": 41,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "work_manifest.json",
+        "line_start": 1,
+        "line_end": 9,
+        "valid": true,
+        "artefact": "BSG"
+      },
+      {
+        "file": "reportscript_modernized.py",
+        "line_start": 1,
+        "line_end": 219,
+        "valid": false,
+        "artefact": "ModernizedCode"
+      },
+      {
+        "file": "corpus/returns.rpt",
+        "line_start": 12,
+        "line_end": 12,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 15,
+        "line_end": 15,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 20,
+        "line_end": 20,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 24,
+        "line_end": 24,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 30,
+        "line_end": 30,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      },
+      {
+        "file": "corpus/sales.rpt",
+        "line_start": 36,
+        "line_end": 36,
+        "valid": true,
+        "artefact": "EquivalenceReport"
+      }
+    ],
+    "total_references": 43,
+    "valid_references": 42,
+    "valid_span_rate": 0.9767441860465116
+  }
+}

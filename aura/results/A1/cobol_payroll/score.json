@@ -1,0 +1,303 @@
+{
+  "unit": "cobol_payroll",
+  "run_dir": "results/A1/cobol_payroll",
+  "gold_rules": 20,
+  "extracted_rules": 8,
+  "injected_rules": 0,
+  "capture_rate": 0.0,
+  "extraction_precision": 0.0,
+  "captured": [],
+  "gaps": [
+    {
+      "gold": "PAY-R01",
+      "statement": "In CALC-BASE, base pay equals hours worked times pay rate while hours stay at or below 40."
+    },
+    {
+      "gold": "PAY-R02",
+      "statement": "Hours above 40 are paid as double-time overtime on top of the capped base pay."
+    },
+    {
+      "gold": "PAY-R03",
+      "statement": "Night shift (SHIFT-CODE 2) earns a 10 percent shift premium on base pay."
+    },
+    {
+      "gold": "PAY-R04",
+      "statement": "Day shift earns no shift premium."
+    },
+    {
+      "gold": "PAY-R05",
+      "statement": "Ten or more years of service earn a 5 percent seniority bonus on base pay."
+    },
+    {
+      "gold": "PAY-R06",
+      "statement": "Under ten years of service no seniority bonus accrues."
+    },
+    {
+      "gold": "PAY-R07",
+      "statement": "Grade 2 adds a flat 100 bonus on top of any seniority bonus."
+    },
+    {
+      "gold": "PAY-R08",
+      "statement": "Grade 3 adds a flat 250 bonus."
+    },
+    {
+      "gold": "PAY-R09",
+      "statement": "Any grade outside 1-3 adds a flat 50 fallback bonus."
+    },
+    {
+      "gold": "PAY-R10",
+      "statement": "Gross pay is the sum of base pay, overtime, shift premium and bonus."
+    },
+    {
+      "gold": "PAY-R11",
+      "statement": "Gross pay up to 1000 is taxed at 5 percent."
+    },
+    {
+      "gold": "PAY-R12",
+      "statement": "Gross pay from 1001 to 3000 is taxed at 10 percent."
+    },
+    {
+      "gold": "PAY-R13",
+      "statement": "Gross pay above 3000 is taxed at 15 percent."
+    },
+    {
+      "gold": "PAY-R14",
+      "statement": "Each absent day penalises the payslip by 20."
+    },
+    {
+      "gold": "PAY-R15",
+      "statement": "Net pay equals gross pay minus tax and absence penalty."
+    },
+    {
+      "gold": "PAY-R16",
+      "statement": "PAY-STATUS is P when net pay is positive and Z otherwise."
+    },
+    {
+      "gold": "PAY-R17",
+      "statement": "In BUILD-SLIP, a positive gross pay prints a slip line and counts one slip into the report total."
+    },
+    {
+      "gold": "PAY-R18",
+      "statement": "A zero gross pay prints an empty-slip line and counts no slip."
+    },
+    {
+      "gold": "PAY-R19",
+      "statement": "The tax line is printed only when tax is positive."
+    },
+    {
+      "gold": "PAY-R20",
+      "statement": "No tax line is printed when tax is zero."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "PAY-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R18",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R19",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "PAY-R20",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.0,
+  "docs": {
+    "bleu4": 0.0238,
+    "bertscore_f1": 0.8203,
+    "glossary_recall": 0.5,
+    "unit_coverage": 1.0,
+    "chars": 5680
+  },
+  "glossary_recall": {
+    "recall": 0.4412,
+    "hit": [
+      "payroll",
+      "payrpt",
+      "hours-worked",
+      "pay-rate",
+      "shift-code",
+      "years-of-service",
+      "absent-days",
+      "base-pay",
+      "shift-premium",
+      "bonus-amt",
+      "gross-pay",
+      "tax-amt",
+      "penalty",
+      "net-pay",
+      "pay-status"
+    ],
+    "missed": [
+      "calc-base",
+      "calc-shift",
+      "calc-seniority",
+      "calc-grade",
+      "calc-gross",
+      "calc-tax",
+      "calc-penalty",
+      "calc-net",
+      "set-status",
+      "build-slip",
+      "tax-line",
+      "net-line",
+      "grade",
+      "ot-pay",
+      "slip-count",
+      "report-total",
+      "overtime",
+      "seniority bonus",
+      "tax bracket"
+    ],
+    "total": 34
+  },
+  "unit_coverage": 0.0,
+  "traceability_density": 1.0,
+  "valid_span_rate": 1.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 8
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 8
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 2,
+    "blocked_node_code_leak": 0
+  },
+  "ber": 0.25,
+  "testable_share": 1.0,
+  "retained_pass_rate": null,
+  "total_rules_ber": 8,
+  "modernization_mode": "migration",
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 16,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "A1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

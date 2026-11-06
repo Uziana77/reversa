@@ -1,0 +1,1550 @@
+{
+  "artefacts": {
+    "RepoMap": [
+      {
+        "producer": "navigator",
+        "artefact": "RepoMap",
+        "version": 1,
+        "payload": {
+          "root": "/home/user/reversa/aura/bench/projects/java_billing/work",
+          "files": [
+            {
+              "path": "meta.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 83,
+              "size_bytes": 1944,
+              "is_entry": false
+            },
+            {
+              "path": "work_manifest.json",
+              "language": "json",
+              "language_confidence": 0.95,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 8,
+              "size_bytes": 314,
+              "is_entry": false
+            },
+            {
+              "path": "src/Billing.java",
+              "language": "java",
+              "language_confidence": 0.99,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 46,
+              "size_bytes": 1493,
+              "is_entry": false
+            },
+            {
+              "path": "src/Invoice.java",
+              "language": "java",
+              "language_confidence": 0.99,
+              "language_method": "extension",
+              "unknown_language": false,
+              "lines": 26,
+              "size_bytes": 725,
+              "is_entry": false
+            }
+          ],
+          "dependency_edges": [
+            {
+              "from": "work_manifest.json",
+              "to": "meta.json",
+              "kind": "import"
+            }
+          ],
+          "unknown_language_files": [],
+          "key_files": [],
+          "traversal_order": [
+            "meta.json",
+            "work_manifest.json",
+            "src/Billing.java",
+            "src/Invoice.java"
+          ],
+          "file_count": 4,
+          "total_lines": 163
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 1,
+            "line_end": 1
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.763091
+      }
+    ],
+    "GrammarHypothesis": [
+      {
+        "producer": "language_inference",
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "payload": {
+          "hypotheses": [],
+          "files_without_grammar": [],
+          "threshold": 0.9
+        },
+        "provenance": [],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.7636795
+      }
+    ],
+    "ASTMap": [
+      {
+        "producer": "ast_analyzer",
+        "artefact": "ASTMap",
+        "version": 1,
+        "payload": {
+          "units": [
+            {
+              "file": "meta.json",
+              "symbol": "meta.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 83,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "work_manifest.json",
+              "symbol": "work_manifest.json",
+              "kind": "module",
+              "line_start": 1,
+              "line_end": 8,
+              "signature": "json module",
+              "conditions": [],
+              "assignments": [],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "src/Billing.java",
+              "symbol": "Billing.compute",
+              "kind": "method",
+              "line_start": 22,
+              "line_end": 44,
+              "signature": "public void compute() {",
+              "conditions": [],
+              "assignments": [
+                {
+                  "text": "baseAmount = months * monthlyRate",
+                  "line": 23
+                },
+                {
+                  "text": "seatAmount = months * seats * seatPrice",
+                  "line": 24
+                },
+                {
+                  "text": "grossAmount = baseAmount + seatAmount",
+                  "line": 25
+                },
+                {
+                  "text": "discount = 0",
+                  "line": 26
+                },
+                {
+                  "text": "discount = grossAmount * 10 / 100",
+                  "line": 28
+                },
+                {
+                  "text": "discount = grossAmount * 15 / 100",
+                  "line": 30
+                },
+                {
+                  "text": "lateFee = 0",
+                  "line": 32
+                },
+                {
+                  "text": "lateFee = 500 + lateDays * 100",
+                  "line": 34
+                },
+                {
+                  "text": "totalDue = grossAmount - discount + lateFee - credit",
+                  "line": 36
+                },
+                {
+                  "text": "status = \"CLEAR\"",
+                  "line": 37
+                },
+                {
+                  "text": "status = \"LATE\"",
+                  "line": 39
+                },
+                {
+                  "text": "status = \"VOID\"",
+                  "line": 42
+                }
+              ],
+              "calls": [],
+              "crud": []
+            },
+            {
+              "file": "src/Invoice.java",
+              "symbol": "Invoice.compute",
+              "kind": "method",
+              "line_start": 14,
+              "line_end": 24,
+              "signature": "public void compute() {",
+              "conditions": [],
+              "assignments": [
+                {
+                  "text": "taxAmount = 0",
+                  "line": 15
+                },
+                {
+                  "text": "taxAmount = lineAmount * taxRate / 100",
+                  "line": 17
+                },
+                {
+                  "text": "shipping = 900",
+                  "line": 19
+                },
+                {
+                  "text": "shipping = 1800",
+                  "line": 21
+                },
+                {
+                  "text": "lineTotal = lineAmount + taxAmount + shipping",
+                  "line": 23
+                }
+              ],
+              "calls": [],
+              "crud": []
+            }
+          ],
+          "file_reports": [
+            {
+              "file": "meta.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "work_manifest.json",
+              "parse_method": "heuristic",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "src/Billing.java",
+              "parse_method": "tree_sitter",
+              "ok": true,
+              "units": 1
+            },
+            {
+              "file": "src/Invoice.java",
+              "parse_method": "tree_sitter",
+              "ok": true,
+              "units": 1
+            }
+          ],
+          "parse_methods": {
+            "meta.json": "heuristic",
+            "work_manifest.json": "heuristic",
+            "src/Billing.java": "tree_sitter",
+            "src/Invoice.java": "tree_sitter"
+          },
+          "call_graph": {
+            "nodes": [
+              {
+                "id": "meta.json",
+                "file": "meta.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  83
+                ]
+              },
+              {
+                "id": "work_manifest.json",
+                "file": "work_manifest.json",
+                "kind": "module",
+                "lines": [
+                  1,
+                  8
+                ]
+              },
+              {
+                "id": "Billing.compute",
+                "file": "src/Billing.java",
+                "kind": "method",
+                "lines": [
+                  22,
+                  44
+                ]
+              },
+              {
+                "id": "Invoice.compute",
+                "file": "src/Invoice.java",
+                "kind": "method",
+                "lines": [
+                  14,
+                  24
+                ]
+              }
+            ],
+            "edges": []
+          },
+          "crud_table": [],
+          "unit_count": 4
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.765778
+      }
+    ],
+    "RuleInventory": [
+      {
+        "producer": "legacy_analyzer",
+        "artefact": "RuleInventory",
+        "version": 1,
+        "payload": {
+          "rules": [],
+          "rule_count": 0,
+          "context_mode": "raw"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.7669044
+      }
+    ],
+    "EvidenceReport": [
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 1,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.7679224
+      },
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 2,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.768084
+      },
+      {
+        "producer": "dynamic_evidence",
+        "artefact": "EvidenceReport",
+        "version": 3,
+        "payload": {
+          "findings": [],
+          "executed_rules": 0,
+          "confirmed": 0,
+          "contradicted": 0,
+          "unresolved": 0,
+          "traces": {},
+          "sandbox": {
+            "adapters": {}
+          }
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.7683177
+      }
+    ],
+    "BSG": [
+      {
+        "producer": "bsg_generator",
+        "artefact": "BSG",
+        "version": 1,
+        "payload": {
+          "nodes": [
+            {
+              "id": "N-GAP-001",
+              "operation": "uncovered code path: meta.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 83
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-002",
+              "operation": "uncovered code path: work_manifest.json",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-003",
+              "operation": "uncovered code path: Billing.compute",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "src/Billing.java",
+                "line_start": 22,
+                "line_end": 44
+              },
+              "provenance": []
+            },
+            {
+              "id": "N-GAP-004",
+              "operation": "uncovered code path: Invoice.compute",
+              "rule_ids": [],
+              "preconditions": [],
+              "postconditions": [],
+              "invariants": [],
+              "inputs": [],
+              "outputs": [],
+              "error_behavior": "",
+              "confidence_state": "gap",
+              "confidence": 0.0,
+              "blocked": true,
+              "block_reason": "gap: code path exists with no covering rule",
+              "source": {
+                "file": "src/Invoice.java",
+                "line_start": 14,
+                "line_end": 24
+              },
+              "provenance": []
+            }
+          ],
+          "edges": [
+            {
+              "from": "N-GAP-001",
+              "to": "N-GAP-003",
+              "label": "sequence"
+            },
+            {
+              "from": "N-GAP-003",
+              "to": "N-GAP-004",
+              "label": "sequence"
+            },
+            {
+              "from": "N-GAP-004",
+              "to": "N-GAP-002",
+              "label": "sequence"
+            }
+          ],
+          "confidence_distribution": {
+            "gap": 4
+          },
+          "blocked_nodes": [],
+          "gap_nodes": [
+            "N-GAP-001",
+            "N-GAP-002",
+            "N-GAP-003",
+            "N-GAP-004"
+          ],
+          "rule_nodes": 0
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          }
+        ],
+        "confidence": 0.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.769519
+      }
+    ],
+    "ModernizedCode": [
+      {
+        "producer": "transformer",
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "payload": {
+          "mode": "migration",
+          "target": "python",
+          "files": [
+            {
+              "path": "java_billing_modernized.py",
+              "abs_path": "/home/user/reversa/aura/results/A2/java_billing/java_billing_modernized.py",
+              "lines": 55
+            }
+          ],
+          "markers": [],
+          "node_spans": [],
+          "skipped_blocked_nodes": [
+            "N-GAP-001",
+            "N-GAP-002",
+            "N-GAP-003",
+            "N-GAP-004"
+          ],
+          "gate_enabled": true,
+          "output_dir": "/home/user/reversa/aura/results/A2/java_billing"
+        },
+        "provenance": [
+          {
+            "file": "java_billing_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          }
+        ],
+        "confidence": 0.9,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.770961
+      }
+    ],
+    "EquivalenceReport": [
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.7724721
+      },
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 2,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.7726202
+      },
+      {
+        "producer": "equivalence_validator",
+        "artefact": "EquivalenceReport",
+        "version": 3,
+        "payload": {
+          "per_rule": [],
+          "ber": 0.0,
+          "testable_rules": 0,
+          "passing_rules": 0,
+          "total_rules": 0,
+          "testable_share": 0.0,
+          "unresolved_excluded": 0,
+          "retained_pass_rate": null,
+          "interpretation": "equivalence means no counterexample was found on the generated test inputs; evidence, not formal proof"
+        },
+        "provenance": [],
+        "confidence": 0.0,
+        "status": "needs_revision",
+        "notes": "provenance: no provenance spans",
+        "created_at": 1793958022.7727475
+      }
+    ],
+    "Documentation": [
+      {
+        "producer": "documentation_generator",
+        "artefact": "Documentation",
+        "version": 1,
+        "payload": {
+          "markdown_path": "/home/user/reversa/aura/results/A2/java_billing/java_billing_documentation.md",
+          "json_path": "/home/user/reversa/aura/results/A2/java_billing/java_billing_documentation.json",
+          "bsg_dot_path": "/home/user/reversa/aura/results/A2/java_billing/java_billing_bsg.dot",
+          "sections": [
+            "System Overview",
+            "Business Rules",
+            "Architecture and Data Access",
+            "Units",
+            "Modernization"
+          ],
+          "unit_summaries": 4,
+          "audit": {
+            "references": [
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "src/Billing.java",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "src/Invoice.java",
+                "line_start": 1,
+                "line_end": 1,
+                "valid": true,
+                "artefact": "RepoMap"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 83,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "src/Billing.java",
+                "line_start": 22,
+                "line_end": 44,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "src/Invoice.java",
+                "line_start": 14,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "ASTMap"
+              },
+              {
+                "file": "meta.json",
+                "line_start": 1,
+                "line_end": 83,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "work_manifest.json",
+                "line_start": 1,
+                "line_end": 8,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/Billing.java",
+                "line_start": 22,
+                "line_end": 44,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "src/Invoice.java",
+                "line_start": 14,
+                "line_end": 24,
+                "valid": true,
+                "artefact": "BSG"
+              },
+              {
+                "file": "java_billing_modernized.py",
+                "line_start": 1,
+                "line_end": 55,
+                "valid": false,
+                "artefact": "ModernizedCode"
+              }
+            ],
+            "total_references": 13,
+            "valid_references": 12,
+            "valid_span_rate": 0.9230769230769231
+          },
+          "data_dictionary": [],
+          "documentation": {
+            "title": "AURA Documentation \u2014 java_billing",
+            "provider": "offline",
+            "rule_count": 0,
+            "confidence_distribution": {
+              "gap": 4
+            },
+            "sections": [
+              {
+                "depth": 0,
+                "title": "System Overview",
+                "summary": "Legacy system with 4 source files in java, json. 0 candidate business rules were extracted across 4 analysis units. The call graph has 0 edges and the data-access table lists 0 operations.",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Files analysed: 4. Analysis units: 4. Candidate business rules: 0. Behavioural equivalence rate: n/a (testable share n/a)."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Business Rules",
+                "blocks": [
+                  {
+                    "kind": "rules",
+                    "items": []
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Architecture and Data Access",
+                "blocks": [
+                  {
+                    "kind": "table",
+                    "rows": [
+                      [
+                        "Store",
+                        "Operations",
+                        "Units"
+                      ]
+                    ]
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Units",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "- **meta.json** (meta.json:1-83): meta.json (meta.json).\n- **work_manifest.json** (work_manifest.json:1-8): work_manifest.json (work_manifest.json).\n- **Billing.compute** (src/Billing.java:22-44): Billing.compute (src/Billing.java). maintains state: baseAmount = months * monthlyRate; seatAmount = months * seats * seatPrice; grossAmount = baseAmount + seatAmount.\n- **Invoice.compute** (src/Invoice.java:14-24): Invoice.compute (src/Invoice.java). maintains state: taxAmount = 0; taxAmount = lineAmount * taxRate / 100; shipping = 900."
+                  }
+                ]
+              },
+              {
+                "depth": 0,
+                "title": "Modernization",
+                "blocks": [
+                  {
+                    "kind": "text",
+                    "text": "Mode: migration. Files generated: 1. Markers: []"
+                  }
+                ]
+              }
+            ],
+            "audit": {
+              "references": [
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "src/Billing.java",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "src/Invoice.java",
+                  "line_start": 1,
+                  "line_end": 1,
+                  "valid": true,
+                  "artefact": "RepoMap"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 83,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 8,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "src/Billing.java",
+                  "line_start": 22,
+                  "line_end": 44,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "src/Invoice.java",
+                  "line_start": 14,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "ASTMap"
+                },
+                {
+                  "file": "meta.json",
+                  "line_start": 1,
+                  "line_end": 83,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "work_manifest.json",
+                  "line_start": 1,
+                  "line_end": 8,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/Billing.java",
+                  "line_start": 22,
+                  "line_end": 44,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "src/Invoice.java",
+                  "line_start": 14,
+                  "line_end": 24,
+                  "valid": true,
+                  "artefact": "BSG"
+                },
+                {
+                  "file": "java_billing_modernized.py",
+                  "line_start": 1,
+                  "line_end": 55,
+                  "valid": false,
+                  "artefact": "ModernizedCode"
+                }
+              ],
+              "total_references": 13,
+              "valid_references": 12,
+              "valid_span_rate": 0.9230769230769231
+            }
+          }
+        },
+        "provenance": [
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          },
+          {
+            "file": "java_billing_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 1,
+            "line_end": 1
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          },
+          {
+            "file": "meta.json",
+            "line_start": 1,
+            "line_end": 83
+          },
+          {
+            "file": "work_manifest.json",
+            "line_start": 1,
+            "line_end": 8
+          },
+          {
+            "file": "src/Billing.java",
+            "line_start": 22,
+            "line_end": 44
+          },
+          {
+            "file": "src/Invoice.java",
+            "line_start": 14,
+            "line_end": 24
+          },
+          {
+            "file": "java_billing_modernized.py",
+            "line_start": 1,
+            "line_end": 55
+          }
+        ],
+        "confidence": 1.0,
+        "status": "ok",
+        "notes": "",
+        "created_at": 1793958022.7749252
+      }
+    ]
+  },
+  "session_log": [
+    {
+      "ts": 1793958022.7625291,
+      "agent": "navigator",
+      "event": "start",
+      "detail": {
+        "goal": "Map the repository: enumerate files, detect each file's language, flag files whose language cannot be identified, and record dependency edges between modules."
+      }
+    },
+    {
+      "ts": 1793958022.7630925,
+      "agent": "navigator",
+      "event": "write",
+      "detail": {
+        "artefact": "RepoMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7630956,
+      "agent": "navigator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7634764,
+      "agent": "language_inference",
+      "event": "start",
+      "detail": {
+        "goal": "For every file whose language could not be identified, infer a working grammar in three passes: statistical (no model), LLM hypothesis, cross-file consistency. Accept the grammar only above the parse-success threshold; otherwise mark unparseable."
+      }
+    },
+    {
+      "ts": 1793958022.7636805,
+      "agent": "language_inference",
+      "event": "write",
+      "detail": {
+        "artefact": "GrammarHypothesis",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7636833,
+      "agent": "language_inference",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7641356,
+      "agent": "ast_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Parse every file \u2014 Tree-sitter where the language is known and the inferred grammar otherwise \u2014 and produce the AST map, call graph and CRUD table. Never guess a parse: unparseable files are recorded as such."
+      }
+    },
+    {
+      "ts": 1793958022.7657797,
+      "agent": "ast_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "ASTMap",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7657835,
+      "agent": "ast_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.766461,
+      "agent": "legacy_analyzer",
+      "event": "start",
+      "detail": {
+        "goal": "Extract candidate business rules \u2014 explicit, implicit and constraints \u2014 from the structural analysis, each with pre/post conditions, a source span and a confidence score. Nothing is invented: every rule must point at a real code region."
+      }
+    },
+    {
+      "ts": 1793958022.7669053,
+      "agent": "legacy_analyzer",
+      "event": "write",
+      "detail": {
+        "artefact": "RuleInventory",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7669072,
+      "agent": "legacy_analyzer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.767624,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.7679234,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 1,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.7679262,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7679286,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 1,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.7679296,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.7680848,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 2,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.7680864,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7680879,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 2,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.7680888,
+      "agent": "dynamic_evidence",
+      "event": "start",
+      "detail": {
+        "goal": "Check every candidate business rule by executing the relevant code path in an isolated sandbox with synthesised inputs, and label it confirmed, contradicted or unresolved. Execution is evidence: never re-read the code to 'verify' it."
+      }
+    },
+    {
+      "ts": 1793958022.7683187,
+      "agent": "dynamic_evidence",
+      "event": "write",
+      "detail": {
+        "artefact": "EvidenceReport",
+        "version": 3,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.7683213,
+      "agent": "dynamic_evidence",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7683232,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "dynamic_evidence",
+        "attempt": 3,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.7683263,
+      "agent": "dynamic_evidence",
+      "event": "escalate",
+      "detail": {
+        "item": "agent:dynamic_evidence",
+        "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+        "producer": "dynamic_evidence",
+        "ts": 1793958022.7683253
+      }
+    },
+    {
+      "ts": 1793958022.7692068,
+      "agent": "bsg_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Fuse static claims and dynamic outcomes into a Behavioural Specification Graph \u2014 the trust boundary of the system. Every rule node carries one of six confidence states; contradicted rules block generation for their node and escalate as blocked_on_human while unaffected nodes continue."
+      }
+    },
+    {
+      "ts": 1793958022.76952,
+      "agent": "bsg_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "BSG",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7695224,
+      "agent": "bsg_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7705188,
+      "agent": "transformer",
+      "event": "start",
+      "detail": {
+        "goal": "Produce modernized code from the BSG \u2014 in-place upgrade or migration to the chosen target language \u2014 rendering every interlock as an explicit guard clause and marking unmappable constructs REVIEW/TODO instead of dropping them."
+      }
+    },
+    {
+      "ts": 1793958022.770962,
+      "agent": "transformer",
+      "event": "write",
+      "detail": {
+        "artefact": "ModernizedCode",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.770964,
+      "agent": "transformer",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.772111,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.7724733,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 1,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.7724767,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7724788,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 1,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.77248,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.7726212,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 2,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.772623,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7726245,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 2,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.7726252,
+      "agent": "equivalence_validator",
+      "event": "start",
+      "detail": {
+        "goal": "Confirm behavioural preservation of the modernized code with contract tests and differential tests executed in the sandbox. Report the Behavioural Equivalence Rate together with the testable share; never claim proof, only absence of counterexamples on generated inputs."
+      }
+    },
+    {
+      "ts": 1793958022.7727482,
+      "agent": "equivalence_validator",
+      "event": "write",
+      "detail": {
+        "artefact": "EquivalenceReport",
+        "version": 3,
+        "status": "needs_revision"
+      }
+    },
+    {
+      "ts": 1793958022.7727501,
+      "agent": "equivalence_validator",
+      "event": "finish",
+      "detail": {
+        "status": "needs_revision",
+        "elapsed_s": 0.0
+      }
+    },
+    {
+      "ts": 1793958022.7727513,
+      "agent": "orchestrator",
+      "event": "retry",
+      "detail": {
+        "agent": "equivalence_validator",
+        "attempt": 3,
+        "notes": "provenance: no provenance spans"
+      }
+    },
+    {
+      "ts": 1793958022.7727537,
+      "agent": "equivalence_validator",
+      "event": "escalate",
+      "detail": {
+        "item": "agent:equivalence_validator",
+        "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+        "producer": "equivalence_validator",
+        "ts": 1793958022.7727532
+      }
+    },
+    {
+      "ts": 1793958022.774013,
+      "agent": "documentation_generator",
+      "event": "start",
+      "detail": {
+        "goal": "Emit hierarchical documentation at function, class, module and system level, the data dictionary and graph renderings, plus the audit trail linking every claim to its source lines."
+      }
+    },
+    {
+      "ts": 1793958022.7749264,
+      "agent": "documentation_generator",
+      "event": "write",
+      "detail": {
+        "artefact": "Documentation",
+        "version": 1,
+        "status": "ok"
+      }
+    },
+    {
+      "ts": 1793958022.7749286,
+      "agent": "documentation_generator",
+      "event": "finish",
+      "detail": {
+        "status": "ok",
+        "elapsed_s": 0.0
+      }
+    }
+  ],
+  "escalations": [
+    {
+      "item": "agent:dynamic_evidence",
+      "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+      "producer": "dynamic_evidence",
+      "ts": 1793958022.7683253
+    },
+    {
+      "item": "agent:equivalence_validator",
+      "reason": "self-check failed after 3 attempts: provenance: no provenance spans",
+      "producer": "equivalence_validator",
+      "ts": 1793958022.7727532
+    }
+  ]
+}

@@ -1,0 +1,276 @@
+{
+  "unit": "go_inventory",
+  "run_dir": "results/B1/go_inventory",
+  "gold_rules": 18,
+  "extracted_rules": 0,
+  "injected_rules": 0,
+  "capture_rate": 0.0,
+  "extraction_precision": 0.0,
+  "captured": [],
+  "gaps": [
+    {
+      "gold": "INV-R01",
+      "statement": "applyDemand clamps demand to the available stock: when demand exceeds stock the result is 0."
+    },
+    {
+      "gold": "INV-R02",
+      "statement": "When demand fits within stock, the remaining stock is stock minus demand."
+    },
+    {
+      "gold": "INV-R03",
+      "statement": "The reorder gap never goes negative: stock at or above the reorder level contributes 0 to the reorder quantity."
+    },
+    {
+      "gold": "INV-R04",
+      "statement": "Lead-time need equals leadDays times dailyDemand and is added on top of the reorder gap."
+    },
+    {
+      "gold": "INV-R05",
+      "statement": "The reorder quantity is capped at the 500-unit shelf cap even when gap plus lead-time need is larger."
+    },
+    {
+      "gold": "INV-R06",
+      "statement": "classify labels zero stock as OUT."
+    },
+    {
+      "gold": "INV-R07",
+      "statement": "classify labels stock below the reorder level as LOW."
+    },
+    {
+      "gold": "INV-R08",
+      "statement": "classify labels stock at or above the reorder level as OK."
+    },
+    {
+      "gold": "INV-R09",
+      "statement": "runBatch serves demand before computing the reorder, so the reorder gap uses the post-demand stock."
+    },
+    {
+      "gold": "INV-R10",
+      "statement": "The order total is units times unit price."
+    },
+    {
+      "gold": "INV-R11",
+      "statement": "Orders of more than 50 units take a 10 percent bulk discount."
+    },
+    {
+      "gold": "INV-R12",
+      "statement": "Member orders of 50 units or fewer take a 5 percent discount."
+    },
+    {
+      "gold": "INV-R13",
+      "statement": "Discounts never stack: on bulk orders the bulk discount applies even for members."
+    },
+    {
+      "gold": "INV-R14",
+      "statement": "A non-member order of 50 units or fewer gets no discount and net equals total."
+    },
+    {
+      "gold": "INV-R15",
+      "statement": "Zone 1 shipping charges 5 per kg."
+    },
+    {
+      "gold": "INV-R16",
+      "statement": "Zone 2 shipping charges 8 per kg plus a 10 base fee."
+    },
+    {
+      "gold": "INV-R17",
+      "statement": "Any other zone ships at a flat 20."
+    },
+    {
+      "gold": "INV-R18",
+      "statement": "runPricing returns the order total, the discounted net and the shipping fee together."
+    }
+  ],
+  "capture_rows": [
+    {
+      "gold": "INV-R01",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R02",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R03",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R04",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R05",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R06",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R07",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R08",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R09",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R10",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R11",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R12",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R13",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R14",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R15",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R16",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R17",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    },
+    {
+      "gold": "INV-R18",
+      "captured": false,
+      "extracted_id": null,
+      "shared_identifier": ""
+    }
+  ],
+  "statement_bleu4": 0.0,
+  "statement_bertscore_f1": 0.0,
+  "docs": {
+    "bleu4": 0.0,
+    "bertscore_f1": 0.5473,
+    "glossary_recall": 0.0357,
+    "unit_coverage": 1.0,
+    "chars": 388
+  },
+  "glossary_recall": {
+    "recall": 0.0,
+    "hit": [],
+    "missed": [
+      "runbatch",
+      "runpricing",
+      "applydemand",
+      "computereorder",
+      "classify",
+      "priceorder",
+      "shippingfee",
+      "stock",
+      "demand",
+      "reorderlevel",
+      "leaddays",
+      "dailydemand",
+      "final_stock",
+      "reorder_qty",
+      "lead_need",
+      "status",
+      "units",
+      "unitprice",
+      "member",
+      "weight",
+      "zone",
+      "total",
+      "net",
+      "shipping",
+      "bulk discount",
+      "member discount",
+      "shelf cap",
+      "lead-time demand"
+    ],
+    "total": 28
+  },
+  "unit_coverage": 0.0,
+  "traceability_density": 0.0,
+  "valid_span_rate": 0.0,
+  "confidence_bins": {
+    "0.0-0.2": 0,
+    "0.2-0.4": 0,
+    "0.4-0.6": 0,
+    "0.6-0.8": 0,
+    "0.8-1.0": 0
+  },
+  "dynamic_labels": {
+    "confirmed": 0,
+    "contradicted": 0,
+    "unresolved": 0
+  },
+  "safety_gate": {
+    "injected_total": 0,
+    "injected_blocked": 0,
+    "injected_survived": 0,
+    "block_rate": 0.0,
+    "blocked_nodes_total": 0,
+    "blocked_node_code_leak": 0
+  },
+  "ber": null,
+  "testable_share": null,
+  "retained_pass_rate": null,
+  "total_rules_ber": null,
+  "modernization_mode": null,
+  "review_markers": null,
+  "cost": {
+    "llm_calls": 2,
+    "prompt_tokens": 0,
+    "completion_tokens": 0,
+    "estimated_cost_usd": 0.0
+  },
+  "exp": "B1",
+  "provider": "offline",
+  "model": "gpt-4o-mini"
+}

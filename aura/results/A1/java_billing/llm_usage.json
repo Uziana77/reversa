@@ -1,0 +1,120 @@
+{
+  "n_calls": 16,
+  "prompt_tokens": 0,
+  "completion_tokens": 0,
+  "errors": 0,
+  "calls": [
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "navigator.plan",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "rules.extract",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.001,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "modernize.generate",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.001,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "plan.step",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "summary.function",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "summary.function",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "summary.function",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "summary.function",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    },
+    {
+      "task": "summary.system",
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "latency_s": 0.0,
+      "error": ""
+    }
+  ]
+}
