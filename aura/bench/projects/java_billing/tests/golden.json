@@ -1,0 +1,176 @@
+[
+  {
+    "name": "plain subscription",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 3,
+      "monthlyRate": 2000,
+      "seats": 0,
+      "seatPrice": 0,
+      "coupon": 0,
+      "lateDays": 0,
+      "credit": 0
+    },
+    "expect": {
+      "baseAmount": 6000,
+      "seatAmount": 0,
+      "grossAmount": 6000,
+      "discount": 0,
+      "totalDue": 6000,
+      "status": "CLEAR"
+    }
+  },
+  {
+    "name": "spring coupon with late fee",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 3,
+      "monthlyRate": 2000,
+      "seats": 2,
+      "seatPrice": 500,
+      "coupon": 1,
+      "lateDays": 5,
+      "credit": 0
+    },
+    "expect": {
+      "grossAmount": 9000,
+      "discount": 900,
+      "lateFee": 1000,
+      "totalDue": 9100,
+      "status": "CLEAR"
+    }
+  },
+  {
+    "name": "summer coupon",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 3,
+      "monthlyRate": 2000,
+      "seats": 2,
+      "seatPrice": 500,
+      "coupon": 2,
+      "lateDays": 0,
+      "credit": 0
+    },
+    "expect": {
+      "discount": 1350,
+      "totalDue": 7650
+    }
+  },
+  {
+    "name": "long overdue",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 3,
+      "monthlyRate": 2000,
+      "seats": 2,
+      "seatPrice": 500,
+      "coupon": 0,
+      "lateDays": 31,
+      "credit": 0
+    },
+    "expect": {
+      "lateFee": 3600,
+      "totalDue": 12600,
+      "status": "LATE"
+    }
+  },
+  {
+    "name": "credited void",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 3,
+      "monthlyRate": 2000,
+      "seats": 2,
+      "seatPrice": 500,
+      "coupon": 0,
+      "lateDays": 0,
+      "credit": 10000
+    },
+    "expect": {
+      "totalDue": -1000,
+      "status": "VOID"
+    }
+  },
+  {
+    "name": "seat heavy plan",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 12,
+      "monthlyRate": 100,
+      "seats": 10,
+      "seatPrice": 50,
+      "coupon": 2,
+      "lateDays": 0,
+      "credit": 0
+    },
+    "expect": {
+      "baseAmount": 1200,
+      "seatAmount": 6000,
+      "grossAmount": 7200,
+      "discount": 1080,
+      "totalDue": 6120
+    }
+  },
+  {
+    "name": "unknown coupon",
+    "harness": "src/Billing.java",
+    "input": {
+      "months": 1,
+      "monthlyRate": 5000,
+      "seats": 0,
+      "seatPrice": 0,
+      "coupon": 3,
+      "lateDays": 0,
+      "credit": 0
+    },
+    "expect": {
+      "discount": 0,
+      "totalDue": 5000
+    }
+  },
+  {
+    "name": "taxed standard line",
+    "harness": "src/Invoice.java",
+    "input": {
+      "lineAmount": 10000,
+      "taxRate": 8,
+      "exempt": 0,
+      "rush": 0
+    },
+    "expect": {
+      "taxAmount": 800,
+      "shipping": 900,
+      "lineTotal": 11700
+    }
+  },
+  {
+    "name": "exempt rush line",
+    "harness": "src/Invoice.java",
+    "input": {
+      "lineAmount": 10000,
+      "taxRate": 8,
+      "exempt": 1,
+      "rush": 1
+    },
+    "expect": {
+      "taxAmount": 0,
+      "shipping": 1800,
+      "lineTotal": 11800
+    }
+  },
+  {
+    "name": "zero tax rate",
+    "harness": "src/Invoice.java",
+    "input": {
+      "lineAmount": 10000,
+      "taxRate": 0,
+      "exempt": 0,
+      "rush": 0
+    },
+    "expect": {
+      "taxAmount": 0,
+      "lineTotal": 10900
+    }
+  }
+]

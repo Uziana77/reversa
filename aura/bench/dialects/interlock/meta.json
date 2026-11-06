@@ -1,0 +1,56 @@
+{
+  "id": "interlock",
+  "title": "FURNACE-7 interlock suite (ILG dialect)",
+  "language": "interlock",
+  "language_display": "ILG (invented industrial interlock dialect)",
+  "domain": "industrial interlock safety",
+  "band": "small",
+  "kloc": 0.3,
+  "age_years_note": "hand-built legacy-style dialect corpus (grammar-first, ground truth by construction)",
+  "harness": {
+    "language": "interlock",
+    "entry_file": "corpus/main.ilg",
+    "entry_symbol": "GUARD-MAIN",
+    "input_fields": {
+      "PRESSURE": "float", "TEMPERATURE": "float", "DOOR_CLOSED": "int",
+      "GUARD_SENSOR": "int", "MOTOR_SPEED": "int", "VENT_OPEN": "int",
+      "SHIFT_NIGHT": "int", "MODE_KNOB": "int", "COOLING": "int"
+    },
+    "state_fields": ["START_PERM", "RELIEF", "COOLING", "MOTOR_CUT", "ALARM_HORN",
+                     "VENT_PERM", "ANNUNCIATE", "PRESSURE", "TEMPERATURE", "DOOR_CLOSED",
+                     "GUARD_SENSOR", "MOTOR_SPEED", "VENT_OPEN", "SHIFT_NIGHT", "MODE_KNOB"]
+  },
+  "harnesses": {
+    "corpus/main.ilg": {
+      "language": "interlock",
+      "entry_file": "corpus/main.ilg",
+      "entry_symbol": "GUARD-MAIN",
+      "input_fields": {
+        "PRESSURE": "float", "TEMPERATURE": "float", "DOOR_CLOSED": "int",
+        "GUARD_SENSOR": "int", "MOTOR_SPEED": "int", "VENT_OPEN": "int",
+        "SHIFT_NIGHT": "int", "MODE_KNOB": "int", "COOLING": "int"
+      },
+      "state_fields": ["START_PERM", "RELIEF", "COOLING", "MOTOR_CUT", "ALARM_HORN",
+                       "VENT_PERM", "ANNUNCIATE", "PRESSURE", "TEMPERATURE", "DOOR_CLOSED",
+                       "GUARD_SENSOR", "MOTOR_SPEED", "VENT_OPEN", "SHIFT_NIGHT", "MODE_KNOB"]
+    },
+    "corpus/aux.ilg": {
+      "language": "interlock",
+      "entry_file": "corpus/aux.ilg",
+      "entry_symbol": "ALARM-HANDLER",
+      "input_fields": {
+        "ALARM_HORN": "int", "HORN_SILENCE": "int", "PRESSURE": "float",
+        "ESCALATION": "int", "SHIFT_NIGHT": "int", "RESET_REQUEST": "int",
+        "DOOR_CLOSED": "int"
+      },
+      "state_fields": ["ALARM_HORN", "CALL_SUPERVISOR", "RESET_PERM", "PRESSURE",
+                       "ESCALATION", "SHIFT_NIGHT", "RESET_REQUEST", "DOOR_CLOSED", "HORN_SILENCE"]
+    }
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "grammar": "grammar.ebnf",
+  "attacks": "attacks/injected_false_rules.json",
+  "tests": "tests/golden.json"
+}

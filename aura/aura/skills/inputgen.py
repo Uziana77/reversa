@@ -57,4 +57,22 @@ def _variants(base: Any) -> List[Any]:
             if s != base:
                 out.append(s)
         return out
+    if isinstance(base, list):
+        # list-shaped inputs (record collections): perturb length and items
+        out.append([])
+        if len(base) > 1:
+            out.append(base[1:])
+        longer = list(base) + [dict(base[0]) if isinstance(base[0], dict) else base[0]]
+        out.append(longer)
+        if base and isinstance(base[0], dict):
+            bumped = []
+            for item in base[:2]:
+                it = dict(item)
+                for k, v in it.items():
+                    if isinstance(v, (int, float)):
+                        it[k] = v + 1
+                        break
+                bumped.append(it)
+            out.append(list(base) + bumped)
+        return out
     return [0, 1]

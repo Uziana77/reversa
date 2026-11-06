@@ -58,9 +58,21 @@ class EquivalenceValidatorAgent(Agent):
         harness = Harness.from_dict(unit.get("harness", {}))
         root = run["root"]
 
-        orig = get_adapter(harness.language or unit.get("language", ""),
-                           timeout_s=getattr(cfg, "sandbox_timeout_s", 10.0) if cfg else 10.0,
-                           memory_mb=getattr(cfg, "sandbox_memory_mb", 512) if cfg else 512)
+        orig_cache = {}
+
+        def orig_for(rule):
+            from .dynamic_evidence import _pick_harness
+
+            h = _pick_harness(unit, rule) or harness
+            key = h.language or unit.get("language", "")
+            if key not in orig_cache:
+                orig_cache[key] = get_adapter(
+                    key,
+                    timeout_s=getattr(cfg, "sandbox_timeout_s", 10.0) if cfg else 10.0,
+                    memory_mb=getattr(cfg, "sandbox_memory_mb", 512) if cfg else 512,
+                )
+            return orig_cache[key], h
+
         new = self._new_code_runner(modern, unit, cfg)
 
         per_rule = []
@@ -75,8 +87,11 @@ class EquivalenceValidatorAgent(Agent):
                 per_rule.append({"rule_id": rid, "status": "blocked", "tests": 0, "passed": 0,
                                  "reason": node.get("block_reason", "")})
                 continue
-            cases = inputgen.synthesise_inputs(rule, extra_boundaries=True)
-            tests, passed, reason, detail = self._evaluate_rule(rule, cases, orig, new, root, harness)
+            orig, rh = orig_for(rule)
+            given = (rule.get("contract") or {}).get("given", {}) or {}
+            boundary = inputgen.synthesise_inputs(rule, extra_boundaries=True)
+            cases = ([dict(given)] if given else []) + [c for c in boundary if c != dict(given)]
+            tests, passed, reason, detail = self._evaluate_rule(rule, cases, orig, new, root, rh)
             if tests == 0:
                 per_rule.append({"rule_id": rid, "status": "untestable", "tests": 0, "passed": 0,
                                  "reason": reason})
@@ -122,6 +137,7 @@ class EquivalenceValidatorAgent(Agent):
         if new is None:
             return 0, 0, "modernized code could not be loaded", []
         expect = (rule.get("contract") or {}).get("expect", {}) or {}
+        given = (rule.get("contract") or {}).get("given", {}) or {}
         tests = 0
         passed = 0
         detail = []
@@ -131,28 +147,48 @@ class EquivalenceValidatorAgent(Agent):
                 return 0, 0, base.fault, []
             newres = new.run(case)
             tests += 1
+            is_contract_case = bool(given) and case == dict(given)
+            # Contract check: only on the rule's given -> expect pair.
             contract_ok = True
-            if expect and newres.ok:
-                contract_ok = self._expect_holds(expect, newres.state)
-            diff_ok = (base.comparable() == newres.comparable()) if base.ok and newres.ok \
-                else (base.ok == newres.ok and base.fault == newres.fault)
-            ok = contract_ok and (diff_ok or (base.ok and newres.ok and contract_ok))
-            # contract tests dominate; differential disagreement on state
-            # beyond the contract is recorded as a partial counterexample
-            if contract_ok and not diff_ok:
-                ok = True
-                detail.append({"input": case, "contract": "pass", "differential": "mismatch",
-                               "original": base.comparable(), "modernized": newres.comparable()})
+            if is_contract_case and expect and newres.ok:
+                contract_ok = self._expect_holds(expect, {**newres.state, "_outputs": newres.outputs})
+            # Differential check: same inputs through original and new code,
+            # comparing final state and signalled faults (expected values come
+            # from executing the original, never from the contract).
+            if base.ok and newres.ok:
+                diff_ok = base.comparable() == newres.comparable()
             else:
-                detail.append({"input": case, "contract": "pass" if contract_ok else "fail",
-                               "differential": "match" if diff_ok else "mismatch"})
+                diff_ok = (base.ok == newres.ok) and (base.fault == newres.fault)
+            ok = contract_ok and diff_ok
+            detail.append({"input": case,
+                           "contract": ("pass" if contract_ok else "fail") if is_contract_case else "n/a",
+                           "differential": "match" if diff_ok else "mismatch",
+                           **({} if diff_ok else {"original": base.comparable(),
+                                                  "modernized": newres.comparable()})})
             passed += 1 if ok else 0
-        reason = "contract + differential over synthesised and boundary inputs"
+        reason = "contract pair + differential trace comparison over synthesised and boundary inputs"
         return tests, passed, reason, detail
 
     @staticmethod
     def _expect_holds(expect: dict, state: dict) -> bool:
         for key, want in expect.items():
+            if key == "_no_outputs":
+                have = state.get("_outputs", [])
+                for w in (want if isinstance(want, list) else [want]):
+                    if any(str(w) in str(h) for h in have):
+                        return False
+                continue
+            if key == "_outputs":
+                have = state.get("_outputs", [])
+                want_list = want if isinstance(want, list) else [want]
+                if not want_list:
+                    if have:
+                        return False
+                    continue
+                for w in want_list:
+                    if not any(str(w) in str(h) for h in have):
+                        return False
+                continue
             have = state.get(key)
             try:
                 if abs(float(have) - float(want)) <= 1e-6:

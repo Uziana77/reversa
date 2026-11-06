@@ -1,0 +1,75 @@
+{
+  "unit": "go_inventory",
+  "language": "go",
+  "source_files": [
+    "inventory.go",
+    "pricing.go"
+  ],
+  "harnesses": {
+    "inventory.go": {
+      "language": "go",
+      "entry_file": "inventory.go",
+      "entry_symbol": "runBatch",
+      "input_fields": {
+        "stock": "int",
+        "demand": "int",
+        "reorderLevel": "int",
+        "leadDays": "int",
+        "dailyDemand": "int"
+      },
+      "state_fields": [
+        "final_stock",
+        "reorder_qty",
+        "lead_need",
+        "status"
+      ]
+    },
+    "pricing.go": {
+      "language": "go",
+      "entry_file": "pricing.go",
+      "entry_symbol": "runPricing",
+      "input_fields": {
+        "units": "int",
+        "unitPrice": "int",
+        "member": "int",
+        "weight": "int",
+        "zone": "int"
+      },
+      "state_fields": [
+        "total",
+        "net",
+        "shipping"
+      ]
+    }
+  },
+  "id": "go_inventory",
+  "title": "Warehouse inventory engine (Go)",
+  "language_display": "Go",
+  "domain": "warehouse inventory and counter pricing",
+  "band": "small",
+  "kloc": 0.4,
+  "age_years_note": "hand-built legacy-style Go system (ground truth by construction)",
+  "harness": {
+    "language": "go",
+    "entry_file": "inventory.go",
+    "entry_symbol": "runBatch",
+    "input_fields": {
+      "stock": "int",
+      "demand": "int",
+      "reorderLevel": "int",
+      "leadDays": "int",
+      "dailyDemand": "int"
+    },
+    "state_fields": [
+      "final_stock",
+      "reorder_qty",
+      "lead_need",
+      "status"
+    ]
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "tests": "tests/golden.json",
+  "attacks": "attacks/injected_false_rules.json"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "reportscript",
+  "title": "Quarterly sales + returns reconciliation (RPT dialect)",
+  "language": "reportscript",
+  "language_display": "RPT (invented report-scripting dialect)",
+  "domain": "batch report scripting",
+  "band": "small",
+  "kloc": 0.25,
+  "age_years_note": "hand-built legacy-style dialect corpus (grammar-first, ground truth by construction)",
+  "harness": {
+    "language": "reportscript",
+    "entry_file": "corpus/sales.rpt",
+    "entry_symbol": "",
+    "input_fields": {"RECORDS": "list"},
+    "state_fields": ["TOTAL-AMT", "NET-TOTAL", "COMM-TOTAL", "HIGH-COUNT",
+                     "REGION-NORTH", "REGION-SOUTH", "TOP-AMT", "DISCOUNT", "COMM"]
+  },
+  "harnesses": {
+    "corpus/sales.rpt": {
+      "language": "reportscript",
+      "entry_file": "corpus/sales.rpt",
+      "entry_symbol": "",
+      "input_fields": {"RECORDS": "list"},
+      "state_fields": ["TOTAL-AMT", "NET-TOTAL", "COMM-TOTAL", "HIGH-COUNT",
+                       "REGION-NORTH", "REGION-SOUTH", "TOP-AMT", "DISCOUNT", "COMM"]
+    },
+    "corpus/returns.rpt": {
+      "language": "reportscript",
+      "entry_file": "corpus/returns.rpt",
+      "entry_symbol": "",
+      "input_fields": {"RETURNS": "list", "GROSS": "float"},
+      "state_fields": ["RETURN-TOTAL", "RETURN-COUNT", "REFUND-TOTAL", "FLAG-COUNT", "REFUND"]
+    }
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "grammar": "grammar.ebnf",
+  "attacks": "attacks/injected_false_rules.json",
+  "tests": "tests/golden.json"
+}

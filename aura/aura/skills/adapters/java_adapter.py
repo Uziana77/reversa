@@ -31,30 +31,68 @@ class JavaAdapter(ExecutionAdapter):
     name = "java"
     languages = ("java",)
 
-    def _toolchain(self) -> Optional[dict]:
-        if shutil.which("javac") and shutil.which("java"):
+    def _toolchain(self, with_compiler: bool = False) -> Optional[dict]:
+        """Find a Java toolchain.  With ``with_compiler=True`` require a
+        compilable toolchain (javac, or a JDK whose jrt has jdk.compiler);
+        otherwise any runtime is accepted."""
+        if shutil.which("java") and (shutil.which("javac") or not with_compiler):
             return {"kind": "path"}
         jh = os.environ.get("JAVA_HOME")
         if jh and os.path.exists(os.path.join(jh, "bin", "java")):
-            return {"kind": "home", "home": jh}
+            if not with_compiler or os.path.exists(os.path.join(jh, "bin", "javac")):
+                return {"kind": "home", "home": jh}
         try:
             import jdk4py  # type: ignore
 
             home = str(jdk4py.JAVA_HOME)
             if os.path.exists(os.path.join(home, "bin", "java")):
+                if with_compiler and not self._has_jdk_compiler(home):
+                    return None
                 return {"kind": "jdk4py", "home": home}
         except Exception:
             pass
         return None
 
+    @staticmethod
+    def _has_jdk_compiler(home: str) -> bool:
+        try:
+            import subprocess
+
+            r = subprocess.run([os.path.join(home, "bin", "java"), "--list-modules"],
+                               capture_output=True, text=True, timeout=30)
+            return "jdk.compiler" in (r.stdout or "")
+        except Exception:
+            return False
+
+    def _run_javasim(self, root: str, harness: Harness, inputs: Dict[str, Any]) -> ExecResult:
+        """Bundled Java-subset interpreter (no compiler in this sandbox)."""
+        try:
+            from .javasim import run_java
+
+            path = os.path.join(root, harness.entry_file)
+            with open(path, encoding="utf-8") as fh:
+                text = fh.read()
+            result = run_java(text, inputs, entry=harness.entry_symbol or "compute",
+                              class_name=harness.extra.get("class", ""))
+            state = result.get("state", {})
+            fields = harness.state_fields or list(state)
+            return ExecResult(
+                ok=True,
+                state={f: state.get(f, inputs.get(f)) for f in fields},
+                outputs=[], fault="",
+                trace=result.get("trace", ""), steps=result.get("steps", 0),
+            )
+        except Exception as exc:  # noqa: BLE001
+            return ExecResult(ok=False, fault=f"javasim: {type(exc).__name__}: {exc}")
+
     def available(self) -> bool:
-        return self._toolchain() is not None
+        return True
 
     # ------------------------------------------------------------------
     def run(self, root: str, harness: Harness, inputs: Dict[str, Any]) -> ExecResult:
-        tc = self._toolchain()
+        tc = self._toolchain(with_compiler=True)
         if tc is None:
-            return ExecResult(ok=False, fault="unresolved: no Java toolchain in sandbox")
+            return self._run_javasim(root, harness, inputs)
         src_dir = os.path.join(root, os.path.dirname(harness.entry_file) or ".")
         driver = self._driver(harness, inputs)
         workdir = tempfile.mkdtemp(prefix="aura-java-")

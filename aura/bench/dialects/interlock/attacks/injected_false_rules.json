@@ -1,0 +1,116 @@
+{
+  "unit": "interlock",
+  "note": "Deliberately false rules injected into the RuleInventory by the experiment runner (safety-gate check, synopsis 6.9). Correct labels should be contradicted; no generated code may derive from these blocked nodes.",
+  "rules": [
+    {
+      "id": "ILG-F01", "kind": "explicit", "false_injection": true,
+      "statement": "When furnace pressure exceeds 180 kPa the relief valve is commanded OFF (fail-shut logic).",
+      "preconditions": ["PRESSURE > 180"], "postconditions": ["RELIEF = OFF"],
+      "inputs": ["PRESSURE"], "outputs": ["RELIEF"],
+      "anchor": "IF PRESSURE > 180 THEN",
+      "contract": {
+        "given": {"PRESSURE": 185, "TEMPERATURE": 50, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"RELIEF": 0}
+      }
+    },
+    {
+      "id": "ILG-F02", "kind": "explicit", "false_injection": true,
+      "statement": "Cooling is forced on above 70 Celsius in every mode.",
+      "preconditions": ["TEMPERATURE > 70"], "postconditions": ["COOLING = ON"],
+      "inputs": ["TEMPERATURE"], "outputs": ["COOLING"],
+      "anchor": "IF TEMPERATURE > 90 THEN",
+      "contract": {
+        "given": {"PRESSURE": 100, "TEMPERATURE": 75, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 1, "COOLING": 0},
+        "expect": {"COOLING": 1}
+      }
+    },
+    {
+      "id": "ILG-F03", "kind": "explicit", "false_injection": true,
+      "statement": "The start permissive follows only the mode knob and ignores the door and curtain.",
+      "preconditions": ["MODE_KNOB = 2"], "postconditions": ["START_PERM = ON"],
+      "inputs": ["MODE_KNOB"], "outputs": ["START_PERM"],
+      "anchor": "IF MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1 THEN",
+      "contract": {
+        "given": {"PRESSURE": 100, "TEMPERATURE": 50, "DOOR_CLOSED": 0, "GUARD_SENSOR": 0, "MOTOR_SPEED": 1000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"START_PERM": 1}
+      }
+    },
+    {
+      "id": "ILG-F04", "kind": "explicit", "false_injection": true,
+      "statement": "The fan cut engages above 3800 rpm only when the light curtain is broken.",
+      "preconditions": ["MOTOR_SPEED > 3800", "GUARD_SENSOR = 0"], "postconditions": ["MOTOR_CUT = ON"],
+      "inputs": ["MOTOR_SPEED", "GUARD_SENSOR"], "outputs": ["MOTOR_CUT"],
+      "anchor": "IF MOTOR_SPEED > 3800 THEN",
+      "contract": {
+        "given": {"PRESSURE": 100, "TEMPERATURE": 50, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 4000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"MOTOR_CUT": 0}
+      }
+    },
+    {
+      "id": "ILG-F05", "kind": "explicit", "false_injection": true,
+      "statement": "On night shift the horn sounds whenever the manual vent is open, regardless of pressure.",
+      "preconditions": ["SHIFT_NIGHT = 1", "VENT_OPEN = 1"], "postconditions": ["ALARM_HORN = ON"],
+      "inputs": ["SHIFT_NIGHT", "VENT_OPEN"], "outputs": ["ALARM_HORN"],
+      "anchor": "IF SHIFT_NIGHT = 1 AND RELIEF = ON THEN",
+      "contract": {
+        "given": {"PRESSURE": 100, "TEMPERATURE": 50, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 1, "SHIFT_NIGHT": 1, "MODE_KNOB": 2},
+        "expect": {"ALARM_HORN": 1}
+      }
+    },
+    {
+      "id": "ILG-F06", "kind": "explicit", "false_injection": true,
+      "statement": "The vent permissive opens at 140 kPa with the vent handle open.",
+      "preconditions": ["VENT_OPEN = 1", "PRESSURE > 140"], "postconditions": ["VENT_PERM = ON"],
+      "inputs": ["VENT_OPEN", "PRESSURE"], "outputs": ["VENT_PERM"],
+      "anchor": "IF VENT_OPEN = 1 AND PRESSURE > 150 THEN",
+      "contract": {
+        "given": {"PRESSURE": 140, "TEMPERATURE": 50, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 1, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"VENT_PERM": 1}
+      }
+    },
+    {
+      "id": "ILG-F07", "kind": "explicit", "false_injection": true,
+      "statement": "A blocked rotor lock signals a compressor trip.",
+      "preconditions": ["DOOR_CLOSED = 0"], "postconditions": ["TRIP COMPRESSOR signalled"],
+      "inputs": ["DOOR_CLOSED"], "outputs": [],
+      "anchor": "LOCK ROTOR UNTIL DOOR_CLOSED = 1.",
+      "contract": {
+        "given": {"PRESSURE": 100, "TEMPERATURE": 50, "DOOR_CLOSED": 0, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"_outputs": ["TRIP:COMPRESSOR"]}
+      }
+    },
+    {
+      "id": "ILG-F08", "kind": "explicit", "false_injection": true,
+      "statement": "The compressor trips when pressure reaches exactly 200 kPa.",
+      "preconditions": ["PRESSURE >= 200"], "postconditions": ["TRIP COMPRESSOR signalled"],
+      "inputs": ["PRESSURE"], "outputs": [],
+      "anchor": "TRIP COMPRESSOR REASON 'critical'.",
+      "contract": {
+        "given": {"PRESSURE": 200, "TEMPERATURE": 50, "DOOR_CLOSED": 1, "GUARD_SENSOR": 1, "MOTOR_SPEED": 1000, "VENT_OPEN": 0, "SHIFT_NIGHT": 0, "MODE_KNOB": 2},
+        "expect": {"_outputs": ["TRIP:COMPRESSOR"]}
+      }
+    },
+    {
+      "id": "ILG-F09", "kind": "explicit", "false_injection": true,
+      "statement": "In ALARM-HANDLER a reset request is always permitted.",
+      "preconditions": ["RESET_REQUEST = 1"], "postconditions": ["RESET_PERM = ON"],
+      "inputs": ["RESET_REQUEST"], "outputs": ["RESET_PERM"],
+      "anchor": "IF RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100 THEN",
+      "contract": {
+        "given": {"ALARM_HORN": 1, "HORN_SILENCE": 1, "PRESSURE": 90, "ESCALATION": 0, "SHIFT_NIGHT": 0, "RESET_REQUEST": 1, "DOOR_CLOSED": 0},
+        "expect": {"RESET_PERM": 1}
+      }
+    },
+    {
+      "id": "ILG-F10", "kind": "explicit", "false_injection": true,
+      "statement": "Escalation calls the supervisor on day shift as well.",
+      "preconditions": ["ESCALATION = 1", "SHIFT_NIGHT = 0"], "postconditions": ["CALL_SUPERVISOR = ON"],
+      "inputs": ["ESCALATION", "SHIFT_NIGHT"], "outputs": ["CALL_SUPERVISOR"],
+      "anchor": "IF ESCALATION = 1 AND SHIFT_NIGHT = 1 THEN",
+      "contract": {
+        "given": {"ALARM_HORN": 1, "HORN_SILENCE": 1, "PRESSURE": 100, "ESCALATION": 1, "SHIFT_NIGHT": 0, "RESET_REQUEST": 0, "DOOR_CLOSED": 1},
+        "expect": {"CALL_SUPERVISOR": 1}
+      }
+    }
+  ]
+}

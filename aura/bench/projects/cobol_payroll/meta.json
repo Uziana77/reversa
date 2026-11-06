@@ -1,0 +1,94 @@
+{
+  "id": "cobol_payroll",
+  "title": "Weekly payroll engine (COBOL)",
+  "language": "cobol",
+  "language_display": "COBOL",
+  "domain": "payroll processing",
+  "band": "small",
+  "kloc": 1.1,
+  "age_years_note": "hand-built legacy-style COBOL system (ground truth by construction)",
+  "harness": {
+    "language": "cobol",
+    "entry_file": "src/PAYROLL.cbl",
+    "entry_symbol": "",
+    "input_fields": {
+      "HOURS-WORKED": "int",
+      "PAY-RATE": "int",
+      "SHIFT-CODE": "int",
+      "GRADE": "int",
+      "YEARS-OF-SERVICE": "int",
+      "ABSENT-DAYS": "int"
+    },
+    "state_fields": [
+      "BASE-PAY",
+      "OT-PAY",
+      "SHIFT-PREMIUM",
+      "BONUS-AMT",
+      "GROSS-PAY",
+      "TAX-AMT",
+      "PENALTY",
+      "NET-PAY",
+      "PAY-STATUS",
+      "HOURS-WORKED",
+      "PAY-RATE",
+      "SHIFT-CODE",
+      "GRADE",
+      "YEARS-OF-SERVICE",
+      "ABSENT-DAYS"
+    ]
+  },
+  "harnesses": {
+    "src/PAYROLL.cbl": {
+      "language": "cobol",
+      "entry_file": "src/PAYROLL.cbl",
+      "entry_symbol": "",
+      "input_fields": {
+        "HOURS-WORKED": "int",
+        "PAY-RATE": "int",
+        "SHIFT-CODE": "int",
+        "GRADE": "int",
+        "YEARS-OF-SERVICE": "int",
+        "ABSENT-DAYS": "int"
+      },
+      "state_fields": [
+        "BASE-PAY",
+        "OT-PAY",
+        "SHIFT-PREMIUM",
+        "BONUS-AMT",
+        "GROSS-PAY",
+        "TAX-AMT",
+        "PENALTY",
+        "NET-PAY",
+        "PAY-STATUS",
+        "HOURS-WORKED",
+        "PAY-RATE",
+        "SHIFT-CODE",
+        "GRADE",
+        "YEARS-OF-SERVICE",
+        "ABSENT-DAYS"
+      ]
+    },
+    "src/PAYRPT.cbl": {
+      "language": "cobol",
+      "entry_file": "src/PAYRPT.cbl",
+      "entry_symbol": "",
+      "input_fields": {
+        "GROSS-PAY": "float",
+        "TAX-AMT": "float",
+        "NET-PAY": "float"
+      },
+      "state_fields": [
+        "GROSS-PAY",
+        "TAX-AMT",
+        "NET-PAY",
+        "SLIP-COUNT",
+        "REPORT-TOTAL"
+      ]
+    }
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "tests": "tests/golden.json",
+  "attacks": "attacks/injected_false_rules.json"
+}

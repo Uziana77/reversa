@@ -1,0 +1,28 @@
+# AUX ALARM HANDLER for FURNACE-7 (zone B)
+# Standby-panel interlocks: horn silence, escalation, reset inhibit.
+
+PROCEDURE ALARM-HANDLER.
+    IF ALARM_HORN = ON AND HORN_SILENCE = 1 THEN
+        SET ALARM_HORN TO OFF.
+    ELSE
+        SET ALARM_HORN TO ON.
+    END-IF.
+
+    IF PRESSURE > 220 THEN
+        TRIP FURNACE REASON 'pressure critical'.
+    END-IF.
+
+    IF ESCALATION = 1 AND SHIFT_NIGHT = 1 THEN
+        SET CALL_SUPERVISOR TO ON.
+    ELSE
+        SET CALL_SUPERVISOR TO OFF.
+    END-IF.
+
+    IF RESET_REQUEST = 1 AND DOOR_CLOSED = 1 AND PRESSURE < 100 THEN
+        SET RESET_PERM TO ON.
+    ELSE
+        SET RESET_PERM TO OFF.
+    END-IF.
+
+    ASSERT RESET_PERM = 1 ALARM 'reset inhibited'.
+.

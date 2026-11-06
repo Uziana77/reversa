@@ -1,0 +1,83 @@
+{
+  "id": "java_billing",
+  "title": "Subscription billing engine (Java)",
+  "language": "java",
+  "language_display": "Java",
+  "domain": "subscription billing and invoicing",
+  "band": "small",
+  "kloc": 0.9,
+  "age_years_note": "hand-built legacy-style Java system (ground truth by construction)",
+  "source_files": [
+    "src/Billing.java",
+    "src/Invoice.java"
+  ],
+  "harness": {
+    "language": "java",
+    "entry_file": "src/Billing.java",
+    "entry_symbol": "compute",
+    "input_fields": {
+      "months": "int",
+      "monthlyRate": "int",
+      "seats": "int",
+      "seatPrice": "int",
+      "coupon": "int",
+      "lateDays": "int",
+      "credit": "int"
+    },
+    "state_fields": [
+      "baseAmount",
+      "seatAmount",
+      "grossAmount",
+      "discount",
+      "lateFee",
+      "totalDue",
+      "status"
+    ]
+  },
+  "harnesses": {
+    "src/Billing.java": {
+      "language": "java",
+      "entry_file": "src/Billing.java",
+      "entry_symbol": "compute",
+      "input_fields": {
+        "months": "int",
+        "monthlyRate": "int",
+        "seats": "int",
+        "seatPrice": "int",
+        "coupon": "int",
+        "lateDays": "int",
+        "credit": "int"
+      },
+      "state_fields": [
+        "baseAmount",
+        "seatAmount",
+        "grossAmount",
+        "discount",
+        "lateFee",
+        "totalDue",
+        "status"
+      ]
+    },
+    "src/Invoice.java": {
+      "language": "java",
+      "entry_file": "src/Invoice.java",
+      "entry_symbol": "compute",
+      "input_fields": {
+        "lineAmount": "int",
+        "taxRate": "int",
+        "exempt": "int",
+        "rush": "int"
+      },
+      "state_fields": [
+        "taxAmount",
+        "shipping",
+        "lineTotal"
+      ]
+    }
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "tests": "tests/golden.json",
+  "attacks": "attacks/injected_false_rules.json"
+}

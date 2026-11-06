@@ -1,0 +1,30 @@
+{
+  "unit": "java_billing",
+  "terms": {
+    "compute": "field-driven calculation entry point",
+    "months": "subscription months billed",
+    "monthlyRate": "cents per month",
+    "seats": "licensed seats",
+    "seatPrice": "cents per seat per month",
+    "coupon": "1 = SPRING10, 2 = SUMMER15, else none",
+    "lateDays": "invoice days late",
+    "credit": "account credit in cents",
+    "baseAmount": "months times monthly rate",
+    "seatAmount": "seat subscription amount",
+    "grossAmount": "base plus seat before discounts",
+    "discount": "coupon discount amount",
+    "lateFee": "flat 500 plus 100 per late day",
+    "totalDue": "final amount owed",
+    "status": "CLEAR / LATE / VOID invoice flag",
+    "lineAmount": "invoice line amount in cents",
+    "taxRate": "tax percentage",
+    "exempt": "tax exempt flag",
+    "rush": "rush handling flag",
+    "taxAmount": "line tax amount",
+    "shipping": "handling and shipping fee",
+    "lineTotal": "line amount plus tax plus shipping",
+    "SPRING10": "10 percent coupon",
+    "SUMMER15": "15 percent coupon",
+    "VOID": "fully credited invoice status"
+  }
+}

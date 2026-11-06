@@ -318,6 +318,7 @@ def run_ilg(procs: List[Tuple[str, List[Any]]], inputs: Dict[str, Any],
             if guard is not None:
                 if not eval_ilg_node(guard, ctx):
                     ctx.trips.append(f"{stmt[1]}: lock guard unsatisfied")
+                    ctx.outputs.append(f"LOCK-FAIL:{stmt[1]}")
                     ctx.trace.append(f"LOCK {stmt[1]} unresolved")
             ctx.trace.append(f"LOCK {stmt[1]}")
         elif kind == "ASSERT":

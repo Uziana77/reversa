@@ -1,0 +1,55 @@
+{
+  "id": "react_orders",
+  "title": "Storefront order math (legacy React)",
+  "language": "javascript-react",
+  "language_display": "JavaScript (React)",
+  "domain": "e-commerce checkout and orders",
+  "band": "small",
+  "kloc": 0.6,
+  "age_years_note": "hand-built legacy-style React storefront module (ground truth by construction)",
+  "source_files": [
+    "orderMath.js",
+    "OrderTable.jsx"
+  ],
+  "harness": {
+    "language": "javascript-react",
+    "entry_file": "orderMath.js",
+    "entry_symbol": "run",
+    "input_fields": {
+      "lines": "list",
+      "promo": "string",
+      "country": "string"
+    },
+    "state_fields": [
+      "subtotal",
+      "discount",
+      "shipping",
+      "total",
+      "status"
+    ]
+  },
+  "harnesses": {
+    "orderMath.js": {
+      "language": "javascript-react",
+      "entry_file": "orderMath.js",
+      "entry_symbol": "run",
+      "input_fields": {
+        "lines": "list",
+        "promo": "string",
+        "country": "string"
+      },
+      "state_fields": [
+        "subtotal",
+        "discount",
+        "shipping",
+        "total",
+        "status"
+      ]
+    }
+  },
+  "gold_rules": "reference/rules.json",
+  "gold_docs": "reference/docs.md",
+  "glossary": "reference/glossary.json",
+  "tests": "tests/golden.json",
+  "attacks": "attacks/injected_false_rules.json"
+}

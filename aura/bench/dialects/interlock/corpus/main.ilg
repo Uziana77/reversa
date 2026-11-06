@@ -1,0 +1,92 @@
+# FURNACE-7 INTERLOCK SUITE
+# Zone-B safety interlocks for the heat-treatment furnace line.
+# Owner: controls engineering. Rev 4.
+#
+# Signal map (workshop drawing EE-2201):
+#   PRESSURE     furnace pressure in kPa
+#   TEMPERATURE  flue gas temperature in Celsius
+#   DOOR_CLOSED  access door limit switch (1 = closed)
+#   GUARD_SENSOR light curtain (1 = clear)
+#   MOTOR_SPEED  exhaust fan motor rpm
+#   VENT_OPEN    manual vent handle (1 = open)
+#   SHIFT_NIGHT  1 on night shift
+#   MODE_KNOB    0 = OFF, 1 = MANUAL, 2 = AUTO
+
+PROCEDURE GUARD-MAIN.
+    # permissive start chain (drawing note 3)
+    IF MODE_KNOB = 2 AND DOOR_CLOSED = 1 AND GUARD_SENSOR = 1 THEN
+        SET START_PERM TO ON.
+    ELSE
+        SET START_PERM TO OFF.
+    END-IF.
+
+    # overpressure relief valve
+    IF PRESSURE > 180 THEN
+        SET RELIEF TO ON.
+    ELSE
+        SET RELIEF TO OFF.
+    END-IF.
+
+    # flue cooling loop with hysteresis band 60-90 C
+    IF TEMPERATURE > 90 THEN
+        SET COOLING TO ON.
+    ELSE
+        IF TEMPERATURE < 60 THEN
+            SET COOLING TO OFF.
+        END-IF.
+    END-IF.
+
+    # critical condition trip
+    IF PRESSURE > 200 OR TEMPERATURE > 100 THEN
+        TRIP COMPRESSOR REASON 'critical'.
+    END-IF.
+
+    # light curtain cuts the fan drive
+    IF MOTOR_SPEED > 3000 AND GUARD_SENSOR = 0 THEN
+        SET MOTOR_CUT TO ON.
+    ELSE
+        SET MOTOR_CUT TO OFF.
+    END-IF.
+
+    # hard overspeed cut (drawing note 9)
+    IF MOTOR_SPEED > 3800 THEN
+        SET MOTOR_CUT TO ON.
+    END-IF.
+
+    # rotor may only turn with the door closed
+    LOCK ROTOR UNTIL DOOR_CLOSED = 1.
+
+    # door must be closed during operation
+    ASSERT DOOR_CLOSED = 1 ALARM 'door open'.
+
+    # night-shift horn annunciation on relief
+    IF SHIFT_NIGHT = 1 AND RELIEF = ON THEN
+        SET ALARM_HORN TO ON.
+    ELSE
+        SET ALARM_HORN TO OFF.
+    END-IF.
+
+    # vent handling under high pressure
+    IF VENT_OPEN = 1 AND PRESSURE > 150 THEN
+        SET VENT_PERM TO ON.
+    ELSE
+        SET VENT_PERM TO OFF.
+    END-IF.
+
+    # cut-start interlock: motor cut revokes the start permissive
+    IF START_PERM = ON AND MOTOR_CUT = ON THEN
+        SET START_PERM TO OFF.
+    END-IF.
+
+    # AUTO mode forces cooling in the 85+ band
+    IF MODE_KNOB = 2 AND TEMPERATURE > 85 THEN
+        SET COOLING TO ON.
+    END-IF.
+
+    # horn follow-up after any compressor trip
+    IF ALARM_HORN = ON OR VENT_PERM = ON THEN
+        SET ANNUNCIATE TO ON.
+    ELSE
+        SET ANNUNCIATE TO OFF.
+    END-IF.
+.

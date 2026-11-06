@@ -1,0 +1,117 @@
+{
+  "unit": "go_inventory",
+  "false_injection": true,
+  "note": "Deliberately WRONG rules used by the B3 injected-false-rule attack. Each contract is designed to FAIL against the real code (verified by validate_ground_truth.py).",
+  "rules": [
+    {
+      "id": "INV-F01", "kind": "explicit",
+      "statement": "Unserved demand is carried over: stock goes negative rather than zero.",
+      "preconditions": ["demand > stock"], "postconditions": ["final_stock = stock - demand"],
+      "inputs": ["stock", "demand"], "outputs": ["final_stock"],
+      "anchor": "if demand > stock",
+      "contract": {
+        "given": {"stock": 10, "demand": 25, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"final_stock": -15}
+      }
+    },
+    {
+      "id": "INV-F02", "kind": "explicit",
+      "statement": "The reorder gap uses the pre-demand stock.",
+      "preconditions": [], "postconditions": ["gap = max(0, reorderLevel - stock_before_demand)"],
+      "inputs": ["stock", "demand", "reorderLevel"], "outputs": ["reorder_qty"],
+      "anchor": "stock = applyDemand(stock, demand)",
+      "contract": {
+        "given": {"stock": 30, "demand": 10, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"reorder_qty": 30}
+      }
+    },
+    {
+      "id": "INV-F03", "kind": "explicit",
+      "statement": "Lead-time need uses leadDays plus dailyDemand, not their product.",
+      "preconditions": [], "postconditions": ["lead_need = leadDays + dailyDemand"],
+      "inputs": ["leadDays", "dailyDemand"], "outputs": ["lead_need"],
+      "anchor": "leadNeed := leadDays * dailyDemand",
+      "contract": {
+        "given": {"stock": 100, "demand": 0, "reorderLevel": 50, "leadDays": 4, "dailyDemand": 10},
+        "expect": {"lead_need": 14}
+      }
+    },
+    {
+      "id": "INV-F04", "kind": "explicit",
+      "statement": "The shelf cap on reorders is 1000 units.",
+      "preconditions": ["gap + lead_need > 1000"], "postconditions": ["reorder_qty = 1000"],
+      "inputs": ["stock", "reorderLevel", "leadDays", "dailyDemand"], "outputs": ["reorder_qty"],
+      "anchor": "if need > 500",
+      "contract": {
+        "given": {"stock": 0, "demand": 0, "reorderLevel": 500, "leadDays": 100, "dailyDemand": 10},
+        "expect": {"reorder_qty": 1000}
+      }
+    },
+    {
+      "id": "INV-F05", "kind": "explicit",
+      "statement": "Empty stock lines are labelled LOW.",
+      "preconditions": ["stock = 0"], "postconditions": ["status = 'LOW'"],
+      "inputs": ["stock"], "outputs": ["status"],
+      "anchor": "return \"OUT\"",
+      "contract": {
+        "given": {"stock": 10, "demand": 25, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"status": "LOW"}
+      }
+    },
+    {
+      "id": "INV-F06", "kind": "explicit",
+      "statement": "Bulk orders of 50 units or more take a 10 percent discount.",
+      "preconditions": ["units >= 50"], "postconditions": ["discount = total / 10"],
+      "inputs": ["units", "unitPrice"], "outputs": ["net"],
+      "anchor": "if units > 50",
+      "contract": {
+        "given": {"units": 50, "unitPrice": 100, "member": 0, "weight": 3, "zone": 3},
+        "expect": {"net": 4500}
+      }
+    },
+    {
+      "id": "INV-F07", "kind": "explicit",
+      "statement": "Member discount is 10 percent on small orders.",
+      "preconditions": ["units <= 50", "member = 1"], "postconditions": ["discount = total / 10"],
+      "inputs": ["units", "unitPrice", "member"], "outputs": ["net"],
+      "anchor": "discount = total / 20",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 1, "weight": 3, "zone": 3},
+        "expect": {"net": 1800}
+      }
+    },
+    {
+      "id": "INV-F08", "kind": "explicit",
+      "statement": "Zone 2 shipping charges 5 per kg with no base fee.",
+      "preconditions": ["zone = 2"], "postconditions": ["shipping = weight * 5"],
+      "inputs": ["weight", "zone"], "outputs": ["shipping"],
+      "anchor": "return weight*8 + 10",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 2},
+        "expect": {"shipping": 15}
+      }
+    },
+    {
+      "id": "INV-F09", "kind": "explicit",
+      "statement": "Unknown zones ship at a flat 35.",
+      "preconditions": ["zone not in (1, 2)"], "postconditions": ["shipping = 35"],
+      "inputs": ["zone"], "outputs": ["shipping"],
+      "anchor": "return 20",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 5},
+        "expect": {"shipping": 35}
+      }
+    },
+    {
+      "id": "INV-F10", "kind": "constraint",
+      "statement": "The returned net includes the shipping fee.",
+      "preconditions": [], "postconditions": ["net = total - discount + shipping"],
+      "inputs": ["units", "unitPrice", "member", "weight", "zone"], "outputs": ["net"],
+      "anchor": "fee := shippingFee(weight, zone)",
+      "contract": {
+        "given": {"units": 10, "unitPrice": 50, "member": 0, "weight": 2, "zone": 1},
+        "expect": {"net": 510}
+      }
+    }
+  ]
+}

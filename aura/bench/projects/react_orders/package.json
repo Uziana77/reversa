@@ -1,0 +1,7 @@
+{
+  "name": "orders-storefront",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "description": "ORD-2 storefront order math (legacy CommonJS package)"
+}

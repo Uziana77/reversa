@@ -1,0 +1,33 @@
+{
+  "unit": "go_inventory",
+  "terms": {
+    "runBatch": "nightly inventory batch entry point",
+    "runPricing": "counter pricing entry point",
+    "applyDemand": "serves demand against shelf stock",
+    "computeReorder": "reorder quantity with gap, lead need and 500 cap",
+    "classify": "stock line label OUT/LOW/OK",
+    "priceOrder": "order total and discount pricing",
+    "shippingFee": "zone-based shipment pricing",
+    "stock": "shelf units before serving demand",
+    "demand": "units requested in this run",
+    "reorderLevel": "stock level triggering reorders",
+    "leadDays": "supplier lead time in days",
+    "dailyDemand": "average units sold per day",
+    "final_stock": "stock after serving demand",
+    "reorder_qty": "reorder quantity, capped at 500",
+    "lead_need": "lead-time demand component",
+    "status": "OUT/LOW/OK stock label",
+    "units": "units ordered at the counter",
+    "unitPrice": "price per unit",
+    "member": "loyalty member flag",
+    "weight": "shipment weight in kg",
+    "zone": "shipping zone",
+    "total": "order total before discount",
+    "net": "order total after discount",
+    "shipping": "shipping fee",
+    "bulk discount": "10 percent discount above 50 units",
+    "member discount": "5 percent discount for members",
+    "shelf cap": "500-unit reorder cap",
+    "lead-time demand": "demand expected during supplier lead time"
+  }
+}

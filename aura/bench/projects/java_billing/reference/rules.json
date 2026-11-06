@@ -1,0 +1,550 @@
+{
+  "unit": "java_billing",
+  "note": "Ground truth authored before the code (correct by construction); contracts mechanically verified by scripts/validate_ground_truth.py through the real javac/java toolchain.",
+  "rules": [
+    {
+      "id": "JAV-R01",
+      "kind": "explicit",
+      "statement": "Base amount equals subscription months times the monthly rate.",
+      "preconditions": [
+        "months >= 0",
+        "monthlyRate >= 0"
+      ],
+      "postconditions": [
+        "baseAmount = months * monthlyRate"
+      ],
+      "inputs": [
+        "months",
+        "monthlyRate"
+      ],
+      "outputs": [
+        "baseAmount"
+      ],
+      "anchor": "baseAmount = months * monthlyRate",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "baseAmount": 6000
+        }
+      }
+    },
+    {
+      "id": "JAV-R02",
+      "kind": "explicit",
+      "statement": "Seat amount equals months times seats times the per-seat price.",
+      "preconditions": [
+        "seats >= 0"
+      ],
+      "postconditions": [
+        "seatAmount = months * seats * seatPrice"
+      ],
+      "inputs": [
+        "months",
+        "seats",
+        "seatPrice"
+      ],
+      "outputs": [
+        "seatAmount"
+      ],
+      "anchor": "seatAmount = months * seats * seatPrice",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "seatAmount": 3000
+        }
+      }
+    },
+    {
+      "id": "JAV-R03",
+      "kind": "constraint",
+      "statement": "Gross amount is base amount plus seat amount, before discounts.",
+      "preconditions": [
+        "components computed"
+      ],
+      "postconditions": [
+        "grossAmount = baseAmount + seatAmount"
+      ],
+      "inputs": [
+        "months",
+        "monthlyRate",
+        "seats",
+        "seatPrice"
+      ],
+      "outputs": [
+        "grossAmount"
+      ],
+      "anchor": "grossAmount = baseAmount + seatAmount",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "grossAmount": 9000
+        }
+      }
+    },
+    {
+      "id": "JAV-R04",
+      "kind": "explicit",
+      "statement": "Coupon 1 (SPRING10) takes a 10 percent discount off the gross amount.",
+      "preconditions": [
+        "coupon = 1"
+      ],
+      "postconditions": [
+        "discount = grossAmount * 10 / 100"
+      ],
+      "inputs": [
+        "coupon"
+      ],
+      "outputs": [
+        "discount"
+      ],
+      "anchor": "discount = grossAmount * 10 / 100",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 1,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "discount": 900
+        }
+      }
+    },
+    {
+      "id": "JAV-R05",
+      "kind": "explicit",
+      "statement": "Coupon 2 (SUMMER15) takes a 15 percent discount off the gross amount.",
+      "preconditions": [
+        "coupon = 2"
+      ],
+      "postconditions": [
+        "discount = grossAmount * 15 / 100"
+      ],
+      "inputs": [
+        "coupon"
+      ],
+      "outputs": [
+        "discount"
+      ],
+      "anchor": "discount = grossAmount * 15 / 100",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 2,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "discount": 1350
+        }
+      }
+    },
+    {
+      "id": "JAV-R06",
+      "kind": "explicit",
+      "statement": "Without a recognised coupon the discount is zero.",
+      "preconditions": [
+        "coupon not in (1, 2)"
+      ],
+      "postconditions": [
+        "discount = 0"
+      ],
+      "inputs": [
+        "coupon"
+      ],
+      "outputs": [
+        "discount"
+      ],
+      "anchor": "discount = 0;",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "discount": 0
+        }
+      }
+    },
+    {
+      "id": "JAV-R07",
+      "kind": "explicit",
+      "statement": "A late invoice incurs a flat 500 fee plus 100 per late day.",
+      "preconditions": [
+        "lateDays > 0"
+      ],
+      "postconditions": [
+        "lateFee = 500 + lateDays * 100"
+      ],
+      "inputs": [
+        "lateDays"
+      ],
+      "outputs": [
+        "lateFee"
+      ],
+      "anchor": "lateFee = 500 + lateDays * 100",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 5,
+          "credit": 0
+        },
+        "expect": {
+          "lateFee": 1000
+        }
+      }
+    },
+    {
+      "id": "JAV-R08",
+      "kind": "explicit",
+      "statement": "An invoice paid on time incurs no late fee.",
+      "preconditions": [
+        "lateDays = 0"
+      ],
+      "postconditions": [
+        "lateFee = 0"
+      ],
+      "inputs": [
+        "lateDays"
+      ],
+      "outputs": [
+        "lateFee"
+      ],
+      "anchor": "lateFee = 0;",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "lateFee": 0
+        }
+      }
+    },
+    {
+      "id": "JAV-R09",
+      "kind": "constraint",
+      "statement": "Total due is gross minus discount plus late fee minus account credit.",
+      "preconditions": [
+        "components computed"
+      ],
+      "postconditions": [
+        "totalDue = grossAmount - discount + lateFee - credit"
+      ],
+      "inputs": [
+        "credit"
+      ],
+      "outputs": [
+        "totalDue"
+      ],
+      "anchor": "totalDue = grossAmount - discount + lateFee - credit",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 1,
+          "lateDays": 5,
+          "credit": 0
+        },
+        "expect": {
+          "totalDue": 9100
+        }
+      }
+    },
+    {
+      "id": "JAV-R10",
+      "kind": "explicit",
+      "statement": "An invoice more than 30 days late is flagged LATE.",
+      "preconditions": [
+        "lateDays > 30"
+      ],
+      "postconditions": [
+        "status = 'LATE'"
+      ],
+      "inputs": [
+        "lateDays"
+      ],
+      "outputs": [
+        "status"
+      ],
+      "anchor": "status = \"LATE\"",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 31,
+          "credit": 0
+        },
+        "expect": {
+          "status": "LATE"
+        }
+      }
+    },
+    {
+      "id": "JAV-R11",
+      "kind": "explicit",
+      "statement": "When the total due drops to zero or below the invoice is flagged VOID.",
+      "preconditions": [
+        "totalDue <= 0"
+      ],
+      "postconditions": [
+        "status = 'VOID'"
+      ],
+      "inputs": [
+        "credit"
+      ],
+      "outputs": [
+        "status"
+      ],
+      "anchor": "status = \"VOID\"",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 10000
+        },
+        "expect": {
+          "totalDue": -1000,
+          "status": "VOID"
+        }
+      }
+    },
+    {
+      "id": "JAV-R12",
+      "kind": "explicit",
+      "statement": "A normal invoice with a positive total is flagged CLEAR.",
+      "preconditions": [
+        "totalDue > 0",
+        "lateDays <= 30"
+      ],
+      "postconditions": [
+        "status = 'CLEAR'"
+      ],
+      "inputs": [
+        "lateDays",
+        "credit"
+      ],
+      "outputs": [
+        "status"
+      ],
+      "anchor": "status = \"CLEAR\"",
+      "contract": {
+        "given": {
+          "months": 3,
+          "monthlyRate": 2000,
+          "seats": 2,
+          "seatPrice": 500,
+          "coupon": 0,
+          "lateDays": 0,
+          "credit": 0
+        },
+        "expect": {
+          "status": "CLEAR"
+        }
+      }
+    },
+    {
+      "id": "JAV-R13",
+      "kind": "explicit",
+      "statement": "A taxable invoice line charges tax at line amount times tax rate over 100.",
+      "preconditions": [
+        "exempt = 0"
+      ],
+      "postconditions": [
+        "taxAmount = lineAmount * taxRate / 100"
+      ],
+      "inputs": [
+        "lineAmount",
+        "taxRate",
+        "exempt"
+      ],
+      "outputs": [
+        "taxAmount"
+      ],
+      "anchor": "taxAmount = lineAmount * taxRate / 100",
+      "contract": {
+        "given": {
+          "lineAmount": 10000,
+          "taxRate": 8,
+          "exempt": 0,
+          "rush": 0
+        },
+        "expect": {
+          "taxAmount": 800
+        }
+      }
+    },
+    {
+      "id": "JAV-R14",
+      "kind": "explicit",
+      "statement": "A tax-exempt line carries no tax.",
+      "preconditions": [
+        "exempt = 1"
+      ],
+      "postconditions": [
+        "taxAmount = 0"
+      ],
+      "inputs": [
+        "exempt"
+      ],
+      "outputs": [
+        "taxAmount"
+      ],
+      "anchor": "taxAmount = 0;",
+      "contract": {
+        "given": {
+          "lineAmount": 10000,
+          "taxRate": 8,
+          "exempt": 1,
+          "rush": 0
+        },
+        "expect": {
+          "taxAmount": 0
+        }
+      }
+    },
+    {
+      "id": "JAV-R15",
+      "kind": "explicit",
+      "statement": "Standard handling ships at a flat 900 cents.",
+      "preconditions": [
+        "rush = 0"
+      ],
+      "postconditions": [
+        "shipping = 900"
+      ],
+      "inputs": [
+        "rush"
+      ],
+      "outputs": [
+        "shipping"
+      ],
+      "anchor": "shipping = 900;",
+      "contract": {
+        "given": {
+          "lineAmount": 10000,
+          "taxRate": 8,
+          "exempt": 0,
+          "rush": 0
+        },
+        "expect": {
+          "shipping": 900
+        }
+      }
+    },
+    {
+      "id": "JAV-R16",
+      "kind": "explicit",
+      "statement": "Rush handling ships at a flat 1800 cents.",
+      "preconditions": [
+        "rush = 1"
+      ],
+      "postconditions": [
+        "shipping = 1800"
+      ],
+      "inputs": [
+        "rush"
+      ],
+      "outputs": [
+        "shipping"
+      ],
+      "anchor": "shipping = 1800;",
+      "contract": {
+        "given": {
+          "lineAmount": 10000,
+          "taxRate": 8,
+          "exempt": 0,
+          "rush": 1
+        },
+        "expect": {
+          "shipping": 1800
+        }
+      }
+    },
+    {
+      "id": "JAV-R17",
+      "kind": "constraint",
+      "statement": "The line total is line amount plus tax plus shipping.",
+      "preconditions": [
+        "components computed"
+      ],
+      "postconditions": [
+        "lineTotal = lineAmount + taxAmount + shipping"
+      ],
+      "inputs": [
+        "lineAmount",
+        "taxRate",
+        "exempt",
+        "rush"
+      ],
+      "outputs": [
+        "lineTotal"
+      ],
+      "anchor": "lineTotal = lineAmount + taxAmount + shipping",
+      "contract": {
+        "given": {
+          "lineAmount": 10000,
+          "taxRate": 8,
+          "exempt": 0,
+          "rush": 1
+        },
+        "expect": {
+          "lineTotal": 12600
+        }
+      }
+    }
+  ]
+}

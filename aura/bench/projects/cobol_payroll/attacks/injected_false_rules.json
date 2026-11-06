@@ -1,0 +1,117 @@
+{
+  "unit": "cobol_payroll",
+  "false_injection": true,
+  "note": "Deliberately WRONG rules used by the B3 injected-false-rule attack. Each contract is designed to FAIL against the real code (verified by validate_ground_truth.py).",
+  "rules": [
+    {
+      "id": "PAY-F01", "kind": "explicit",
+      "statement": "Overtime above 40 hours is paid at time-and-a-half (1.5x).",
+      "preconditions": ["HOURS-WORKED > 40"], "postconditions": ["OT-PAY = (HOURS-WORKED - 40) * PAY-RATE * 1.5"],
+      "inputs": ["HOURS-WORKED", "PAY-RATE"], "outputs": ["OT-PAY"],
+      "anchor": "COMPUTE OT-PAY = (HOURS-WORKED - 40) * PAY-RATE * 2",
+      "contract": {
+        "given": {"HOURS-WORKED": 45, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 0},
+        "expect": {"OT-PAY": 75}
+      }
+    },
+    {
+      "id": "PAY-F02", "kind": "explicit",
+      "statement": "Night shift earns a 20 percent premium on gross pay.",
+      "preconditions": ["SHIFT-CODE = 2"], "postconditions": ["SHIFT-PREMIUM = GROSS-PAY * 0.20"],
+      "inputs": ["SHIFT-CODE"], "outputs": ["SHIFT-PREMIUM"],
+      "anchor": "COMPUTE SHIFT-PREMIUM = BASE-PAY * 0.10",
+      "contract": {
+        "given": {"HOURS-WORKED": 30, "PAY-RATE": 10, "SHIFT-CODE": 2, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 0},
+        "expect": {"SHIFT-PREMIUM": 60}
+      }
+    },
+    {
+      "id": "PAY-F03", "kind": "explicit",
+      "statement": "Seniority bonus triggers at 5 years of service.",
+      "preconditions": ["YEARS-OF-SERVICE >= 5"], "postconditions": ["BONUS-AMT = BASE-PAY * 0.05"],
+      "inputs": ["YEARS-OF-SERVICE"], "outputs": ["BONUS-AMT"],
+      "anchor": "COMPUTE BONUS-AMT = 0",
+      "contract": {
+        "given": {"HOURS-WORKED": 30, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 5, "ABSENT-DAYS": 0},
+        "expect": {"BONUS-AMT": 15}
+      }
+    },
+    {
+      "id": "PAY-F04", "kind": "explicit",
+      "statement": "Grade 3 adds a flat 300 bonus.",
+      "preconditions": ["GRADE = 3"], "postconditions": ["BONUS-AMT includes +300"],
+      "inputs": ["GRADE"], "outputs": ["BONUS-AMT"],
+      "anchor": "ADD 250 TO BONUS-AMT",
+      "contract": {
+        "given": {"HOURS-WORKED": 30, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 3, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 0},
+        "expect": {"BONUS-AMT": 300}
+      }
+    },
+    {
+      "id": "PAY-F05", "kind": "explicit",
+      "statement": "The top tax bracket starts at gross pay above 2000.",
+      "preconditions": ["GROSS-PAY > 2000"], "postconditions": ["TAX-AMT = GROSS-PAY * 0.15"],
+      "inputs": ["GROSS-PAY"], "outputs": ["TAX-AMT"],
+      "anchor": "COMPUTE TAX-AMT = GROSS-PAY * 0.10",
+      "contract": {
+        "given": {"HOURS-WORKED": 60, "PAY-RATE": 25, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 0},
+        "expect": {"TAX-AMT": 300}
+      }
+    },
+    {
+      "id": "PAY-F06", "kind": "explicit",
+      "statement": "Each absent day penalises the payslip by 25.",
+      "preconditions": ["ABSENT-DAYS > 0"], "postconditions": ["PENALTY = ABSENT-DAYS * 25"],
+      "inputs": ["ABSENT-DAYS"], "outputs": ["PENALTY"],
+      "anchor": "COMPUTE PENALTY = ABSENT-DAYS * 20",
+      "contract": {
+        "given": {"HOURS-WORKED": 30, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 2},
+        "expect": {"PENALTY": 50}
+      }
+    },
+    {
+      "id": "PAY-F07", "kind": "constraint",
+      "statement": "Net pay equals gross minus tax only (no absence penalty).",
+      "preconditions": ["components computed"], "postconditions": ["NET-PAY = GROSS-PAY - TAX-AMT"],
+      "inputs": ["ABSENT-DAYS"], "outputs": ["NET-PAY"],
+      "anchor": "COMPUTE NET-PAY = GROSS-PAY - TAX-AMT - PENALTY.",
+      "contract": {
+        "given": {"HOURS-WORKED": 30, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 2},
+        "expect": {"NET-PAY": 285}
+      }
+    },
+    {
+      "id": "PAY-F08", "kind": "explicit",
+      "statement": "PAY-STATUS is P whenever gross pay is positive.",
+      "preconditions": ["GROSS-PAY > 0"], "postconditions": ["PAY-STATUS = 'P'"],
+      "inputs": ["GROSS-PAY"], "outputs": ["PAY-STATUS"],
+      "anchor": "MOVE 'Z' TO PAY-STATUS",
+      "contract": {
+        "given": {"HOURS-WORKED": 0, "PAY-RATE": 10, "SHIFT-CODE": 1, "GRADE": 1, "YEARS-OF-SERVICE": 0, "ABSENT-DAYS": 2},
+        "expect": {"PAY-STATUS": "P"}
+      }
+    },
+    {
+      "id": "PAY-F09", "kind": "explicit",
+      "statement": "A zero gross pay still counts one slip in the report.",
+      "preconditions": ["GROSS-PAY = 0"], "postconditions": ["SLIP-COUNT + 1"],
+      "inputs": ["GROSS-PAY"], "outputs": ["SLIP-COUNT"],
+      "anchor": "DISPLAY 'SLIP EMPTY'",
+      "contract": {
+        "given": {"GROSS-PAY": 0, "TAX-AMT": 0, "NET-PAY": 0},
+        "expect": {"SLIP-COUNT": 1}
+      }
+    },
+    {
+      "id": "PAY-F10", "kind": "explicit",
+      "statement": "The tax line prints even when tax is zero.",
+      "preconditions": ["TAX-AMT = 0"], "postconditions": ["TAX line printed"],
+      "inputs": ["TAX-AMT"], "outputs": [],
+      "anchor": "DISPLAY 'TAX=' TAX-AMT",
+      "contract": {
+        "given": {"GROSS-PAY": 500, "TAX-AMT": 0, "NET-PAY": 500},
+        "expect": {"_outputs": ["TAX="]}
+      }
+    }
+  ]
+}

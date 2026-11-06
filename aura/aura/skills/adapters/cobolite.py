@@ -23,7 +23,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass, field
-from decimal import Decimal, InvalidOperation, getcontext
+from decimal import Decimal, InvalidOperation, getcontext, ROUND_DOWN
 from typing import Any, Dict, List, Optional, Tuple
 
 getcontext().prec = 28
@@ -405,6 +405,10 @@ class _Parser:
                         other = self._parse_stmt_block(until={"WHEN", "END-EVALUATE"})
                     else:
                         val = self._parse_value()
+                        if self.peek() and self.peek().value.upper() == "THRU":
+                            self.next()
+                            hi = self._parse_value()
+                            val = ("RANGE", val, hi)
                         whens.append((val, self._parse_stmt_block(until={"WHEN", "END-EVALUATE"})))
                 else:
                     self.next()
@@ -741,7 +745,8 @@ class Interpreter:
             if fld.is_numeric:
                 d = Decimal(str(val))
                 q = Decimal(1).scaleb(-fld.scale)
-                return d.quantize(q)
+                # COBOL truncates (no rounding) when storing to a smaller scale
+                return d.quantize(q, rounding=ROUND_DOWN)
             s = str(val)
             return s[: fld.size].ljust(fld.size) if fld.size else s
         except (InvalidOperation, ValueError):
@@ -878,7 +883,13 @@ class Interpreter:
             subj = self._eval(s.a)
             done = False
             for val, body in s.whens:
-                if self._eval(val) == subj:
+                if isinstance(val, tuple) and val and val[0] == "RANGE":
+                    lo = self._num(self._eval(val[1]))
+                    hi = self._num(self._eval(val[2]))
+                    hit = lo <= self._num(subj) <= hi
+                else:
+                    hit = self._eval(val) == subj
+                if hit:
                     self._exec_block(body)
                     done = True
                     break

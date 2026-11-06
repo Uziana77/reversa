@@ -1,0 +1,193 @@
+{
+  "unit": "reportscript",
+  "note": "Ground truth authored before the code (correct by construction); contracts mechanically verified by scripts/validate_ground_truth.py.",
+  "rules": [
+    {
+      "id": "RPT-R01", "kind": "explicit",
+      "statement": "In SALES-RPT, TOTAL-AMT accumulates the sum of all record amounts.",
+      "preconditions": ["RECORDS processed"], "postconditions": ["TOTAL-AMT = sum(amount)"],
+      "inputs": ["RECORDS"], "outputs": ["TOTAL-AMT"],
+      "anchor": "ACCUMULATE REC_AMOUNT INTO TOTAL-AMT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 80, "qty": 5, "rep": "BOB", "region": "SOUTH"}, {"amount": 120, "qty": 12, "rep": "ANA", "region": "EAST"}]},
+        "expect": {"TOTAL-AMT": 450}
+      }
+    },
+    {
+      "id": "RPT-R02", "kind": "explicit",
+      "statement": "HIGH-COUNT counts records whose amount exceeds 100.",
+      "preconditions": ["record amount > 100"], "postconditions": ["HIGH-COUNT incremented"],
+      "inputs": ["RECORDS"], "outputs": ["HIGH-COUNT"],
+      "anchor": "IF REC_AMOUNT > 100 THEN",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 80, "qty": 5, "rep": "BOB", "region": "SOUTH"}, {"amount": 120, "qty": 12, "rep": "ANA", "region": "EAST"}]},
+        "expect": {"HIGH-COUNT": 2}
+      }
+    },
+    {
+      "id": "RPT-R03", "kind": "explicit",
+      "statement": "Amounts of NORTH-region records accumulate into REGION-NORTH.",
+      "preconditions": ["REC_REGION = 'NORTH'"], "postconditions": ["REGION-NORTH incremented by amount"],
+      "inputs": ["RECORDS"], "outputs": ["REGION-NORTH"],
+      "anchor": "ACCUMULATE REC_AMOUNT INTO REGION-NORTH.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 80, "qty": 5, "rep": "BOB", "region": "SOUTH"}, {"amount": 120, "qty": 12, "rep": "ANA", "region": "EAST"}]},
+        "expect": {"REGION-NORTH": 250}
+      }
+    },
+    {
+      "id": "RPT-R04", "kind": "explicit",
+      "statement": "Amounts of every non-NORTH record fall into the REGION-SOUTH bucket (else branch).",
+      "preconditions": ["REC_REGION <> 'NORTH'"], "postconditions": ["REGION-SOUTH incremented by amount"],
+      "inputs": ["RECORDS"], "outputs": ["REGION-SOUTH"],
+      "anchor": "ACCUMULATE REC_AMOUNT INTO REGION-SOUTH.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 80, "qty": 5, "rep": "BOB", "region": "SOUTH"}, {"amount": 120, "qty": 12, "rep": "ANA", "region": "EAST"}]},
+        "expect": {"REGION-SOUTH": 200}
+      }
+    },
+    {
+      "id": "RPT-R05", "kind": "implicit",
+      "statement": "TOP-AMT tracks the running maximum record amount.",
+      "preconditions": ["record scanned"], "postconditions": ["TOP-AMT = max(amount)"],
+      "inputs": ["RECORDS"], "outputs": ["TOP-AMT"],
+      "anchor": "IF REC_AMOUNT > TOP-AMT THEN",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 80, "qty": 5, "rep": "BOB", "region": "SOUTH"}, {"amount": 120, "qty": 12, "rep": "ANA", "region": "EAST"}]},
+        "expect": {"TOP-AMT": 250}
+      }
+    },
+    {
+      "id": "RPT-R06", "kind": "explicit",
+      "statement": "Records with quantity above 10 receive a 10 percent discount before netting.",
+      "preconditions": ["REC_QTY > 10"], "postconditions": ["net contribution = amount * 0.9"],
+      "inputs": ["RECORDS"], "outputs": ["NET-TOTAL"],
+      "anchor": "LET DISCOUNT = REC_AMOUNT * 0.9.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 20, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"NET-TOTAL": 90}
+      }
+    },
+    {
+      "id": "RPT-R07", "kind": "explicit",
+      "statement": "Records with quantity of 10 or less are netted at full amount.",
+      "preconditions": ["REC_QTY <= 10"], "postconditions": ["net contribution = amount"],
+      "inputs": ["RECORDS"], "outputs": ["NET-TOTAL"],
+      "anchor": "LET DISCOUNT = REC_AMOUNT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 5, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"NET-TOTAL": 100}
+      }
+    },
+    {
+      "id": "RPT-R08", "kind": "explicit",
+      "statement": "Rep ANA earns a 5 percent commission on the discounted amount.",
+      "preconditions": ["REC_REP = 'ANA'"], "postconditions": ["commission = discount * 0.05"],
+      "inputs": ["RECORDS"], "outputs": ["COMM-TOTAL"],
+      "anchor": "LET COMM = DISCOUNT * 0.05.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 20, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"COMM-TOTAL": 4.5}
+      }
+    },
+    {
+      "id": "RPT-R09", "kind": "explicit",
+      "statement": "Every other rep earns a 3 percent commission on the discounted amount.",
+      "preconditions": ["REC_REP <> 'ANA'"], "postconditions": ["commission = discount * 0.03"],
+      "inputs": ["RECORDS"], "outputs": ["COMM-TOTAL"],
+      "anchor": "LET COMM = DISCOUNT * 0.03.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 5, "rep": "BOB", "region": "NORTH"}]},
+        "expect": {"COMM-TOTAL": 3}
+      }
+    },
+    {
+      "id": "RPT-R10", "kind": "explicit",
+      "statement": "A HIGH detail line is printed for each record above 100.",
+      "preconditions": ["REC_AMOUNT > 100"], "postconditions": ["HIGH line emitted with rep and amount"],
+      "inputs": ["RECORDS"], "outputs": [],
+      "anchor": "PRINT 'HIGH' REC_REP REC_AMOUNT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"_outputs": ["HIGH ANA 250"]}
+      }
+    },
+    {
+      "id": "RPT-R11", "kind": "explicit",
+      "statement": "No HIGH detail line is printed for records at or below 100.",
+      "preconditions": ["REC_AMOUNT <= 100"], "postconditions": ["no HIGH detail line"],
+      "inputs": ["RECORDS"], "outputs": [],
+      "anchor": "PRINT 'HIGH' REC_REP REC_AMOUNT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 5, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"_no_outputs": ["HIGH BOB"]}
+      }
+    },
+    {
+      "id": "RPT-R12", "kind": "implicit",
+      "statement": "An empty record collection produces zero totals and zero counts.",
+      "preconditions": ["RECORDS is empty"], "postconditions": ["all accumulators zero"],
+      "inputs": ["RECORDS"], "outputs": ["TOTAL-AMT", "NET-TOTAL", "COMM-TOTAL", "HIGH-COUNT", "TOP-AMT"],
+      "anchor": "FOR EACH REC IN RECORDS DO",
+      "contract": {
+        "given": {"RECORDS": []},
+        "expect": {"TOTAL-AMT": 0, "HIGH-COUNT": 0, "NET-TOTAL": 0, "COMM-TOTAL": 0, "TOP-AMT": 0}
+      }
+    },
+    {
+      "id": "RPT-R13", "kind": "explicit",
+      "statement": "The report ends with a TOTAL summary line carrying the gross amount.",
+      "preconditions": ["report complete"], "postconditions": ["TOTAL line emitted"],
+      "inputs": ["RECORDS"], "outputs": [],
+      "anchor": "PRINT 'TOTAL' TOTAL-AMT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 200, "qty": 1, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"_outputs": ["TOTAL 450"]}
+      }
+    },
+    {
+      "id": "RPT-R14", "kind": "explicit",
+      "statement": "In RETURNS-RPT, RETURN-TOTAL accumulates all return amounts and RETURN-COUNT counts the records.",
+      "preconditions": ["RETURNS processed"], "postconditions": ["RETURN-TOTAL = sum(amount)", "RETURN-COUNT = size"],
+      "inputs": ["RETURNS"], "outputs": ["RETURN-TOTAL", "RETURN-COUNT"],
+      "anchor": "ACCUMULATE RET_AMOUNT INTO RETURN-TOTAL.",
+      "contract": {
+        "given": {"RETURNS": [{"amount": 40}, {"amount": 30}], "GROSS": 100},
+        "expect": {"RETURN-TOTAL": 70, "RETURN-COUNT": 2}
+      }
+    },
+    {
+      "id": "RPT-R15", "kind": "explicit",
+      "statement": "A refund above the gross amount is clamped to the gross and flagged.",
+      "preconditions": ["RET_AMOUNT > GROSS"], "postconditions": ["REFUND = GROSS", "FLAG-COUNT incremented"],
+      "inputs": ["RETURNS", "GROSS"], "outputs": ["REFUND-TOTAL", "FLAG-COUNT"],
+      "anchor": "LET REFUND = GROSS.",
+      "contract": {
+        "given": {"RETURNS": [{"amount": 150}], "GROSS": 100},
+        "expect": {"REFUND-TOTAL": 100, "FLAG-COUNT": 1, "_outputs": ["CLAMPED 150"]}
+      }
+    },
+    {
+      "id": "RPT-R16", "kind": "explicit",
+      "statement": "A refund at or below the gross amount is paid in full and not flagged.",
+      "preconditions": ["RET_AMOUNT <= GROSS"], "postconditions": ["REFUND = RET_AMOUNT", "no clamp flag"],
+      "inputs": ["RETURNS", "GROSS"], "outputs": ["REFUND-TOTAL", "FLAG-COUNT"],
+      "anchor": "LET REFUND = RET_AMOUNT.",
+      "contract": {
+        "given": {"RETURNS": [{"amount": 50}], "GROSS": 100},
+        "expect": {"REFUND-TOTAL": 50, "FLAG-COUNT": 0, "_no_outputs": ["CLAMPED"]}
+      }
+    },
+    {
+      "id": "RPT-R17", "kind": "implicit",
+      "statement": "Empty returns produce zero reconciliation totals.",
+      "preconditions": ["RETURNS is empty"], "postconditions": ["all accumulators zero"],
+      "inputs": ["RETURNS"], "outputs": ["RETURN-TOTAL", "REFUND-TOTAL", "RETURN-COUNT"],
+      "anchor": "FOR EACH RET IN RETURNS DO",
+      "contract": {
+        "given": {"RETURNS": [], "GROSS": 100},
+        "expect": {"RETURN-TOTAL": 0, "REFUND-TOTAL": 0, "RETURN-COUNT": 0}
+      }
+    }
+  ]
+}

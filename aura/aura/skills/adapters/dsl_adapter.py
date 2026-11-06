@@ -36,6 +36,10 @@ class DialectAdapter(ExecutionAdapter):
         )
         if not res.ok:
             return res
+
+        def norm(name: str) -> str:
+            return name.upper().replace("-", "_")
+
         fields = harness.state_fields or list(res.state)
-        res.state = {f: res.state.get(f) for f in fields if f in res.state}
+        res.state = {f: res.state[norm(f)] for f in fields if norm(f) in res.state}
         return res

@@ -1,0 +1,204 @@
+{
+  "unit": "go_inventory",
+  "note": "Ground truth authored before the code (correct by construction); contracts mechanically verified by scripts/validate_ground_truth.py (gosim interpreter locally; real go run in CI).",
+  "rules": [
+    {
+      "id": "INV-R01", "kind": "explicit",
+      "statement": "applyDemand clamps demand to the available stock: when demand exceeds stock the result is 0.",
+      "preconditions": ["demand > stock"], "postconditions": ["final_stock = 0"],
+      "inputs": ["stock", "demand"], "outputs": ["final_stock"],
+      "anchor": "if demand > stock",
+      "contract": {
+        "given": {"stock": 10, "demand": 25, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"final_stock": 0}
+      }
+    },
+    {
+      "id": "INV-R02", "kind": "explicit",
+      "statement": "When demand fits within stock, the remaining stock is stock minus demand.",
+      "preconditions": ["demand <= stock"], "postconditions": ["final_stock = stock - demand"],
+      "inputs": ["stock", "demand"], "outputs": ["final_stock"],
+      "anchor": "return stock - demand",
+      "contract": {
+        "given": {"stock": 30, "demand": 12, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"final_stock": 18}
+      }
+    },
+    {
+      "id": "INV-R03", "kind": "constraint",
+      "statement": "The reorder gap never goes negative: stock at or above the reorder level contributes 0 to the reorder quantity.",
+      "preconditions": ["stock >= reorderLevel"], "postconditions": ["gap = 0"],
+      "inputs": ["stock", "reorderLevel"], "outputs": ["reorder_qty"],
+      "anchor": "if need < 0",
+      "contract": {
+        "given": {"stock": 65, "demand": 5, "reorderLevel": 50, "leadDays": 0, "dailyDemand": 0},
+        "expect": {"reorder_qty": 0, "final_stock": 60}
+      }
+    },
+    {
+      "id": "INV-R04", "kind": "explicit",
+      "statement": "Lead-time need equals leadDays times dailyDemand and is added on top of the reorder gap.",
+      "preconditions": ["leadDays >= 0", "dailyDemand >= 0"], "postconditions": ["lead_need = leadDays * dailyDemand", "reorder_qty = gap + lead_need"],
+      "inputs": ["leadDays", "dailyDemand"], "outputs": ["lead_need", "reorder_qty"],
+      "anchor": "leadNeed := leadDays * dailyDemand",
+      "contract": {
+        "given": {"stock": 100, "demand": 0, "reorderLevel": 50, "leadDays": 4, "dailyDemand": 10},
+        "expect": {"reorder_qty": 40, "lead_need": 40}
+      }
+    },
+    {
+      "id": "INV-R05", "kind": "explicit",
+      "statement": "The reorder quantity is capped at the 500-unit shelf cap even when gap plus lead-time need is larger.",
+      "preconditions": ["gap + lead_need > 500"], "postconditions": ["reorder_qty = 500"],
+      "inputs": ["stock", "reorderLevel", "leadDays", "dailyDemand"], "outputs": ["reorder_qty"],
+      "anchor": "if need > 500",
+      "contract": {
+        "given": {"stock": 0, "demand": 0, "reorderLevel": 500, "leadDays": 100, "dailyDemand": 10},
+        "expect": {"reorder_qty": 500, "lead_need": 1000}
+      }
+    },
+    {
+      "id": "INV-R06", "kind": "explicit",
+      "statement": "classify labels zero stock as OUT.",
+      "preconditions": ["stock = 0"], "postconditions": ["status = 'OUT'"],
+      "inputs": ["stock"], "outputs": ["status"],
+      "anchor": "return \"OUT\"",
+      "contract": {
+        "given": {"stock": 10, "demand": 25, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"status": "OUT"}
+      }
+    },
+    {
+      "id": "INV-R07", "kind": "explicit",
+      "statement": "classify labels stock below the reorder level as LOW.",
+      "preconditions": ["0 < stock < reorderLevel"], "postconditions": ["status = 'LOW'"],
+      "inputs": ["stock", "reorderLevel"], "outputs": ["status"],
+      "anchor": "return \"LOW\"",
+      "contract": {
+        "given": {"stock": 30, "demand": 12, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"status": "LOW"}
+      }
+    },
+    {
+      "id": "INV-R08", "kind": "explicit",
+      "statement": "classify labels stock at or above the reorder level as OK.",
+      "preconditions": ["stock >= reorderLevel", "stock > 0"], "postconditions": ["status = 'OK'"],
+      "inputs": ["stock", "reorderLevel"], "outputs": ["status"],
+      "anchor": "return \"OK\"",
+      "contract": {
+        "given": {"stock": 60, "demand": 0, "reorderLevel": 50, "leadDays": 0, "dailyDemand": 0},
+        "expect": {"status": "OK"}
+      }
+    },
+    {
+      "id": "INV-R09", "kind": "constraint",
+      "statement": "runBatch serves demand before computing the reorder, so the reorder gap uses the post-demand stock.",
+      "preconditions": ["demand served first"], "postconditions": ["gap = max(0, reorderLevel - (stock - demand))"],
+      "inputs": ["stock", "demand", "reorderLevel"], "outputs": ["final_stock", "reorder_qty"],
+      "anchor": "stock = applyDemand(stock, demand)",
+      "contract": {
+        "given": {"stock": 30, "demand": 10, "reorderLevel": 50, "leadDays": 2, "dailyDemand": 5},
+        "expect": {"final_stock": 20, "reorder_qty": 40}
+      }
+    },
+    {
+      "id": "INV-R10", "kind": "explicit",
+      "statement": "The order total is units times unit price.",
+      "preconditions": ["units >= 0", "unitPrice >= 0"], "postconditions": ["total = units * unitPrice"],
+      "inputs": ["units", "unitPrice"], "outputs": ["total"],
+      "anchor": "total := units * unitPrice",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 3},
+        "expect": {"total": 2000, "net": 2000}
+      }
+    },
+    {
+      "id": "INV-R11", "kind": "explicit",
+      "statement": "Orders of more than 50 units take a 10 percent bulk discount.",
+      "preconditions": ["units > 50"], "postconditions": ["discount = total / 10", "net = total - discount"],
+      "inputs": ["units", "unitPrice"], "outputs": ["net"],
+      "anchor": "discount = total / 10",
+      "contract": {
+        "given": {"units": 60, "unitPrice": 100, "member": 0, "weight": 3, "zone": 3},
+        "expect": {"total": 6000, "net": 5400}
+      }
+    },
+    {
+      "id": "INV-R12", "kind": "explicit",
+      "statement": "Member orders of 50 units or fewer take a 5 percent discount.",
+      "preconditions": ["units <= 50", "member = 1"], "postconditions": ["discount = total / 20", "net = total - discount"],
+      "inputs": ["units", "unitPrice", "member"], "outputs": ["net"],
+      "anchor": "discount = total / 20",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 1, "weight": 3, "zone": 3},
+        "expect": {"total": 2000, "net": 1900}
+      }
+    },
+    {
+      "id": "INV-R13", "kind": "constraint",
+      "statement": "Discounts never stack: on bulk orders the bulk discount applies even for members.",
+      "preconditions": ["units > 50", "member = 1"], "postconditions": ["discount = total / 10"],
+      "inputs": ["units", "member"], "outputs": ["net"],
+      "anchor": "if units > 50",
+      "contract": {
+        "given": {"units": 60, "unitPrice": 100, "member": 1, "weight": 3, "zone": 3},
+        "expect": {"net": 5400}
+      }
+    },
+    {
+      "id": "INV-R14", "kind": "explicit",
+      "statement": "A non-member order of 50 units or fewer gets no discount and net equals total.",
+      "preconditions": ["units <= 50", "member = 0"], "postconditions": ["discount = 0", "net = total"],
+      "inputs": ["units", "member"], "outputs": ["net"],
+      "anchor": "net := total - discount",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 3},
+        "expect": {"net": 2000}
+      }
+    },
+    {
+      "id": "INV-R15", "kind": "explicit",
+      "statement": "Zone 1 shipping charges 5 per kg.",
+      "preconditions": ["zone = 1"], "postconditions": ["shipping = weight * 5"],
+      "inputs": ["weight", "zone"], "outputs": ["shipping"],
+      "anchor": "return weight * 5",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 1},
+        "expect": {"shipping": 15}
+      }
+    },
+    {
+      "id": "INV-R16", "kind": "explicit",
+      "statement": "Zone 2 shipping charges 8 per kg plus a 10 base fee.",
+      "preconditions": ["zone = 2"], "postconditions": ["shipping = weight * 8 + 10"],
+      "inputs": ["weight", "zone"], "outputs": ["shipping"],
+      "anchor": "return weight*8 + 10",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 2},
+        "expect": {"shipping": 34}
+      }
+    },
+    {
+      "id": "INV-R17", "kind": "explicit",
+      "statement": "Any other zone ships at a flat 20.",
+      "preconditions": ["zone not in (1, 2)"], "postconditions": ["shipping = 20"],
+      "inputs": ["zone"], "outputs": ["shipping"],
+      "anchor": "return 20",
+      "contract": {
+        "given": {"units": 20, "unitPrice": 100, "member": 0, "weight": 3, "zone": 5},
+        "expect": {"shipping": 20}
+      }
+    },
+    {
+      "id": "INV-R18", "kind": "constraint",
+      "statement": "runPricing returns the order total, the discounted net and the shipping fee together.",
+      "preconditions": ["all pricing inputs given"], "postconditions": ["total/net from priceOrder", "shipping from shippingFee"],
+      "inputs": ["units", "unitPrice", "member", "weight", "zone"], "outputs": ["total", "net", "shipping"],
+      "anchor": "fee := shippingFee(weight, zone)",
+      "contract": {
+        "given": {"units": 10, "unitPrice": 50, "member": 0, "weight": 2, "zone": 1},
+        "expect": {"total": 500, "net": 500, "shipping": 10}
+      }
+    }
+  ]
+}

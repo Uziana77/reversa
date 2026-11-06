@@ -18,6 +18,7 @@ Writes the EvidenceReport artefact.
 from __future__ import annotations
 
 import json
+import os
 from typing import Any, List, Tuple
 
 from ..skills import inputgen
@@ -46,34 +47,44 @@ class DynamicEvidenceAgent(Agent):
         run = context["run"]
         cfg = run.get("config")
         unit = run.get("unit", {})
-        harness = Harness.from_dict(unit.get("harness", {}))
         root = run["root"]
+        primary = Harness.from_dict(unit.get("harness", {}))
 
-        adapter = get_adapter(
-            harness.language or unit.get("language", ""),
-            timeout_s=getattr(cfg, "sandbox_timeout_s", 10.0) if cfg else 10.0,
-            memory_mb=getattr(cfg, "sandbox_memory_mb", 512) if cfg else 512,
-            max_steps=getattr(cfg, "sandbox_max_steps", 2_000_000) if cfg else 2_000_000,
-        )
-        unsafe_reason = ""
-        if adapter is None or not adapter.available():
-            unsafe_reason = f"no safe execution path: no toolchain for {harness.language!r} in sandbox"
+        adapter_cache = {}
+
+        def adapter_for(rule) -> Tuple[Any, Harness]:
+            h = _pick_harness(unit, rule) or primary
+            key = h.language or unit.get("language", "")
+            if key not in adapter_cache:
+                adapter_cache[key] = get_adapter(
+                    key,
+                    timeout_s=getattr(cfg, "sandbox_timeout_s", 10.0) if cfg else 10.0,
+                    memory_mb=getattr(cfg, "sandbox_memory_mb", 512) if cfg else 512,
+                    max_steps=getattr(cfg, "sandbox_max_steps", 2_000_000) if cfg else 2_000_000,
+                )
+            return adapter_cache[key], h
 
         findings = []
         traces = {}
         confirmed = 0
         for rule in rules:
-            if unsafe_reason:
+            adapter, harness = adapter_for(rule)
+            if adapter is None or not adapter.available():
                 findings.append({"rule_id": rule["id"], "label": "unresolved",
-                                 "reason": unsafe_reason, "trace": "",
-                                 "cases": []})
+                                 "reason": f"no safe execution path: no toolchain for "
+                                           f"{harness.language or unit.get('language')!r} in sandbox",
+                                 "trace": "", "cases": []})
                 continue
             if self._touches_external(rule):
                 findings.append({"rule_id": rule["id"], "label": "unresolved",
                                  "reason": "rule depends on an external system (never executed)",
                                  "trace": "", "cases": []})
                 continue
-            cases = inputgen.synthesise_inputs(rule)
+            # The claim to reproduce is the rule's contract pair (given -> expect);
+            # boundary variants are the Equivalence Validator's concern, where
+            # expected values come from executing the ORIGINAL code.
+            given = (rule.get("contract") or {}).get("given", {}) or {}
+            cases = [dict(given)] if given else [{}]
             label, reason, trace, case_results = self._check_rule(rule, cases, adapter, root, harness)
             if label == "confirmed":
                 confirmed += 1
@@ -88,8 +99,7 @@ class DynamicEvidenceAgent(Agent):
             "contradicted": sum(1 for f in findings if f["label"] == "contradicted"),
             "unresolved": sum(1 for f in findings if f["label"] == "unresolved"),
             "traces": traces,
-            "sandbox": {"adapter": adapter.name if adapter else None,
-                        "unsafe_reason": unsafe_reason},
+            "sandbox": {"adapters": {k: (v.name if v else None) for k, v in adapter_cache.items()}},
         }
         conf = confirmed / max(1, len(rules))
         prov = [{"file": (r.get("source") or {}).get("file", "?"),
@@ -115,7 +125,7 @@ class DynamicEvidenceAgent(Agent):
             if not res.ok:
                 case_results.append({"input": case, "fault": res.fault, "match": False})
                 continue
-            ok = self._expect_holds(expect, res.state)
+            ok = self._expect_holds(expect, {**res.state, "_outputs": res.outputs})
             if expect:
                 matches += 1 if ok else 0
             else:
@@ -139,6 +149,23 @@ class DynamicEvidenceAgent(Agent):
         if not expect:
             return True
         for key, want in expect.items():
+            if key == "_no_outputs":
+                have = state.get("_outputs", [])
+                for w in (want if isinstance(want, list) else [want]):
+                    if any(str(w) in str(h) for h in have):
+                        return False
+                continue
+            if key == "_outputs":
+                have = state.get("_outputs", [])
+                want_list = want if isinstance(want, list) else [want]
+                if not want_list:
+                    if have:
+                        return False
+                    continue
+                for w in want_list:
+                    if not any(str(w) in str(h) for h in have):
+                        return False
+                continue
             have = state.get(key)
             if have is None and key not in state:
                 return False
@@ -168,3 +195,15 @@ class DynamicEvidenceAgent(Agent):
             if not f.get("reason"):
                 return False, f"finding {f.get('rule_id')} lacks a reason"
         return True, ""
+
+
+def _pick_harness(unit: dict, rule: dict) -> Any:
+    """Choose the harness for a rule by its source file (multi-program units)."""
+    harnesses = unit.get("harnesses") or {}
+    src = ((rule.get("source") or {}).get("file") or "").replace("\\", "/")
+    if not src or not harnesses:
+        return None
+    for key, h in harnesses.items():
+        if src.endswith(key) or key.endswith(src) or os.path.basename(src) == os.path.basename(key):
+            return Harness.from_dict(h)
+    return None

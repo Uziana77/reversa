@@ -1,0 +1,171 @@
+{
+  "unit": "react_orders",
+  "note": "Ground truth authored before the code (correct by construction); contracts mechanically verified by scripts/validate_ground_truth.py through real node execution.",
+  "rules": [
+    {
+      "id": "RSC-R01", "kind": "explicit",
+      "statement": "A line's total is its price times quantity.",
+      "preconditions": ["line.qty <= 10"], "postconditions": ["line total = price * qty"],
+      "inputs": ["lines"], "outputs": ["subtotal"],
+      "anchor": "var amount = line.price * line.qty",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 2}], "promo": "", "country": "US"},
+        "expect": {"subtotal": 2000}
+      }
+    },
+    {
+      "id": "RSC-R02", "kind": "explicit",
+      "statement": "A line with more than 10 units takes a 10 percent quantity break, rounded down.",
+      "preconditions": ["line.qty > 10"], "postconditions": ["line total = price * qty - floor(price * qty / 10)"],
+      "inputs": ["lines"], "outputs": ["subtotal"],
+      "anchor": "amount = amount - Math.floor(amount / 10)",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 12}], "promo": "", "country": "US"},
+        "expect": {"subtotal": 10800}
+      }
+    },
+    {
+      "id": "RSC-R03", "kind": "constraint",
+      "statement": "The order subtotal is the sum of all line totals.",
+      "preconditions": ["lines list given"], "postconditions": ["subtotal = sum(line totals)"],
+      "inputs": ["lines"], "outputs": ["subtotal"],
+      "anchor": "subtotal = subtotal + lineTotal(lines[i])",
+      "contract": {
+        "given": {"lines": [{"price": 500, "qty": 3}, {"price": 2000, "qty": 1}], "promo": "", "country": "US"},
+        "expect": {"subtotal": 3500}
+      }
+    },
+    {
+      "id": "RSC-R04", "kind": "explicit",
+      "statement": "US orders ship at a flat 500.",
+      "preconditions": ["country = 'US'"], "postconditions": ["shipping = 500"],
+      "inputs": ["country"], "outputs": ["shipping"],
+      "anchor": "if (country === \"US\")",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 2}], "promo": "", "country": "US"},
+        "expect": {"shipping": 500}
+      }
+    },
+    {
+      "id": "RSC-R05", "kind": "explicit",
+      "statement": "Canadian orders ship at a flat 1200.",
+      "preconditions": ["country = 'CA'"], "postconditions": ["shipping = 1200"],
+      "inputs": ["country"], "outputs": ["shipping"],
+      "anchor": "if (country === \"CA\")",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 2}], "promo": "", "country": "CA"},
+        "expect": {"shipping": 1200}
+      }
+    },
+    {
+      "id": "RSC-R06", "kind": "explicit",
+      "statement": "Any other country ships at a flat 2500.",
+      "preconditions": ["country not in ('US', 'CA')"], "postconditions": ["shipping = 2500"],
+      "inputs": ["country"], "outputs": ["shipping"],
+      "anchor": "return 2500;",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 2}], "promo": "", "country": "DE"},
+        "expect": {"shipping": 2500}
+      }
+    },
+    {
+      "id": "RSC-R07", "kind": "explicit",
+      "statement": "Promo SAVE10 on a subtotal of 5000 or more takes 10 percent off, rounded down.",
+      "preconditions": ["promo = 'SAVE10'", "subtotal >= 5000"], "postconditions": ["discount = floor(subtotal * 10 / 100)"],
+      "inputs": ["lines", "promo"], "outputs": ["discount"],
+      "anchor": "d = Math.floor(subtotal * 10 / 100)",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 6}], "promo": "SAVE10", "country": "US"},
+        "expect": {"subtotal": 6000, "discount": 600}
+      }
+    },
+    {
+      "id": "RSC-R08", "kind": "explicit",
+      "statement": "Promo SAVE10 below a 5000 subtotal gives no discount.",
+      "preconditions": ["promo = 'SAVE10'", "subtotal < 5000"], "postconditions": ["discount = 0"],
+      "inputs": ["lines", "promo"], "outputs": ["discount"],
+      "anchor": "promo === \"SAVE10\" && subtotal >= 5000",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 4}], "promo": "SAVE10", "country": "US"},
+        "expect": {"subtotal": 4000, "discount": 0}
+      }
+    },
+    {
+      "id": "RSC-R09", "kind": "explicit",
+      "statement": "Promo SAVE20 on a subtotal of 15000 or more takes 20 percent off, rounded down.",
+      "preconditions": ["promo = 'SAVE20'", "subtotal >= 15000"], "postconditions": ["discount = floor(subtotal * 20 / 100)"],
+      "inputs": ["lines", "promo"], "outputs": ["discount"],
+      "anchor": "d = Math.floor(subtotal * 20 / 100)",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 20}], "promo": "SAVE20", "country": "US"},
+        "expect": {"subtotal": 18000, "discount": 3600}
+      }
+    },
+    {
+      "id": "RSC-R10", "kind": "explicit",
+      "statement": "Promo SAVE20 below a 15000 subtotal gives no discount.",
+      "preconditions": ["promo = 'SAVE20'", "subtotal < 15000"], "postconditions": ["discount = 0"],
+      "inputs": ["lines", "promo"], "outputs": ["discount"],
+      "anchor": "promo === \"SAVE20\" && subtotal >= 15000",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 10}], "promo": "SAVE20", "country": "US"},
+        "expect": {"subtotal": 10000, "discount": 0}
+      }
+    },
+    {
+      "id": "RSC-R11", "kind": "constraint",
+      "statement": "The order total is subtotal minus discount plus shipping.",
+      "preconditions": ["components computed"], "postconditions": ["total = subtotal - discount + shipping"],
+      "inputs": ["lines", "promo", "country"], "outputs": ["total"],
+      "anchor": "var total = subtotal - discount + shipping",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 6}], "promo": "SAVE10", "country": "US"},
+        "expect": {"total": 5900}
+      }
+    },
+    {
+      "id": "RSC-R12", "kind": "explicit",
+      "statement": "An order totaling 20000 or more is flagged REVIEW.",
+      "preconditions": ["total >= 20000"], "postconditions": ["status = 'REVIEW'"],
+      "inputs": ["lines", "country"], "outputs": ["status"],
+      "anchor": "status = \"REVIEW\"",
+      "contract": {
+        "given": {"lines": [{"price": 25000, "qty": 1}], "promo": "", "country": "US"},
+        "expect": {"status": "REVIEW"}
+      }
+    },
+    {
+      "id": "RSC-R13", "kind": "explicit",
+      "statement": "An international order with a subtotal of 30000 or more is flagged HOLD.",
+      "preconditions": ["country not in ('US', 'CA')", "subtotal >= 30000"], "postconditions": ["status = 'HOLD'"],
+      "inputs": ["lines", "country"], "outputs": ["status"],
+      "anchor": "status = \"HOLD\"",
+      "contract": {
+        "given": {"lines": [{"price": 30000, "qty": 1}], "promo": "", "country": "DE"},
+        "expect": {"status": "HOLD"}
+      }
+    },
+    {
+      "id": "RSC-R14", "kind": "explicit",
+      "statement": "A smaller regular order stays OPEN.",
+      "preconditions": ["total < 20000", "not HOLD condition"], "postconditions": ["status = 'OPEN'"],
+      "inputs": ["lines", "country"], "outputs": ["status"],
+      "anchor": "status = \"OPEN\"",
+      "contract": {
+        "given": {"lines": [{"price": 1000, "qty": 2}], "promo": "", "country": "US"},
+        "expect": {"status": "OPEN"}
+      }
+    },
+    {
+      "id": "RSC-R15", "kind": "explicit",
+      "statement": "An order with no lines has a zero subtotal and only shipping in its total.",
+      "preconditions": ["lines = []"], "postconditions": ["subtotal = 0", "total = shipping"],
+      "inputs": ["lines"], "outputs": ["subtotal", "total"],
+      "anchor": "for (var i = 0; i < lines.length; i++)",
+      "contract": {
+        "given": {"lines": [], "promo": "", "country": "US"},
+        "expect": {"subtotal": 0, "total": 500}
+      }
+    }
+  ]
+}

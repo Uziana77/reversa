@@ -1,0 +1,22 @@
+{
+  "unit": "react_orders",
+  "terms": {
+    "run": "order computation entry function",
+    "lineTotal": "price times qty with quantity break",
+    "shippingFor": "flat shipping fee by country",
+    "discountFor": "promo discount by code and threshold",
+    "lines": "order lines with price and qty",
+    "promo": "promotion code SAVE10 or SAVE20",
+    "country": "shipping country code",
+    "subtotal": "sum of line totals",
+    "discount": "promo discount amount",
+    "shipping": "flat shipping fee",
+    "total": "final order total",
+    "status": "OPEN / REVIEW / HOLD order flag",
+    "quantity break": "10 percent off lines above 10 units",
+    "SAVE10": "10 percent promo over 5000",
+    "SAVE20": "20 percent promo over 15000",
+    "REVIEW": "high-value order flag",
+    "HOLD": "high-value international order flag"
+  }
+}

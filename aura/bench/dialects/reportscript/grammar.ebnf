@@ -1,0 +1,35 @@
+(* RPT — Report-Scripting Language ----------------------------------------------
+   Batch report dialect for record-collection aggregation pipelines.
+   This grammar was written BEFORE the corpus; the corpus was authored
+   against it, so keyword/block-boundary metrics have a known answer.
+
+   Lexical -----------------------------------------------------------------
+   ident    = letter { letter | digit | "-" } ;
+   number   = digit { digit } [ "." digit { digit } ] ;
+   string   = "'" { any-but-quote } "'" ;
+   comment  = ( "#" | "//" ) { any } end-of-line ;
+
+   Syntax ------------------------------------------------------------------
+   program    = { stmt } ;
+   stmt       = define | let | for | if | print | accumulate | sort ;
+   define     = "DEFINE" ident [ "AS" ident ] [ "=" expr ] "." ;
+   let        = "LET" ident "=" expr "." ;
+   for        = "FOR" "EACH" ident "IN" ident "DO" { stmt } "END-FOR" "." ;
+   if         = "IF" cond "THEN" { stmt } [ "ELSE" { stmt } ] "END-IF" "." ;
+   print      = "PRINT" expr { expr } "." ;
+   accumulate = "ACCUMULATE" ident "INTO" ident "." ;
+   sort       = "SORT" ident "BY" ident [ "ASCENDING" | "DESCENDING" ] "." ;
+   cond       = cmp { ( "AND" | "OR" ) cmp } ;
+   cmp        = [ "NOT" ] ( expr relop expr | expr ) ;
+   relop      = "=" | "<>" | ">" | "<" | ">=" | "<=" ;
+   expr       = term { ( "+" | "-" ) term } ;
+   term       = factor { ( "*" | "/" ) factor } ;
+   factor      = number | string | agg | ident | "(" expr ")" ;
+   agg        = ( "SUM" | "COUNT" | "MIN" | "MAX" | "AVERAGE" ) ident ;
+
+   Keywords ---------------------------------------------------------------
+   DEFINE AS LET FOR EACH IN DO END-FOR IF THEN ELSE END-IF PRINT
+   ACCUMULATE INTO SORT BY ASCENDING DESCENDING AND OR NOT
+   SUM COUNT MIN MAX AVERAGE
+   Block delimiters: FOR ... END-FOR and IF ... END-IF
+*)

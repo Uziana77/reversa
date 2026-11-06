@@ -1,0 +1,32 @@
+{
+  "unit": "reportscript",
+  "terms": {
+    "SALES-RPT": "consolidated sales report script",
+    "RETURNS-RPT": "returns reconciliation script",
+    "RECORDS": "input collection of sales records",
+    "RETURNS": "input collection of return records",
+    "GROSS": "gross amount used to clamp refunds",
+    "TOTAL-AMT": "gross sales total",
+    "NET-TOTAL": "discounted sales total",
+    "COMM-TOTAL": "commission total",
+    "HIGH-COUNT": "count of high-value records",
+    "REGION-NORTH": "amount bucket for the NORTH region",
+    "REGION-SOUTH": "amount bucket for other regions",
+    "TOP-AMT": "maximum record amount",
+    "DISCOUNT": "per-record discounted amount",
+    "COMM": "per-record commission",
+    "RETURN-TOTAL": "total of return amounts",
+    "RETURN-COUNT": "number of return records",
+    "REFUND-TOTAL": "total of refunded amounts",
+    "FLAG-COUNT": "number of clamped refunds",
+    "REC_AMOUNT": "current record amount",
+    "REC_QTY": "current record quantity",
+    "REC_REP": "current record sales rep",
+    "REC_REGION": "current record region",
+    "RET_AMOUNT": "current return amount",
+    "accumulator": "variable aggregating values across records",
+    "discount": "quantity-based price reduction",
+    "commission": "rep earnings share",
+    "clamp": "capping a refund at the gross amount"
+  }
+}

@@ -1,0 +1,31 @@
+(* ILG — Interlock Guard Language ------------------------------------------------
+   Industrial interlock dialect for machine-safety interlock logic.
+   This grammar was written BEFORE the corpus; the corpus was authored
+   against it, so keyword/block-boundary metrics have a known answer.
+
+   Lexical -----------------------------------------------------------------
+   ident    = letter { letter | digit | "-" } ;
+   number   = digit { digit } [ "." digit { digit } ] ;
+   string   = "'" { any-but-quote } "'" ;
+   comment  = ( "#" | "//" ) { any } end-of-line ;
+
+   Syntax ------------------------------------------------------------------
+   program    = { procedure } ;
+   procedure  = "PROCEDURE" ident "." { stmt } ;
+   stmt       = set | if | lock | assert | trip | do ;
+   set        = "SET" ident "TO" value "." ;
+   if         = "IF" cond "THEN" { stmt } [ "ELSE" { stmt } ] "END-IF" "." ;
+   lock       = "LOCK" ident [ "UNTIL" cond ] "." ;
+   assert     = "ASSERT" cond [ "ALARM" string ] "." ;
+   trip       = "TRIP" ident "REASON" string "." ;
+   do         = "DO" ident "." ;
+   cond       = cmp { ( "AND" | "OR" ) cmp } ;
+   cmp        = [ "NOT" ] ( value relop value | value ) ;
+   relop      = "=" | "<>" | ">" | "<" | ">=" | "<=" ;
+   value      = number | string | "ON" | "OFF" | ident ;
+
+   Keywords ---------------------------------------------------------------
+   PROCEDURE SET TO IF THEN ELSE END-IF LOCK UNTIL ASSERT ALARM TRIP
+   REASON DO AND OR NOT ON OFF
+   Block delimiters: PROCEDURE ... . and IF ... END-IF
+*)

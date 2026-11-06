@@ -68,9 +68,13 @@ class NodeAdapter(ExecutionAdapter):
             "AURA_ENTRY_SYMBOL": harness.entry_symbol or "run",
             "AURA_STATE_FIELDS": json.dumps(harness.state_fields or []),
             "NODE_PATH": os.path.join(root, "node_modules"),
+            # bound the real JS heap; the address-space rlimit must stay
+            # generous because V8 reserves large virtual regions up front
+            "NODE_OPTIONS": "--max-old-space-size=384",
         }
         res = run_subprocess(["node", "driver.js"], cwd=workdir,
-                             timeout_s=self.timeout_s, memory_mb=self.memory_mb,
+                             timeout_s=self.timeout_s,
+                             memory_mb=max(self.memory_mb, 8192),
                              env_extra=env)
         if not res.ok:
             return res

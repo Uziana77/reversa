@@ -1,0 +1,116 @@
+{
+  "unit": "reportscript",
+  "note": "Deliberately false rules injected into the RuleInventory by the experiment runner (safety-gate check). Each must be labelled contradicted.",
+  "rules": [
+    {
+      "id": "RPT-F01", "kind": "explicit", "false_injection": true,
+      "statement": "The high-value threshold is 50: amounts above 50 increment HIGH-COUNT.",
+      "preconditions": ["REC_AMOUNT > 50"], "postconditions": ["HIGH-COUNT incremented"],
+      "inputs": ["RECORDS"], "outputs": ["HIGH-COUNT"],
+      "anchor": "IF REC_AMOUNT > 100 THEN",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 60, "qty": 1, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"HIGH-COUNT": 1}
+      }
+    },
+    {
+      "id": "RPT-F02", "kind": "explicit", "false_injection": true,
+      "statement": "Rep ANA earns a 3 percent commission.",
+      "preconditions": ["REC_REP = 'ANA'"], "postconditions": ["commission = discount * 0.03"],
+      "inputs": ["RECORDS"], "outputs": ["COMM-TOTAL"],
+      "anchor": "LET COMM = DISCOUNT * 0.05.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 5, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"COMM-TOTAL": 3}
+      }
+    },
+    {
+      "id": "RPT-F03", "kind": "explicit", "false_injection": true,
+      "statement": "The discount applies when quantity is 10 or more.",
+      "preconditions": ["REC_QTY >= 10"], "postconditions": ["net contribution = amount * 0.9"],
+      "inputs": ["RECORDS"], "outputs": ["NET-TOTAL"],
+      "anchor": "IF REC_QTY > 10 THEN",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 10, "rep": "BOB", "region": "NORTH"}]},
+        "expect": {"NET-TOTAL": 90}
+      }
+    },
+    {
+      "id": "RPT-F04", "kind": "explicit", "false_injection": true,
+      "statement": "EAST-region records accumulate into REGION-NORTH.",
+      "preconditions": ["REC_REGION = 'EAST'"], "postconditions": ["REGION-NORTH incremented"],
+      "inputs": ["RECORDS"], "outputs": ["REGION-NORTH"],
+      "anchor": "ACCUMULATE REC_AMOUNT INTO REGION-SOUTH.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 50, "qty": 1, "rep": "BOB", "region": "EAST"}]},
+        "expect": {"REGION-NORTH": 50}
+      }
+    },
+    {
+      "id": "RPT-F05", "kind": "implicit", "false_injection": true,
+      "statement": "TOP-AMT is the sum of all record amounts.",
+      "preconditions": ["report complete"], "postconditions": ["TOP-AMT = sum(amount)"],
+      "inputs": ["RECORDS"], "outputs": ["TOP-AMT"],
+      "anchor": "IF REC_AMOUNT > TOP-AMT THEN",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}, {"amount": 200, "qty": 1, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"TOP-AMT": 450}
+      }
+    },
+    {
+      "id": "RPT-F06", "kind": "explicit", "false_injection": true,
+      "statement": "HIGH detail lines name the rep BOB whenever the amount exceeds 100.",
+      "preconditions": ["REC_AMOUNT > 100"], "postconditions": ["HIGH BOB line emitted"],
+      "inputs": ["RECORDS"], "outputs": [],
+      "anchor": "PRINT 'HIGH' REC_REP REC_AMOUNT.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 250, "qty": 20, "rep": "ANA", "region": "NORTH"}]},
+        "expect": {"_outputs": ["HIGH BOB"]}
+      }
+    },
+    {
+      "id": "RPT-F07", "kind": "explicit", "false_injection": true,
+      "statement": "NET-TOTAL always equals TOTAL-AMT regardless of quantities.",
+      "preconditions": ["report complete"], "postconditions": ["NET-TOTAL = TOTAL-AMT"],
+      "inputs": ["RECORDS"], "outputs": ["NET-TOTAL"],
+      "anchor": "ACCUMULATE DISCOUNT INTO NET-TOTAL.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 20, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"NET-TOTAL": 100}
+      }
+    },
+    {
+      "id": "RPT-F08", "kind": "explicit", "false_injection": true,
+      "statement": "Every rep earns 5 percent commission.",
+      "preconditions": ["any rep"], "postconditions": ["commission = discount * 0.05"],
+      "inputs": ["RECORDS"], "outputs": ["COMM-TOTAL"],
+      "anchor": "LET COMM = DISCOUNT * 0.03.",
+      "contract": {
+        "given": {"RECORDS": [{"amount": 100, "qty": 5, "rep": "BOB", "region": "SOUTH"}]},
+        "expect": {"COMM-TOTAL": 5}
+      }
+    },
+    {
+      "id": "RPT-F09", "kind": "explicit", "false_injection": true,
+      "statement": "Refunds are clamped at twice the gross amount.",
+      "preconditions": ["RET_AMOUNT > GROSS"], "postconditions": ["REFUND = GROSS * 2"],
+      "inputs": ["RETURNS", "GROSS"], "outputs": ["REFUND-TOTAL"],
+      "anchor": "LET REFUND = GROSS.",
+      "contract": {
+        "given": {"RETURNS": [{"amount": 150}], "GROSS": 100},
+        "expect": {"REFUND-TOTAL": 200}
+      }
+    },
+    {
+      "id": "RPT-F10", "kind": "explicit", "false_injection": true,
+      "statement": "RETURN-COUNT counts only returns above the gross amount.",
+      "preconditions": ["report complete"], "postconditions": ["RETURN-COUNT = clamped count"],
+      "inputs": ["RETURNS", "GROSS"], "outputs": ["RETURN-COUNT"],
+      "anchor": "LET RETURN-COUNT = RETURN-COUNT + 1.",
+      "contract": {
+        "given": {"RETURNS": [{"amount": 40}, {"amount": 150}], "GROSS": 100},
+        "expect": {"RETURN-COUNT": 1}
+      }
+    }
+  ]
+}
